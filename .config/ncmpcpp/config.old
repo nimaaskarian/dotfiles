@@ -1,0 +1,3 @@
+execute_on_song_change="~/.ncmpcpp/ncmpcpp-ueberzug/ncmpcpp_cover_art.sh"
+playlist_display_mode = "classic"
+song_list_format = "$6{%a »$4 %t$/r$R}|{%f}"

@@ -1,0 +1,347 @@
+# customization variables
+set $wallpaper -fill ~/Pictures/Wallpapers/shaded_landscape.jpeg
+set $bgcolor #302D415e
+# workspace variables 
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# font size variables
+set $font-family MesloLGS NF
+set $font-size 14
+
+# lock command variable
+set $lock i3lock -c 302D41
+
+# modifier variables
+set $super Mod4
+set $alt Mod1
+
+# toggle microphone mute
+bindsym $super+shift+a exec ~/.config/i3/microphone-toggle.sh
+
+# dunst 
+exec_always --no-startup-id dunst -config ~/.config/dunst/dunstrc
+
+# Restore GNOME's settings
+exec --no-startup-id /usr/libexec/gnome-settings-daemon-localeexec
+
+# Fix a bug in gnome-settings-daemon: http://feeding.cloud.geek.nz/posts/creating-a-modern-tiling-desktop-environment-using-i3/
+exec --no-startup-id dconf write /org/gnome/settings-daemon/plugins/cursor/active false
+
+
+# dual monitor setup
+set $mon1 DP1
+set $mon2 DVI-D-1-0
+workspace $ws1 output $mon1
+workspace $ws2 output $mon2
+exec --no-startup-id xrandr --output $mon2 --auto --right-of $mon1
+
+# set font
+font pango: $font-family $font-size
+
+# Use Mouse+$super to drag floating windows to their wanted position
+floating_modifier $super
+
+# start a terminal (alacritty)
+bindsym $super+Return exec alacritty
+
+# start rofi (dmenu alternative)
+bindsym $super+d exec rofi -lines 12 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 3 -font '$font-family $font-size'
+
+# screenshots
+bindsym Ctrl+Shift+Print exec --no-startup-id maim -o "/home/$USER/Pictures/$(date)"
+bindsym Ctrl+$alt+Print exec --no-startup-id maim -o --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date)"
+bindsym Ctrl+Print exec --no-startup-id maim -o --select "/home/$USER/Pictures/$(date)"
+
+# clipboard Screenshots
+bindsym Shift+Print exec --no-startup-id maim -o | xclip -selection clipboard -t image/png
+bindsym $alt+Print exec --no-startup-id maim -o --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+bindsym Print exec --no-startup-id maim -o --select | xclip -selection clipboard -t image/png
+
+# common apps keybinds
+bindsym $super+shift+l exec $lock
+bindsym $super+Shift+c exec code
+
+#change volume
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
+bindsym XF86AudioLowerVolume exec amixer -q set Master 5%-
+bindsym XF86AudioMute exec amixer set Master toggle
+
+# music control
+bindsym XF86AudioNext exec mpc next
+bindsym XF86AudioPrev exec mpc prev
+bindsym XF86AudioPlay exec mpc toggle
+bindsym XF86AudioStop exec mpc stop
+
+# kill focused window
+bindsym $super+c kill
+bindsym $alt+F4 kill
+
+# change focus
+bindsym $super+Left focus left
+bindsym $super+Down focus down
+bindsym $super+Up focus up
+bindsym $super+Right focus right
+
+# move focused window
+bindsym $super+Shift+Left move left
+bindsym $super+Shift+Down move down
+bindsym $super+Shift+Up move up
+bindsym $super+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $super+h split h
+
+# split in vertical orientation
+bindsym $super+v split v
+
+# denter fullscreen mode for the focused container
+bindsym $super+f fullscreen toggle
+
+# change container layout split
+bindsym $super+s layout toggle split
+
+# toggle tiling / floating
+bindsym $super+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $super+Shift+space focus mode_toggle
+
+# switch to workspace
+bindsym $alt+Control+Right workspace next
+bindsym $alt+Control+Left workspace prev
+
+bindsym $super+1 workspace $ws1
+bindsym $super+2 workspace $ws2
+bindsym $super+3 workspace $ws3
+bindsym $super+4 workspace $ws4
+bindsym $super+5 workspace $ws5
+bindsym $super+6 workspace $ws6
+bindsym $super+7 workspace $ws7
+bindsym $super+8 workspace $ws8
+bindsym $super+9 workspace $ws9
+bindsym $super+0 workspace $ws10
+
+# move focused container to workspace
+bindsym $super+Shift+1 move container to workspace $ws1
+bindsym $super+Shift+2 move container to workspace $ws2
+bindsym $super+Shift+3 move container to workspace $ws3
+bindsym $super+Shift+4 move container to workspace $ws4
+bindsym $super+Shift+5 move container to workspace $ws5
+bindsym $super+Shift+6 move container to workspace $ws6
+bindsym $super+Shift+7 move container to workspace $ws7
+bindsym $super+Shift+8 move container to workspace $ws8
+bindsym $super+Shift+9 move container to workspace $ws9
+bindsym $super+Shift+10 move container to workspace $ws10
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $super+Shift+r restart
+
+# exit i3
+bindsym $super+q mode "$mode_system"
+
+# Set shut down, restart and locking features
+bindsym $alt+q mode "$mode_system"
+set $mode_system (l)ock, (e)xit, (s)uspend, (r)eboot, (Shift+s)hutdown
+mode "$mode_system" {
+bindsym l exec --no-startup-id $lock, mode "default"
+bindsym s exec --no-startup-id systemctl suspend, mode "default"
+bindsym e exec --no-startup-id i3-msg exit, mode "default"
+bindsym r exec --no-startup-id reboot, mode "default"
+bindsym Shift+s exec --no-startup-id shutdown 0, mode "default"
+
+# exit system mode: "Enter" or "Escape" or "$alt+q"
+bindsym Return mode "default"
+bindsym Escape mode "default"
+bindsym $alt+q mode "default"
+}
+# move floating (super + mouse can be used)
+bindsym $super+m mode "move"
+mode "move" {
+# fast move
+	  bindsym shift+Left move left 10 px
+        bindsym shift+Down move down 10 px
+        bindsym shift+Up move up 10 px
+        bindsym shift+Right move right 10 px
+# normal move
+	  bindsym Left move left 5 px
+        bindsym Down move down 5 px
+        bindsym Up move up 5 px
+        bindsym Right move right 5 px
+# slow move
+	  bindsym ctrl+Left move left 1 px
+        bindsym ctrl+Down move down 1 px
+        bindsym ctrl+Up move up 1 px
+        bindsym ctrl+Right move right 1 px
+       # exit resize
+	bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $super+m mode "default"
+}
+# resize window (you can also use the mouse for that)
+mode "resize" {
+	# fast resize
+	  bindsym shift+Left resize shrink width 10 px or 10 ppt
+        bindsym shift+Down resize grow height 10 px or 10 ppt
+        bindsym shift+Up resize shrink height 10 px or 10 ppt
+        bindsym shift+Right resize grow width 10 px or 10 ppt
+        # normal resize
+	bindsym Left resize shrink width 5 px or 5 ppt
+        bindsym Down resize grow height 5 px or 5 ppt
+        bindsym Up resize shrink height 5 px or 5 ppt
+        bindsym Right resize grow width 5 px or 5 ppt
+	# slow resize 
+	bindsym ctrl+Left resize shrink width 1 px or 1 ppt
+        bindsym ctrl+Down resize grow height 1 px or 1 ppt
+        bindsym ctrl+Up resize shrink height 1 px or 1 ppt
+        bindsym ctrl+Right resize grow width 1 px or 1 ppt
+        # exit resize
+	bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $super+r mode "default"
+}
+bindsym $super+r mode "resize"
+# panel
+bar { 
+position top
+        colors {
+        background $bgcolor
+        statusline #302D41
+        separator #6E6C7E	
+        # colour of border, background, and text
+        focused_workspace       $bgcolor #F5C2E7 #302D41
+        active_workspace        $bgcolor $bgcolor #D9E0EE
+        inactive_workspace      $bgcolor $bgcolor #D9E0EE
+        urgent_workspacei       $bgcolor #ebcb8b #302D41
+    }
+        status_command i3status
+        i3bar_command i3bar --transparency
+        
+}
+default_border pixel 0
+default_floating_border pixel 0
+# window rules, you can find the window class using xprop
+for_window [class=".*"] border pixel 0
+assign [class=URxvt] 1
+assign [class=Firefox|Transmission-gtk] 2
+assign [class=Thunar|File-roller] 3
+assign [class=Geany|Evince|Gucharmap|Soffice|libreoffice*] 4
+assign [class=Audacity|Vlc|mpv|Ghb|Xfburn|Gimp*|Inkscape] 5
+assign [class=Lxappearance|System-config-printer.py|Lxtask|GParted|Pavucontrol|Exo-helper*|Lxrandr|Arandr] 6
+for_window [class=Viewnior|feh|Audacious|File-roller|Lxappearance|Lxtask|Pavucontrol] floating enable
+for_window [class=URxvt|Firefox|Geany|Evince|Soffice|libreoffice*|mpv|Ghb|Xfburn|Gimp*|Inkscape|Vlc|Lxappearance|Audacity] focus
+for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo-helper*|Lxrandr|Arandr] focus
+
+# colour of border, background, text, indicator, and child_border
+client.focused              #F28FAD #302D41 #6E6C7E #F28FAD #6E6C7E
+client.focused_inactive     #302D41 #302D41 #6E6C7E #302D41 #302D41
+client.unfocused            #302D41 #302D41 #6E6C7E #302D41 #302D41
+client.urgent               #302D41 #302D41 #6E6C7E #302D41 #302D41
+client.placeholder          #302D41 #302D41 #6E6C7E #302D41 #302D41
+client.background           #302D41
+
+# language change
+exec ~/.config/i3/keyboard-layout.sh
+
+# disable mouse accleration
+exec xinput --set-prop 19 'libinput Accel Profile Enabled' 0, 1
+
+# autostart
+exec --no-startup-id hsetroot $wallpaper
+exec --no-startup-id xsettingsd &
+exec --no-startup-id compton -b
+
+# mouse mode
+mode "mouse" {
+
+	# set your three speeds here
+
+	set $slow 5
+	set $quick 20
+	set $fast 50
+
+	# Mouse movement (slow/fine-tuned) -- vim keybindings
+
+	bindsym h exec xdotool mousemove_relative -- -$slow 0
+	bindsym j exec xdotool mousemove_relative 0 $slow
+	bindsym k exec xdotool mousemove_relative -- 0 -$slow
+	bindsym l exec xdotool mousemove_relative $slow 0
+
+	# Mouse movement (slow/fine-tuned) -- arrow keys
+
+	bindsym Left exec xdotool mousemove_relative -- -$slow 0
+	bindsym Down exec xdotool mousemove_relative 0 $slow
+	bindsym Up exec xdotool mousemove_relative -- 0 -$slow
+	bindsym Right exec xdotool mousemove_relative $slow 0
+
+	# Mouse movement (quicker) -- vim keybindings
+
+	bindsym Shift+h exec xdotool mousemove_relative -- -$quick 0
+	bindsym Shift+j exec xdotool mousemove_relative 0 $quick
+	bindsym Shift+k exec xdotool mousemove_relative -- 0 -$quick
+	bindsym Shift+l exec xdotool mousemove_relative $quick 0
+
+	# Mouse movement (quicker) -- arrow keys
+
+	bindsym Shift+Left exec xdotool mousemove_relative -- -$quick 0
+	bindsym Shift+Down exec xdotool mousemove_relative 0 $quick
+	bindsym Shift+Up exec xdotool mousemove_relative -- 0 -$quick
+	bindsym Shift+Right exec xdotool mousemove_relative $quick 0
+
+	# Mouse movement (fast) -- vim keybindings
+
+	bindsym Shift+$super+h exec xdotool mousemove_relative -- -$fast 0
+	bindsym Shift+$super+j exec xdotool mousemove_relative 0 $fast
+	bindsym Shift+$super+k exec xdotool mousemove_relative -- 0 -$fast
+	bindsym Shift+$super+l exec xdotool mousemove_relative $fast 0
+
+	# Mouse movement (fast) -- arrow keys
+
+	bindsym Shift+$super+Left exec xdotool mousemove_relative -- -$fast 0
+	bindsym Shift+$super+Down exec xdotool mousemove_relative 0 $fast
+	bindsym Shift+$super+Up exec xdotool mousemove_relative -- 0 -$fast
+	bindsym Shift+$super+Right exec xdotool mousemove_relative $fast 0
+
+	# Left Click
+	bindsym f exec xdotool click 1
+
+	# Middle Click
+	bindsym d exec xdotool click 2
+
+	# Right Click
+	bindsym s exec xdotool click 3
+
+	# Left Click-and-drag
+	bindsym Shift+f exec xdotool mousedown 1
+
+	# Middle Click-and-drag 
+	bindsym Shift+d exec xdotool mousedown 2
+
+	# Right Click-and-drag
+	bindsym Shift+s exec xdotool mousedown 3
+
+	# Left Drag release
+	bindsym $super+f exec xdotool mouseup 1
+
+	# Middle Drag release
+	bindsym $super+d exec xdotool mouseup 2
+
+	# Right Drag release
+	bindsym $super+s exec xdotool mouseup 3
+
+
+	# return to normal keybindings -- IMPORTANT!!
+
+	bindsym Escape mode "default"
+	bindsym $super+shift+m mode "default"
+
+}
+bindsym $super+shift+m mode "mouse"

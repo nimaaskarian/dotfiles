@@ -1,0 +1,594 @@
+# customization variables
+# workspace variables 
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+set $ws11 "11"
+set $ws12 "12"
+set $ws13 "13"
+set $ws14 "14"
+
+# fix second monitor resulation issue
+# exec xrandr --newmode "1680x1050R"  119.00  1680 1728 1760 1840  1050 1053 1059 1080 +hsync -vsync
+# exec xrandr --addmode DP1 1680x1050R
+# exec xrandr --output DP1 --mode 1680x1050R 
+exec xrandr --output DisplayPort-2 --primary --right-of DisplayPort-1 
+# exec ~/.screenlayout/layout-1366-main.sh
+
+# font size variables
+set $font-family JetBrains Mono 
+set $font-size 10
+
+# run unclutter (hides mouse cursor)
+exec unclutter --timeout 2
+
+# set systray toggle
+bindsym $mod+t exec /home/nima/.local/bin/systray
+
+# lock command variable
+# set $lock betterlockscreen -l blur
+
+# modifier variables
+set $mod Mod4
+set $alt Mod1
+
+
+# toggle microphone mute
+bindsym $mod+Shift+a exec ~/.config/i3/microphone-toggle.sh
+
+# start clipster and its deamon (for roficlip)
+# exec clipster -d
+# exec clipster
+
+# start greenclip deamon
+exec greenclip daemon 
+
+# start pulseaudio 
+exec pulseaudio --start
+
+# start obs vcam 
+# exec modprobe v4l2loopback devices=1 video_nr=10 card_label="OBS Cam" exclusive_caps=1
+
+# dunst 
+exec_always --no-startup-id dunst -config ~/.cache/wal/colors-dunst
+
+# dual monitor setup
+# workspace 1 output HDMI-2
+# workspace 2 output HDMI-1
+# exec --no-startup-id xrandr --output $mon2 --auto --right-of $mon1
+
+# set font
+font pango: $font-family $font-size
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal (kitty)
+bindsym $mod+Return exec kitty 
+bindsym $mod+Shift+Return exec kitty --title lvim -e lvim 
+bindsym $alt+Return [class="kitty" title="NVIM$|^nvim|^lvim"] focus
+
+# start rofi (dmenu alternative)
+bindsym $mod+d exec ~/Scripts/english-wrapper.sh rofi -show drun
+
+# start screenshot software
+bindsym Print exec --no-startup-id flameshot gui
+bindsym Ctrl+Print exec --no-startup-id rofi-screenshot 
+bindsym Ctrl+Shift+Print exec --no-startup-id rofi-screenshot -s
+
+# screenshots
+# bindsym Ctrl+Shift+Print exec --no-startup-id maim -o "/home/$USER/Pictures/$(date)"
+# bindsym Ctrl+$alt+Print exec --no-startup-id maim -o --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date)"
+# bindsym Ctrl+Print exec --no-startup-id maim -o --select "/home/$USER/Pictures/$(date)"
+
+# clipboard Screenshots
+# bindsym Shift+Print exec --no-startup-id maim -o | xclip -selection clipboard -t image/png
+# bindsym $alt+Print exec --no-startup-id maim -o --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+# bindsym Print exec --no-startup-id maim -o --select | xclip -selection clipboard -t image/png
+
+# common apps keybinds
+# bindsym $mod+Shift+l exec $lock
+# bindsym $mod+Shift+c exec --no-startup-id colorpicker --short --one-shot --preview | xclip -selection clipbaord 
+# fix ssh prompt prorblem
+# exec eval `ssh-agent`
+# exec ssh-add
+
+# close all notifications and toggle notifications
+bindsym $mod+comma exec dunstctl set-paused toggle
+bindsym $mod+period exec dunstctl close-all
+
+#change volume
+bindsym XF86AudioRaiseVolume exec pactl -- set-sink-volume 0 +5%
+bindsym XF86AudioLowerVolume exec pactl -- set-sink-volume 0 -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle 
+
+# fn + fX
+bindsym XF86Tools exec kitty -e ncmpcpp
+bindsym XF86Calculator exec rofi -show calc
+
+# music control (playerctl)
+bindsym XF86AudioNext exec playerctl -p $(< /tmp/player) next
+bindsym XF86AudioPrev exec playerctl -p $(< /tmp/player) previous
+bindsym XF86AudioPlay exec playerctl -p $(< /tmp/player) play-pause
+bindsym XF86AudioStop exec playerctl -p $(< /tmp/player) stop
+# alternative 
+bindsym $alt+f exec playerctl -p $(< /tmp/player) next
+bindsym $alt+s exec playerctl -p $(< /tmp/player) previous
+bindsym $alt+d exec playerctl -p $(< /tmp/player) play-pause
+
+# next and previous music player (playerctl & personal script)
+bindsym $mod+shift+n exec player -n
+bindsym $mod+shift+p exec player -p
+
+# kill focused window
+# bindsym $alt+F4 kill
+bindsym $mod+q kill
+
+# start greenclip
+bindsym $mod+c exec ~/Scripts/english-wrapper.sh rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+
+set $Down j 
+set $Up k
+set $Left h
+set $Right l
+
+# change focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+# change focus (vim)
+bindsym $mod+$Left focus left
+bindsym $mod+$Down focus down
+bindsym $mod+$Up focus up
+bindsym $mod+$Right focus right
+
+
+# move focused window
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+# move focused window (vim)
+bindsym $mod+Shift+$Left move left
+bindsym $mod+Shift+$Down move down
+bindsym $mod+Shift+$Up move up
+bindsym $mod+Shift+$Right move right
+
+# split in horizontal orientation
+bindsym $mod+Shift+s split h
+
+# split in vertical orientation
+bindsym $mod+Shift+v split v
+
+# denter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# focus parent  
+bindsym $mod+a focus parent
+
+# focus child
+bindsym $mod+z focus child
+
+# scratchpad (minimizing floating)
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+# change container layout
+bindsym $mod+s layout stacking 
+bindsym $mod+w layout tabbed 
+bindsym $mod+e layout toggle split 
+
+# run ranger
+bindsym $mod+Shift+e exec kitty --title ranger -e ranger
+
+# toggle sticky floating window
+bindsym $mod+ctrl+space sticky toggle
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# assign workspaces
+#for_window [class = "kitty"] move container to workspace $ws1 focus;
+for_window [class="stalonetray"] floating enable
+for_window [class="Qalculate-gtk"] floating enable
+for_window [class="kitty" title="^kitty$"] move container to workspace $ws1 focus;
+# assign [class="kitty" title="*nima*"] $ws1
+# for_window [class="kitty" title="*nima*"] focus;
+assign [all class="^((?!stalonetray|Qalculate-gtk|kitty|Gnome-ssh-askpass3|Dragon-drop|Flameshot))"] $ws12
+for_window [class="Chromium|firefox"] move container to workspace $ws2 focus;
+for_window [title="^cmus*" class="kitty"] move container to workspace $ws3 focus;
+for_window [class="Discord|discord|TelegramDesktop|Telegram-desktop|Signal"] move container to workspace $ws4 focus;
+# for_window [title="WhatsApp*|Telegram Web" class="Chromium|Firefox"] move container to workspace $ws4 focus;
+for_window [class="Code|Gedit|Subl"] move container to workspace $ws5 focus;
+for_window [class="mpv"] move container to workspace $ws6 focus;
+for_window [title="^mpv*" class="kitty"] move container to workspace $ws6 focus;
+for_window [title="^wget*|^sudo pacman -S*|^yay -S*|^curl*|^yay -U*|^sudo pacman -U*|^upg$|^ins*" class="kitty"] move container to workspace $ws7 focus;
+for_window [class="Nautilus"] move container to workspace $ws8 focus;
+for_window [title="ranger$" class="kitty"]move container to workspace $ws8 focus;
+# for_window [title="^ranger*" class="kitty"]move container to workspace $ws8 focus;
+for_window [title="nemo*" class="kitty"] move container to workspace $ws8 focus;
+for_window [class="Virt-manager"] move container to workspace $ws9 focus;
+for_window [class="Steam|.exe|Lutris"] move container to workspace $ws10 focus;
+for_window [class="Zathura"] move container to workspace $ws11 focus;
+for_window [class="Xournalpp"] move container to workspace $ws13 focus;
+for_window [title="^vimpc*" class="kitty"] move container to workspace $ws3 focus;
+for_window [title="^ncmpcpp*" class="kitty"] move container to workspace $ws3 focus;
+for_window [title="^nano*|^sudo nano*|^nvim*|^vim*|^sudo nvim*|^sudo vim*|^sudo lvim*|^lvim*|NVIM$" class="kitty"] move container to workspace $ws5 focus;
+
+# assign workspaces to monitors
+set $mon1 DisplayPort-2
+set $mon2 DisplayPort-1
+workspace $ws2 output $mon2
+workspace $ws1 output $mon1
+
+workspace $ws3 output $mon2
+workspace $ws6 output $mon2
+workspace $ws8 output $mon2
+workspace $ws7 output $mon2
+workspace $ws11 output $mon2
+workspace $ws12 output $mon2
+workspace $ws13 output $mon1
+workspace $ws10 output $mon1
+workspace $ws4 output $mon1
+workspace $ws5 output $mon1
+
+# move workspace to another monitor
+bindsym $mod+ctrl+h move workspace to output left
+bindsym $mod+ctrl+l move workspace to output right
+
+# switch to workspace
+bindsym $alt+Control+Right workspace next
+bindsym $alt+Control+Left workspace prev
+# vim
+bindsym $alt+Control+$Right workspace next
+bindsym $alt+Control+$Left workspace prev
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+bindsym $mod+F1 workspace $ws11
+bindsym $mod+F2 workspace $ws12
+bindsym $mod+F3 workspace $ws13
+bindsym $mod+F4 workspace $ws14
+
+# bindsym $alt+1 workspace $ws1
+# bindsym $alt+2 workspace $ws2
+# bindsym $alt+3 workspace $ws3
+# bindsym $alt+4 workspace $ws4
+# bindsym $alt+5 workspace $ws5
+# bindsym $alt+6 workspace $ws6
+# bindsym $alt+7 workspace $ws7
+# bindsym $alt+8 workspace $ws8
+# bindsym $alt+9 workspace $ws9
+# bindsym $alt+0 workspace $ws10
+# bindsym $alt+F1 workspace $ws11
+# bindsym $alt+F2 workspace $ws12
+# bindsym $alt+F3 workspace $ws13
+# bindsym $alt+F4 workspace $ws14
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+bindsym $mod+Shift+F1 move container to workspace $ws11
+bindsym $mod+Shift+F2 move container to workspace $ws12
+bindsym $mod+Shift+F3 move container to workspace $ws13
+bindsym $mod+Shift+F4 move container to workspace $ws14
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+
+# Set shut down, restart and locking features
+bindsym $alt+q exec ~/Scripts/english-wrapper.sh rofi -show p -modi p:rofi-power-menu
+#mode "$mode_system"
+# set $mode_system (l)ock, (e)xit, (s)uspend, (r)eboot, (Shift+s)hutdown
+# mode "$mode_system" {
+# bindsym l exec --no-startup-id "$lock", mode "default"
+# bindsym s exec --no-startup-id systemctl suspend -i, mode "default"
+# bindsym e exec --no-startup-id i3-msg exit, mode "default"
+# bindsym r exec --no-startup-id reboot, mode "default"
+# bindsym Shift+s exec --no-startup-id shutdown 0, mode "default"
+
+# exit system mode: "Enter" or "Escape" or "$alt+q"
+# bindsym Return mode "default"
+# bindsym Escape mode "default"
+# bindsym $alt+q mode "default"
+# }
+# move floating (super + mouse can be used)
+bindsym $mod+m mode "move"
+mode "move" {
+# fast move
+        bindsym shift+Left move left 10 px
+        bindsym shift+Down move down 10 px
+        bindsym shift+Up move up 10 px
+        bindsym shift+Right move right 10 px
+        # vim
+        bindsym shift+$Left move left 10 px
+        bindsym shift+$Down move down 10 px
+        bindsym shift+$Up move up 10 px
+        bindsym shift+$Right move right 10 px
+# normal move
+        bindsym Left move left 5 px
+        bindsym Down move down 5 px
+        bindsym Up move up 5 px
+        bindsym Right move right 5 px
+        # vim 
+        bindsym $Left move left 5 px
+        bindsym $Down move down 5 px
+        bindsym $Up move up 5 px
+        bindsym $Right move right 5 px
+# slow move
+        bindsym ctrl+Left move left 1 px
+        bindsym ctrl+Left move left 1 px
+        bindsym ctrl+Down move down 1 px
+        bindsym ctrl+Up move up 1 px
+        # vim
+        bindsym ctrl+$Left move left 1 px
+        bindsym ctrl+$Left move left 1 px
+        bindsym ctrl+$Down move down 1 px
+        bindsym ctrl+$Up move up 1 px
+       # exit move mode
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+m mode "default"
+}
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+      # fast resize
+        bindsym shift+Left resize shrink width 10 px or 10 ppt
+        bindsym shift+Down resize grow height 10 px or 10 ppt
+        bindsym shift+Up resize shrink height 10 px or 10 ppt
+        bindsym shift+Right resize grow width 10 px or 10 ppt
+        # vim
+        bindsym shift+$Left resize shrink width 10 px or 10 ppt
+        bindsym shift+$Down resize grow height 10 px or 10 ppt
+        bindsym shift+$Up resize shrink height 10 px or 10 ppt
+        bindsym shift+$Right resize grow width 10 px or 10 ppt
+
+      # normal resize
+        bindsym Left resize shrink width 5 px or 5 ppt
+        bindsym Down resize grow height 5 px or 5 ppt
+        bindsym Up resize shrink height 5 px or 5 ppt
+        bindsym Right resize grow width 5 px or 5 ppt
+        # vim
+        bindsym $Left resize shrink width 5 px or 5 ppt
+        bindsym $Down resize grow height 5 px or 5 ppt
+        bindsym $Up resize shrink height 5 px or 5 ppt
+        bindsym $Right resize grow width 5 px or 5 ppt
+
+      # slow resize 
+        bindsym ctrl+Left resize shrink width 1 px or 1 ppt
+        bindsym ctrl+Down resize grow height 1 px or 1 ppt
+        bindsym ctrl+Up resize shrink height 1 px or 1 ppt
+        bindsym ctrl+Right resize grow width 1 px or 1 ppt
+        # vim 
+        bindsym ctrl+$Left resize shrink width 1 px or 1 ppt
+        bindsym ctrl+$Down resize grow height 1 px or 1 ppt
+        bindsym ctrl+$Up resize shrink height 1 px or 1 ppt
+        bindsym ctrl+$Right resize grow width 1 px or 1 ppt
+      # exit resize
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+bindsym $mod+r mode "resize"
+# panel (depends on polybar and polybar's launch.sh)
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+# language change
+exec ~/.config/i3/keyboard-layout.sh
+
+# disable mouse accleration (for my logitech g402 mouse)
+exec xinput --set-prop $(xinput | grep Logitech | grep -E 'G402\s*id' | sed 's/^.*id=//' | sed 's/\s.*$//') 'libinput Accel Profile Enabled' 0, 1
+# Run music player daemon (and mpris module)
+exec mpd-mpris
+exec mpd-notification -m $HOME/Music
+exec player -n
+# autostart
+#exec --no-startup-id hsetroot $wallpaper
+exec ~/Scripts/wal.sh $(cat /home/nima/.wallpaper_path)
+# exec --no-startup-id xsettingsd &
+
+# execute picom launcher
+exec_always --no-startup-id ~/.config/picom/launch.sh
+
+set $mouse-mode "mouse, n: normal, h: hint, g: grid"
+# mouse mode
+mode $mouse-mode {
+  bindsym "n" mode "mouse normal"; exec warpd --normal && i3-msg mode default
+  bindsym "g" mode "mouse grid"; exec warpd --grid && warpd --normal && i3-msg mode default
+  bindsym "h" mode "mouse hint"; exec warpd --hint && i3-msg mode default
+
+  bindsym Return mode "default"; exec killall warpd
+  bindsym Escape mode "default"; exec killall warpd
+  bindsym $mod+shift+m mode "default"; exec killall warpd
+}
+
+mode "mouse normal"{
+  bindsym Escape mode default
+bindsym Return mode "default"
+bindsym Return mode "default"
+  bindsym $mod+shift+m mode "default"
+}
+mode "mouse hint"{
+bindsym Return mode "default"
+  bindsym Escape mode default
+  bindsym $mod+shift+m mode "default"
+}
+mode "mouse grid"{
+  bindsym Escape mode default
+}
+bindsym $mod+Ctrl+shift+m mode $mouse-mode; exec warpd;
+bindsym $mod+Ctrl+shift+h mode "mouse hint"; exec warpd --hint && i3-msg mode default
+bindsym $mod+shift+m mode "mouse normal"; exec warpd --normal && i3-msg mode default
+# remove borders 
+# for_window [class=".*"] border pixel 0
+# default_border pixel 0 
+# default_floating_border pixel 0
+
+# i3gaps exclusive
+
+gaps inner 10
+gaps outer -10
+gaps top 0
+set $mode_gaps Gaps: (o)uter, (i)nner, (h)orizontal, (v)ertical, (t)op, (r)ight, (b)ottom, (l)eft
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_horiz Horizontal Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_verti Vertical Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_top Top Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_right Right Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_bottom Bottom Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_left Left Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym h      mode "$mode_gaps_horiz"
+        bindsym v      mode "$mode_gaps_verti"
+        bindsym t      mode "$mode_gaps_top"
+        bindsym r      mode "$mode_gaps_right"
+        bindsym b      mode "$mode_gaps_bottom"
+        bindsym l      mode "$mode_gaps_left"
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_horiz" {
+        bindsym plus  gaps horizontal current plus 5
+        bindsym minus gaps horizontal current minus 5
+        bindsym 0     gaps horizontal current set 0
+
+        bindsym Shift+plus  gaps horizontal all plus 5
+        bindsym Shift+minus gaps horizontal all minus 5
+        bindsym Shift+0     gaps horizontal all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_verti" {
+        bindsym plus  gaps vertical current plus 5
+        bindsym minus gaps vertical current minus 5
+        bindsym 0     gaps vertical current set 0
+
+        bindsym Shift+plus  gaps vertical all plus 5
+        bindsym Shift+minus gaps vertical all minus 5
+        bindsym Shift+0     gaps vertical all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_top" {
+        bindsym plus  gaps top current plus 5
+        bindsym minus gaps top current minus 5
+        bindsym 0     gaps top current set 0
+
+        bindsym Shift+plus  gaps top all plus 5
+        bindsym Shift+minus gaps top all minus 5
+        bindsym Shift+0     gaps top all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_right" {
+        bindsym plus  gaps right current plus 5
+        bindsym minus gaps right current minus 5
+        bindsym 0     gaps right current set 0
+
+        bindsym Shift+plus  gaps right all plus 5
+        bindsym Shift+minus gaps right all minus 5
+        bindsym Shift+0     gaps right all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_bottom" {
+        bindsym plus  gaps bottom current plus 5
+        bindsym minus gaps bottom current minus 5
+        bindsym 0     gaps bottom current set 0
+
+        bindsym Shift+plus  gaps bottom all plus 5
+        bindsym Shift+minus gaps bottom all minus 5
+        bindsym Shift+0     gaps bottom all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_left" {
+        bindsym plus  gaps left current plus 5
+        bindsym minus gaps left current minus 5
+        bindsym 0     gaps left current set 0
+
+        bindsym Shift+plus  gaps left all plus 5
+        bindsym Shift+minus gaps left all minus 5
+        bindsym Shift+0     gaps left all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+
+# Xresources colors 
+set_from_resource $foreground i3wm.foreground
+set_from_resource $bg-noalpha i3wm.background
+set_from_resource $primary i3wm.color2
+set_from_resource $inactive i3wm.color5
+set $background #1b1e25bf
+# class                 border      backgr.     text            indicator
+client.focused          $background $background $primary        $background
+# client.focused          $background    $primary    $bg-noalpha     $background
+client.focused_inactive $background $background $inactive       $background
+# client.focused_inactive          $background    $inactive    $bg-noalpha     $background
+client.unfocused        $background $background $foreground     $background
+client.urgent           $background $background $foreground     $background
