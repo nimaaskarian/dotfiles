@@ -305,7 +305,7 @@ bindsym $mod+Shift+r restart
 
 
 # Set shut down, restart and locking features
-bindsym $alt+q exec ~/Scripts/english-wrapper.sh rofi -show p -modi p:rofi-power-menu
+bindsym $alt+q exec xkb-switch -s us;exec rofi -show p -modi p:rofi-power-menu
 #mode "$mode_system"
 # set $mode_system (l)ock, (e)xit, (s)uspend, (r)eboot, (Shift+s)hutdown
 # mode "$mode_system" {
@@ -584,7 +584,7 @@ set_from_resource $foreground i3wm.foreground
 set_from_resource $bg-noalpha i3wm.background
 set_from_resource $primary i3wm.color2
 set_from_resource $inactive i3wm.color5
-set $background #1b1e25bf
+set $background #0D0D0Abf
 # class                 border      backgr.     text            indicator
 client.focused          $background $background $primary        $background
 # client.focused          $background    $primary    $bg-noalpha     $background
