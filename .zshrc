@@ -139,7 +139,6 @@ alias lg='colorls --gs'
 
 eval $(thefuck --alias)
 alias py=python3
-alias :=clear
 alias wscan='iwctl station wlan0 scan'
 alias wgetn='iwctl station wlan0 get-networks'
 alias wcon='wscan && iwctl station wlan0 connect'
@@ -188,6 +187,15 @@ alias h="htop"
 alias mv="mv -vi"
 alias zbarimg="zbarimg --raw -q"
 
+function watch(){
+  wd=$PWD
+  cd "$HOME/.series"
+  series=$(fd -i1 $@ | xargs)
+  echo $series
+  cd "$HOME/Downloads/Movies"
+  mpv $(fd -i "$@"| grep $(series -e "$series")) && series "$series" 1
+  cd $wd
+}
 function glone(){
   if [[ $1 == "-s" ]]; then
     git clone git@github.com:${@: -1}.git
