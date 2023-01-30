@@ -189,11 +189,11 @@ alias zbarimg="zbarimg --raw -q"
 
 function watch(){
   wd=$PWD
-  cd "$HOME/.series"
+  cd "$HOME/.bingewatcher"
   series=$(fd -i1 $@ | xargs)
   echo $series
   cd "$HOME/Downloads/Movies"
-  mpv $(fd -i "$@"| grep $(series -e "$series")) && series "$series" 1
+  mpv $(fd -i "$@"| grep $(bw -e "$series")) && bw "$series" 1
   cd $wd
 }
 function glone(){
