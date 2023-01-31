@@ -213,7 +213,7 @@ for_window [class="Discord|discord|TelegramDesktop|Telegram-desktop|Signal"] mov
 for_window [class="Code|Gedit|Subl"] move container to workspace $ws5 focus;
 for_window [class="mpv"] move container to workspace $ws6 focus;
 for_window [title="^mpv*" class="kitty"] move container to workspace $ws6 focus;
-for_window [title="^wget*|^sudo pacman -S*|^yay -S*|^curl*|^yay -U*|^sudo pacman -U*|^upg$|^ins*" class="kitty"] move container to workspace $ws7 focus;
+for_window [title="^wget*|^sudo pacman -S*|^yay -S*|^curl*|^yay -U*|^sudo pacman -U*|^upg$|^ins *" class="kitty"] move container to workspace $ws7 focus;
 for_window [class="Nautilus"] move container to workspace $ws8 focus;
 for_window [title="ranger$" class="kitty"]move container to workspace $ws8 focus;
 # for_window [title="^ranger*" class="kitty"]move container to workspace $ws8 focus;
