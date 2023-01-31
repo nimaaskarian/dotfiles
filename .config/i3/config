@@ -72,7 +72,7 @@ floating_modifier $mod
 
 # start a terminal (kitty)
 bindsym $mod+Return exec kitty 
-bindsym $mod+Shift+Return exec kitty --title lvim -e lvim 
+bindsym $mod+Shift+Return exec kitty -e lvim 
 bindsym $alt+Return [class="kitty" title="NVIM$|^nvim|^lvim"] focus
 
 # start rofi (dmenu alternative)
@@ -202,7 +202,7 @@ bindsym $mod+space focus mode_toggle
 #for_window [class = "kitty"] move container to workspace $ws1 focus;
 for_window [class="stalonetray"] floating enable
 for_window [class="Qalculate-gtk"] floating enable
-for_window [class="kitty" title="^kitty$"] move container to workspace $ws1 focus;
+for_window [class="kitty" title="^zsh*"] move container to workspace $ws1 focus;
 # assign [class="kitty" title="*nima*"] $ws1
 # for_window [class="kitty" title="*nima*"] focus;
 assign [all class="^((?!stalonetray|Qalculate-gtk|kitty|Gnome-ssh-askpass3|Dragon-drop|Flameshot))"] $ws12
@@ -584,7 +584,7 @@ set_from_resource $foreground i3wm.foreground
 set_from_resource $bg-noalpha i3wm.background
 set_from_resource $primary i3wm.color2
 set_from_resource $inactive i3wm.color5
-set $background #0D0D0Abf
+set $background #1f231fbf
 # class                 border      backgr.     text            indicator
 client.focused          $background $background $primary        $background
 # client.focused          $background    $primary    $bg-noalpha     $background
