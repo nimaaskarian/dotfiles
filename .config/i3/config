@@ -202,7 +202,7 @@ bindsym $mod+space focus mode_toggle
 #for_window [class = "kitty"] move container to workspace $ws1 focus;
 for_window [class="stalonetray"] floating enable
 for_window [class="Qalculate-gtk"] floating enable
-for_window [class="kitty" title="^zsh*"] move container to workspace $ws1 focus;
+for_window [class="kitty" title="^zsh$"] move container to workspace $ws1 focus;
 # assign [class="kitty" title="*nima*"] $ws1
 # for_window [class="kitty" title="*nima*"] focus;
 assign [all class="^((?!stalonetray|Qalculate-gtk|kitty|Gnome-ssh-askpass3|Dragon-drop|Flameshot))"] $ws12
