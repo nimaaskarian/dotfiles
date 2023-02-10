@@ -213,7 +213,7 @@ for_window [class="Discord|discord|TelegramDesktop|Telegram-desktop|Signal"] mov
 for_window [class="Code|Gedit|Subl"] move container to workspace $ws5 focus;
 for_window [class="mpv"] move container to workspace $ws6 focus;
 for_window [title="^mpv*" class="kitty"] move container to workspace $ws6 focus;
-for_window [title="^wget*|^sudo pacman -S*|^yay -S*|^curl*|^yay -U*|^sudo pacman -U*|^upg$|^ins *" class="kitty"] move container to workspace $ws7 focus;
+for_window [title="^wget*|^sudo pacman -S*|^yay -S*|^yay -U*|^sudo pacman -U*|^upg$|^ins *" class="kitty"] move container to workspace $ws7 focus;
 for_window [class="Nautilus"] move container to workspace $ws8 focus;
 for_window [title="ranger$" class="kitty"]move container to workspace $ws8 focus;
 # for_window [title="^ranger*" class="kitty"]move container to workspace $ws8 focus;
@@ -408,8 +408,8 @@ exec ~/.config/i3/keyboard-layout.sh
 # disable mouse accleration (for my logitech g402 mouse)
 exec xinput --set-prop $(xinput | grep Logitech | grep -E 'G402\s*id' | sed 's/^.*id=//' | sed 's/\s.*$//') 'libinput Accel Profile Enabled' 0, 1
 # Run music player daemon (and mpris module)
-exec mpd-mpris
-exec mpd-notification -m $HOME/Music
+exec nohup mpd-mpris &> /dev/null
+exec nohup mpd-notification -m $HOME/Music &> /dev/null
 exec player -n
 # autostart
 #exec --no-startup-id hsetroot $wallpaper
