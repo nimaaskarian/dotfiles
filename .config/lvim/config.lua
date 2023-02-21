@@ -41,6 +41,9 @@ lvim.builtin.which_key.mappings["o"] = {
 lvim.builtin.which_key.mappings["O"] = {
   '<cmd>call append(line(".")-1,   repeat([""], v:count1))<CR>', "Newline above"
 }
+lvim.builtin.which_key.mappings["n"] = {
+  '<cmd>ene!<CR>', "New file"
+}
 lvim.builtin.which_key.mappings["S"] = {
   name = "Split/Sudo",
   w = { "<cmd>SudaWrite<CR>", "Write" },
@@ -247,6 +250,7 @@ lvim.plugins = {
   },
   {
     "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim",
     config = function()
       require("todo-comments").setup()
     end
@@ -373,3 +377,39 @@ vim.g.neovide_refresh_rate = 60
 vim.g.neovide_profiler = false
 vim.g.neovide_cursor_vfx_mode = "pixiedust"
 vim.opt.guifont = "Jetbrains Mono:h12"
+
+-- require("mason-nvim-dap").setup({
+--     ensure_installed = { "cpp", "python" }
+-- })
+local dap = require('dap')
+dap.adapters.cppdbg = {
+  id = 'cppdbg',
+  type = 'executable',
+  command = '/home/nima/.local/share/nvim/mason/bin/OpenDebugAD7',
+}
+require "nima.alpha"
+dap.configurations.cpp = {
+  {
+    name = "Launch file",
+    type = "cppdbg",
+    request = "launch",
+    program = function()
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    end,
+    cwd = '${workspaceFolder}',
+    stopAtEntry = true,
+  },
+  {
+    name = 'Attach to gdbserver :1234',
+    type = 'cppdbg',
+    request = 'launch',
+    MIMode = 'gdb',
+    miDebuggerServerAddress = 'localhost:1234',
+    miDebuggerPath = '/usr/bin/gdb',
+    cwd = '${workspaceFolder}',
+    program = function()
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    end,
+  },
+}
+dap.configurations.c = dap.configurations.cpp
