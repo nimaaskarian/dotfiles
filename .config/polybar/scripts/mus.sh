@@ -19,7 +19,7 @@
 	 # echo -n "Offline" 
 # else
 
-cmusOutput=$(player-meta)
+cmusOutput=$(player-meta | fribidi | sed 's/  //g')
 
 if [[ $cmusOutput == *Offline* ]]; then
   echo Offline
