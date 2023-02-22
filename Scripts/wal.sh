@@ -7,16 +7,16 @@
 alpha=bf
 
 # Main
-if [[ -f "/usr/bin/wal" ]]; then
+if [[ -f "$(which wal)" ]]; then
 	if [[ "$1" ]]; then
 		wpg -s "$1"
-		wal-telegram
+		wal-telegram -r
 		pywal-discord
     # cp ~/.cache/wal/colors-zathura ~/.config/zathura/zathurarc
     cp ~/.cache/wal/colors-flameshot.ini ~/.config/flameshot/flameshot.ini
 
 		# change i3s wallpaper config
-		echo "$1" > /home/nima/.wallpaper_path
+		printf '%s' "$1" > /home/nima/.wallpaper_path
 		# sed -i -e 's@set $wallpaper .*@set $wallpaper '"$1"'@g' "$HOME"/.config/i3/config		
 
 		# Source the pywal color file
