@@ -186,6 +186,7 @@ alias t="todo.sh"
 alias h="htop"
 alias mv="mv -vi"
 alias zbarimg="zbarimg --raw -q"
+alias glone="~/Scripts/glone.py"
 
 function watch(){
   wd=$PWD
@@ -195,17 +196,4 @@ function watch(){
   cd "$HOME/Downloads/Movies"
   mpv $(fd -i "$@"| grep $(bw -e "$series")) && bw "$series" 1
   cd $wd
-}
-function glone(){
-  if [[ $1 == "-s" ]]; then
-    git clone git@github.com:${@: -1}.git
-  elif [[ ${@: -1} == "-s" ]]; then
-    git clone git@github.com:$1.git
-  else
-    git clone https://github.com/$*.git
-  fi
-}
-
-function ctouch(){
-  ~/Documents/ctouch/ctouch.sh $@
 }
