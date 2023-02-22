@@ -13,6 +13,7 @@ lvim.log.level = "warn"
 lvim.format_on_save = false
 lvim.colorscheme = "pywal"
 lvim.builtin.theme.name = "pywal"
+-- lvim.builtin.lualine.style = "default"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 -- keymappings [view all the defaults by pressing <leader>Lk]

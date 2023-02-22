@@ -205,6 +205,7 @@ for_window [class="Qalculate-gtk"] floating enable
 for_window [class="kitty" title="^zsh$"] move container to workspace $ws1 focus;
 # assign [class="kitty" title="*nima*"] $ws1
 # for_window [class="kitty" title="*nima*"] focus;
+for_window [class="Zathura"] move container to workspace $ws11 focus;
 assign [all class="^((?!stalonetray|Qalculate-gtk|kitty|Gnome-ssh-askpass3|Dragon-drop|Flameshot))"] $ws12
 for_window [class="Chromium|firefox"] move container to workspace $ws2 focus;
 for_window [title="^cmus*" class="kitty"] move container to workspace $ws3 focus;
@@ -220,7 +221,6 @@ for_window [title="ranger$" class="kitty"]move container to workspace $ws8 focus
 for_window [title="nemo*" class="kitty"] move container to workspace $ws8 focus;
 for_window [class="Virt-manager"] move container to workspace $ws9 focus;
 for_window [class="Steam|.exe|Lutris"] move container to workspace $ws10 focus;
-for_window [class="Zathura"] move container to workspace $ws11 focus;
 for_window [class="Xournalpp"] move container to workspace $ws13 focus;
 for_window [title="^vimpc*" class="kitty"] move container to workspace $ws3 focus;
 for_window [title="^ncmpcpp*" class="kitty"] move container to workspace $ws3 focus;
@@ -584,7 +584,7 @@ set_from_resource $foreground i3wm.foreground
 set_from_resource $bg-noalpha i3wm.background
 set_from_resource $primary i3wm.color2
 set_from_resource $inactive i3wm.color5
-set $background #1f231fbf
+set $background #121112bf
 # class                 border      backgr.     text            indicator
 client.focused          $background $background $primary        $background
 # client.focused          $background    $primary    $bg-noalpha     $background

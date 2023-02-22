@@ -59,7 +59,7 @@ local mru_opts = {
 --- @param items_number number optional number of items to generate, default = 10
 local function mru(start, cwd, items_number, opts)
     opts = opts or mru_opts
-    items_number = if_nil(items_number, 10)
+    items_number = if_nil(items_number, 5)
 
     local oldfiles = {}
     for _, v in pairs(vim.v.oldfiles) do
@@ -140,13 +140,13 @@ local default_header = {
     val ={
 [[      _________       ]],
 [[     / ======= \      ]],
-[[    / __________\       ___       ___       ___       ___    ]],
-[[   | ___________ |     /\__\     /\__\     /\  \     /\__\   ]],
-[[   | | ~       | |    /:/  /    /:/ _/_   _\:\  \   /::L_L_  ]],
-[[   | |         | |   /:/__/    |::L/\__\ /\/::\__\ /:/L:\__\ ]],
-[[   | |_________| |   \:\  \    |::::/  / \::/\/__/ \/_/:/  / ]],
-[[   \=____________/    \:\__\    L;;/__/   \:\__\     /:/  /  ]],
-[[   / """"""""""" \     \/__/               \/__/     \/__/   ]],
+[[    / __________\        ___       ___       ___       ___    ]],
+[[   | ___________ |      /\__\     /\__\     /\  \     /\__\   ]],
+[[   | | ~       | |     /:/  /    /:/ _/_   _\:\  \   /::L_L_  ]],
+[[   | |         | |    /:/__/    |::L/\__\ /\/::\__\ /:/L:\__\ ]],
+[[   | |_________| |    \:\  \    |::::/  / \::/\/__/ \/_/:/  / ]],
+[[   \=____________/     \:\__\    L;;/__/   \:\__\     /:/  /  ]],
+[[   / """"""""""" \      \/__/               \/__/     \/__/   ]],
 [[  / ::::::::::::: \  ]],
 [[ (_________________) ]],
     },
@@ -190,16 +190,16 @@ local buttons = {
         dashboard.button("w", "  Find Word", ":Telescope live_grep<CR>"),
         dashboard.button("c", "  Configuration", ":edit " .. user_config_path .. "<CR>"),
     },
-    position = "center",
+
 }
 
 lvim.builtin.alpha.dashboard.config = {
     layout = {
-         { type = "padding", val = 2 },
+         { type = "padding", val = 3 },
          default_header,
-         { type = "padding", val = 2 },
+         { type = "padding", val = 1 },
          section_mru,
-         { type = "padding", val = 2 },
+         { type = "padding", val = 1 },
          buttons,
     },
     opts = {
