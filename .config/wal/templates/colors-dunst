@@ -3,7 +3,7 @@ max_icon_size = 80
 monitor = 0
 format = "<b>%s</b>\n%b"
 follow = mouse
-offset=10x59
+offset=10x44
 indicate_hidden = yes
 shrink = no
 separator_height = 0
@@ -47,6 +47,6 @@ timeout = 4
 
 [urgency_critical]
 background = "#{background.strip}bf"
-foreground = "{color1}"
+foreground = "{foreground}"
 frame_color = "{color5}"
 timeout = 0

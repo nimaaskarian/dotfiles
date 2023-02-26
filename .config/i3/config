@@ -208,23 +208,23 @@ for_window [class="kitty" title="^zsh$"] move container to workspace $ws1 focus;
 for_window [class="Zathura"] move container to workspace $ws11 focus;
 assign [all class="^((?!stalonetray|Qalculate-gtk|kitty|Gnome-ssh-askpass3|Dragon-drop|Flameshot))"] $ws12
 for_window [class="Chromium|firefox"] move container to workspace $ws2 focus;
-for_window [title="^cmus*" class="kitty"] move container to workspace $ws3 focus;
+for_window [title="^cmus *" class="kitty"] move container to workspace $ws3 focus;
 for_window [class="Discord|discord|TelegramDesktop|Telegram-desktop|Signal"] move container to workspace $ws4 focus;
 # for_window [title="WhatsApp*|Telegram Web" class="Chromium|Firefox"] move container to workspace $ws4 focus;
 for_window [class="Code|Gedit|Subl"] move container to workspace $ws5 focus;
 for_window [class="mpv"] move container to workspace $ws6 focus;
-for_window [title="^mpv*" class="kitty"] move container to workspace $ws6 focus;
-for_window [title="^wget*|^sudo pacman -S*|^yay -S*|^yay -U*|^sudo pacman -U*|^upg$|^ins *" class="kitty"] move container to workspace $ws7 focus;
-for_window [class="Nautilus"] move container to workspace $ws8 focus;
+for_window [title="^mpv *" class="kitty"] move container to workspace $ws6 focus;
+for_window [title="^wget *|^sudo pacman -S *|^yay -S *|^yay -U *|^sudo pacman -U *|^upg$|^ins *" class="kitty"] move container to workspace $ws7 focus;
 for_window [title="ranger$" class="kitty"]move container to workspace $ws8 focus;
 # for_window [title="^ranger*" class="kitty"]move container to workspace $ws8 focus;
-for_window [title="nemo*" class="kitty"] move container to workspace $ws8 focus;
+for_window [title="nemo *" class="kitty"] move container to workspace $ws8 focus;
 for_window [class="Virt-manager"] move container to workspace $ws9 focus;
 for_window [class="Steam|.exe|Lutris"] move container to workspace $ws10 focus;
 for_window [class="Xournalpp"] move container to workspace $ws13 focus;
-for_window [title="^vimpc*" class="kitty"] move container to workspace $ws3 focus;
-for_window [title="^ncmpcpp*" class="kitty"] move container to workspace $ws3 focus;
-for_window [title="^nano*|^sudo nano*|^nvim*|^vim*|^sudo nvim*|^sudo vim*|^sudo lvim*|^lvim*|NVIM$" class="kitty"] move container to workspace $ws5 focus;
+# for_window [title="^vimpc *" class="kitty"] move container to workspace $ws3 focus;
+for_window [title="^ncmpcpp *" class="kitty"] move container to workspace $ws3 focus;
+for_window [title="^nano *|^sudo nano *|^nvim *|^vim *|^sudo nvim *|^sudo vim *|^sudo lvim *|^lvim *|NVIM$" class="kitty"] move container to workspace $ws5 focus;
+for_window [title="^calcurse *" class="kitty"] move container to workspace $ws1 focus;
 
 # assign workspaces to monitors
 set $mon1 DisplayPort-2
@@ -584,7 +584,7 @@ set_from_resource $foreground i3wm.foreground
 set_from_resource $bg-noalpha i3wm.background
 set_from_resource $primary i3wm.color2
 set_from_resource $inactive i3wm.color5
-set $background #121112bf
+set $background #090E12bf
 # class                 border      backgr.     text            indicator
 client.focused          $background $background $primary        $background
 # client.focused          $background    $primary    $bg-noalpha     $background
