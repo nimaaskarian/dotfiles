@@ -19,12 +19,12 @@
 	 # echo -n "Offline" 
 # else
 
-cmusOutput=$(player-meta | fribidi | sed 's/  //g')
+cmusOutput=$(~/Scripts/player-meta.sh | fribidi | sed 's/  //g')
 
 if [[ $cmusOutput == *Offline* ]]; then
   echo Offline
 else
-  if [[ $(player-status) == *Playing* ]]; then
+  if [[ $(~/Scripts/player-status.sh) == *Playing* ]]; then
     echo " $cmusOutput"
   else 
     echo " $cmusOutput"
