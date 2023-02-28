@@ -22,7 +22,6 @@ if [[ -f "$(which wal)" ]]; then
 		# Source the pywal color file
 		. "$HOME/.cache/wal/colors.sh"
 		cp "$HOME/.cache/wal/colors" ~/Documents/Front\ End/nitab-pro/build/
-    sed -i -e "s/background = #.*/background = #$alpha$(echo $background | tr -d "#")/g" "$HOME/.config/polybar/colors.ini"
     sed -i -e "s/\$background #.*/\$background #$(echo $background | tr -d "#")$alpha/g" "$HOME/.config/i3/config" 
     # sed -i -e 's/background = "#.*"/background = "'"#$(echo $background | tr -d "#")$alpha"'"/g' "$HOME/.cache/wal/colors-dunst"
     # sed -i -e 's/"border-rgba": ".*"/"border-rgba": "'"0x$(echo $color2 | tr -d "#")$alpha"'"/g' "$HOME/.config/xborder/config.json"
