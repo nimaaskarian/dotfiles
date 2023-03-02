@@ -1,5 +1,18 @@
 lvim.plugins = {
   {
+    "phaazon/hop.nvim",
+    branch = 'v2',
+    config = function()
+      require('hop').setup({keys='fhgitroepvxqdyblzcksuan'})
+    end
+  },
+{ "iamcco/markdown-preview.nvim",
+    run = "cd app && npm install",
+    setup = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    ft = { "markdown" }, },
+  {
     "giusgad/pets.nvim",
     requires = {
       "edluffy/hologram.nvim",

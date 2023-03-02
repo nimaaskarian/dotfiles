@@ -1,7 +1,7 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-typeset -g POWERLEVEL9K_INSTANT_PROMPT=all
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -103,7 +103,7 @@ alias download-notify="notify-send Downloaded -i download"
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
+export EDITOR='lvim'
 # else
 #   export EDITOR='mvim'
 # fi
@@ -197,3 +197,13 @@ function watch(){
   mpv $(fd -i "$@"| grep $(bw -e "$series")) && bw "$series" 1
   cd $wd
 }
+alias pm="pulsemixer"
+alias cc="PAGER='/home/nima/Scripts/glowless' calcurse"
+
+calcurse_output=$(cc -at -d 2)
+if [[ $(printf $calcurse_output | wc -c) -gt 0 ]]; then
+  printf 'today: '
+  date +'%m/%d/%y'
+  printf '\n'
+  printf "$calcurse_output\n"
+fi
