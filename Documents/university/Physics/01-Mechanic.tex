@@ -1,0 +1,87 @@
+\documentclass[12px, a4paper, oneside]{article}
+\usepackage[%
+    left=1.5cm,%
+    right=1.5cm,%
+    top=2.0cm,%
+    bottom=2.0cm,%
+    % paperheight=11in,%
+    % paperwidth=8.5in%
+]{geometry}%
+\usepackage{tikz,pgfplots}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{xepersian}
+\usetikzlibrary{3d}
+\usetikzlibrary{calc}
+
+\settextfont{Vazirmatn}
+
+\begin{document}
+\section*{مکانیک نیوتونی}
+%  commands and variables:
+\newcommand\deltavec[1]{\vec{\Delta{#1}}}
+\newcommand\undersetrtl[2]{
+${\underset{#1}{#2}}$
+}
+فرض کنید ذره ای به جرم
+\footnote[1]{
+    {\bf جرم گرانشی:}
+    بر همکنش ماده و ماده,
+    {\bf جرم اینرسی:}
+    بر همکنش ماده و مکان, فیزیک نوین معتقد است هردو برابر هستند.
+}
+ m را میخواهیم در فضا مشخص کنیم.  میخواهیم حرکت آنرا بررسی کنیم. 
+\subsection*{دستگاه دکارتی}
+قدم اول این است که یک دستگاه مختصات مناسب انتخاب کنیم. دستگاه مختصات دکارتی دستگاهی مناسب برای این کار است.
+دستگاه دکارتی دستگاهی با محور های عمود و راستگرد است. میتواند ۲ یا بیشتر محور داشته باشد.
+
+در شکل زیر ذره m میخواهد از نقطه A به نقطه B برود. 
+C را که یک منحنی جهت دار است مسیر حرکت مینامند.
+
+\begin{tikzpicture}[
+     x={(-0.5cm,-0.5cm)},y={(1cm,0cm)},z={(0cm,1cm)},        % cavalier axes 
+%  x={(-0.86cm,-0.5cm)},y={(0.86cm,-0.5cm)},z={(0cm,1cm)}  % isometric axes
+  ]
+  % z,x,y
+  \def\ha{3}  % A height
+  \coordinate (O) at (0,0,0);
+  \coordinate (A) at (0.5,0,2);
+  \coordinate (m) at (A);
+  \coordinate (B) at (0,2,2);
+  \draw[-latex] (O) -- (\ha,0,0) node [left]  {$z$};
+  \draw[-latex] (O) -- (0,\ha,0) node [right] {$x$};
+  \draw[-latex] (O) -- (0,0,\ha) node [right] {$y$};
+  \draw[blue] (A) to[out=-5,in=-80, distance=2.5cm] node [below] {$C$} (B);
+  \node at (m) [below] {$m$};
+  \fill (m) circle (2pt);
+  \node at (A) [left] {$A (\underset{A}{x},\underset{A}{y},\underset{A}{z})$};
+  \fill (A) circle (2pt);
+  \node at (B) [right] {$B(\underset{B}{x},\underset{B}{y},\underset{B}{z})$};
+  \fill (B) circle (2pt);
+\end{tikzpicture}
+\subsection*{جابجایی}
+وقتی ذره m از A به B میرود کمیتی به نام از A تا B تعریف میکنیم که به آن جابجایی میگوییم.
+\[ \underset{AB}{\deltavec{r}} = \vec{\underset{A}{r}} - \vec{\underset{B}{r}} \]
+میتوان آنرا به صورت سه جابجایی اسکالری $
+(\Delta{x},\Delta{y},\Delta{z}) $
+نوشت.
+\subsection*{سرعت متوسط}
+حاصل تقسیم جابجایی به زمان جابجایی را سرعت میانگین یا متوسط ذره میگویند. که کمیتی برداری است.
+\[ \vec{\underset{av}{v}} , \vec{\bar{v}} = \frac{\deltavec{r}}{\Delta{t}}\]
+\subsection*{سرعت لحظه ای}
+اگر دو نقطه ی بسیار نزدیک از مسیر را انتخاب کنیم و میانگین سرعت را حساب کنیم این میانگین برابر سرعت ذره در آن منطقه است.
+\[ \vec{v} = \frac{\vec{dr}}{\vec{dt}}\]
+نکته: سرعت لحظه ای در هر نقطه مماس بر مسیر حرکت است و جهت آن جهت منحنی C (مسیر حرکت) است.
+
+\subsection*{شتاب متوسط}
+فرض کنید در نقطه 1 سرعت ذره 
+\undersetrtl{1}{v}
+و در نقطه ی 2 سرعت ذره 
+\undersetrtl{2}{v}
+است. سرعت به اندازه ی
+\undersetrtl{}{dv}
+تغییر کرده است.
+\[\vec{\Delta{v}} = \vec{\underset{2}{v}} - \vec{\underset{1}{v}}\]
+\[\vec{\bar{a}} = \frac{\deltavec{v}}{\Delta{t}}\]
+
+\end{document}

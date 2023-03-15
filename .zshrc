@@ -152,9 +152,9 @@ alias p="sudo pacman"
 alias np="pacman"
 alias pwc='echo -n $(pwd) | xclip -selection clipboard'
 
-alias ins='sudo pacman -Sy'
+alias ins='sudo pacman -S'
 alias upg='sudo pacman -Syu'
-alias urins='yay -Sy'
+alias urins='yay -S'
 alias uins='sudo pacman -Rns'
 alias uruins='yay -Rns'
 alias pacls="pacman -Qe"
@@ -207,3 +207,9 @@ if [[ $(printf $calcurse_output | wc -c) -gt 0 ]]; then
   printf '\n'
   printf "$calcurse_output\n"
 fi
+
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -v "^?" backward-delete-char

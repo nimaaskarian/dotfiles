@@ -23,6 +23,9 @@ if [[ -f "$(which wal)" ]]; then
 		. "$HOME/.cache/wal/colors.sh"
 		cp "$HOME/.cache/wal/colors" ~/Documents/Front\ End/nitab-pro/build/
     sed -i -e "s/\$background #.*/\$background #$(echo $background | tr -d "#")$alpha/g" "$HOME/.config/i3/config" 
+
+		# sync xournalpp background to pywal
+		./xournalpp-backgroundcolor.py
     # sed -i -e 's/background = "#.*"/background = "'"#$(echo $background | tr -d "#")$alpha"'"/g' "$HOME/.cache/wal/colors-dunst"
     # sed -i -e 's/"border-rgba": ".*"/"border-rgba": "'"0x$(echo $color2 | tr -d "#")$alpha"'"/g' "$HOME/.config/xborder/config.json"
 

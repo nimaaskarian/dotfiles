@@ -7,7 +7,7 @@ if [[ -f $tempFile ]]; then
 fi
 touch $tempFile
 
-for f in *.jpg 
+for f in $1
 do
   detected=0
   md5=$(md5sum "$f" | sed 's/\s.*$//')
