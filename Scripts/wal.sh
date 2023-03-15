@@ -10,7 +10,7 @@ alpha=bf
 if [[ -f "$(which wal)" ]]; then
 	if [[ "$1" ]]; then
 		wpg -s "$1"
-		wal-telegram -r
+		wal-telegram -r -g
 		pywal-discord
     # cp ~/.cache/wal/colors-zathura ~/.config/zathura/zathurarc
     cp ~/.cache/wal/colors-flameshot.ini ~/.config/flameshot/flameshot.ini

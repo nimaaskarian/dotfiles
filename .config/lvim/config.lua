@@ -8,6 +8,8 @@ lvim.transparent_window = true
 
 -- Vim options
 vim.opt.timeoutlen = 100
+vim.opt.number = true
+vim.opt.relativenumber = true
 vim.opt.spelllang = "en"
 vim.opt.ignorecase = true
 vim.opt.wildignorecase = true

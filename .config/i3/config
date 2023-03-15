@@ -22,6 +22,9 @@ set $ws14 "14"
 exec xrandr --output DisplayPort-2 --primary --right-of DisplayPort-1 
 # exec ~/.screenlayout/layout-1366-main.sh
 
+# run calcurse daemon 
+exec calcurse --daemon
+
 # font size variables
 set $font-family JetBrains Mono 
 set $font-size 10
@@ -78,12 +81,17 @@ bindsym $alt+Return [class="kitty" title="NVIM$|^nvim|^lvim"] focus
 # start rofi (dmenu alternative)
 bindsym $mod+d exec ~/Scripts/english-wrapper.sh rofi -show drun
 # start a window rofi
-bindsym $mod+w exec ~/Scripts/english-wrapper.sh rofi -show window
+bindsym $alt+w exec ~/Scripts/english-wrapper.sh rofi -show window
 
 # start screenshot software
 bindsym Print exec --no-startup-id flameshot gui
-bindsym Ctrl+Print exec --no-startup-id rofi-screenshot 
-bindsym Ctrl+Shift+Print exec --no-startup-id rofi-screenshot -s
+bindsym --release Ctrl+Print exec scrot -M 0 -f -o "/tmp/image.png" -e 'xclip -selection c -t image/png < $f'
+bindsym --release Shift+Print exec scrot -M 1 -f -o "/tmp/image.png" -e 'xclip -selection c -t image/png < $f'
+bindsym --release Shift+Ctrl+Print exec scrot -f -o "/tmp/image.png" -e 'xclip -selection c -t image/png < $f'
+# bindsym Shift+Print exec "scrot -M 1 - | xclip -se -t image/png"
+# bindsym Ctrl+Shift+Print exec "scrot - | xclip -se -t image/png"
+# bindsym Ctrl+Print exec --no-startup-id rofi-screenshot 
+# bindsym Ctrl+Shift+Print exec --no-startup-id rofi-screenshot -s
 
 # screenshots
 # bindsym Ctrl+Shift+Print exec --no-startup-id maim -o "/home/$USER/Pictures/$(date)"
@@ -113,6 +121,7 @@ bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 # fn + fX
 bindsym XF86Tools exec kitty -e ncmpcpp
+bindsym $alt+u exec kitty -e ncmpcpp
 bindsym XF86Calculator exec rofi -show calc
 
 # music control (playerctl)
@@ -216,7 +225,7 @@ for_window [class="Chromium|firefox"] move container to workspace $ws2 focus;
 for_window [title="^cmus *" class="kitty"] move container to workspace $ws3 focus;
 for_window [class="Discord|discord|TelegramDesktop|Telegram-desktop|Signal"] move container to workspace $ws4 focus;
 # for_window [title="WhatsApp*|Telegram Web" class="Chromium|Firefox"] move container to workspace $ws4 focus;
-for_window [class="Code|Gedit|Subl"] move container to workspace $ws5 focus;
+for_window [class="code-oss|Gedit|Subl"] move container to workspace $ws5 focus;
 for_window [class="mpv"] move container to workspace $ws6 focus;
 for_window [title="^mpv *" class="kitty"] move container to workspace $ws6 focus;
 for_window [title="^wget *|^sudo pacman -S *|^yay -S *|^yay -U *|^sudo pacman -U *|^upg$|^ins *" class="kitty"] move container to workspace $ws7 focus;
@@ -409,6 +418,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # language change
 exec ~/.config/i3/keyboard-layout.sh
+# exec kmonad /home/nima/Scripts/second.kbd
 
 # disable mouse accleration (for my logitech g402 mouse)
 exec xinput --set-prop $(xinput | grep Logitech | grep -E 'G402\s*id' | sed 's/^.*id=//' | sed 's/\s.*$//') 'libinput Accel Profile Enabled' 0, 1
@@ -589,7 +599,7 @@ set_from_resource $foreground i3wm.foreground
 set_from_resource $bg-noalpha i3wm.background
 set_from_resource $primary i3wm.color2
 set_from_resource $inactive i3wm.color5
-set $background #060405bf
+set $background #060518bf
 # class                 border      backgr.     text            indicator
 client.focused          $background $background $primary        $background
 # client.focused          $background    $primary    $bg-noalpha     $background

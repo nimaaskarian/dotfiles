@@ -79,7 +79,6 @@ lvim.plugins = {
   },
   { "mg979/vim-visual-multi" },
   { "Galooshi/vim-import-js" },
-  { "wakatime/vim-wakatime" },
   {
     'norcalli/nvim-colorizer.lua',
     config = function()
