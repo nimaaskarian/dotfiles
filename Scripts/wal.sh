@@ -10,7 +10,7 @@ alpha=bf
 if [[ -f "$(which wal)" ]]; then
 	if [[ "$1" ]]; then
 		wpg -s "$1"
-		wal-telegram -r -g
+		wal-telegram -r
 		pywal-discord
     # cp ~/.cache/wal/colors-zathura ~/.config/zathura/zathurarc
     cp ~/.cache/wal/colors-flameshot.ini ~/.config/flameshot/flameshot.ini
@@ -23,6 +23,8 @@ if [[ -f "$(which wal)" ]]; then
 		. "$HOME/.cache/wal/colors.sh"
 		cp "$HOME/.cache/wal/colors" ~/Documents/Front\ End/nitab-pro/build/
     sed -i -e "s/\$background #.*/\$background #$(echo $background | tr -d "#")$alpha/g" "$HOME/.config/i3/config" 
+		sed -i 's/:root.*//gi' "$HOME/.config/qutebrowser/pywal.css"
+	  tr -d '\n' < /home/nima/.cache/wal/colors.css | sed 's/.*:root/:root/gi' >> "$HOME/.config/qutebrowser/pywal.css"
 
 		# sync xournalpp background to pywal
 		~/Scripts/xournalpp-backgroundcolor.py

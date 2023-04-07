@@ -73,7 +73,7 @@ vi   (tap-hold-next-release 190 esc (layer-toggle vim))
 
 (deflayer vim
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
-  _    _    _    _    _    _    _    esc    _    _    _    _    _    _
+  esc  _    _    _    _    _    _    esc    _    _    _    _    _    _
   _    _    _    _    _    _    left down up  right _    _    _    
   _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _              _              _    _    _

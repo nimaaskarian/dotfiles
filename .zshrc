@@ -206,7 +206,7 @@ function watch(){
   cd $wd
 }
 alias pm="pulsemixer"
-alias sd="cd ~ && cd \$(fd -td -H | fzf)"
+alias sd="cd ~ && cd \$((fd -td; find .config -type d; fd -td -H -E ".config" `fd -td --max-depth 1` ) | fzf)"
 alias ed="cd ~ && lvim \$(fd -H -tf -x file | awk -F: '/ASCII text/ {print $1}' | fzf)"
 
 bindkey -M menuselect 'h' vi-backward-char
