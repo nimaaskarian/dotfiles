@@ -4,10 +4,10 @@
     "height": 24,
     "modules-left": ["wlr/workspaces"],
     "modules-center": ["custom/playerctl"],
-    "modules-right": ["custom/randwall", "network", "pulseaudio", "backlight", "battery", "clock", "tray"],
+    "modules-right": [ "network", "pulseaudio", "custom/jdate", "clock", "tray"],
     // Modules configuration
 	"clock": {
-		"format": "{:%H:%M}",
+		"format": "{:%I:%M %p}",
 		"tooltip": "true",
         	"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         	"format-alt": "{:%d/%m}"
@@ -41,14 +41,15 @@
       "format": "{icon} <span>{}</span>",
       "return-type": "json",
       "max-length": 35,
-      "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+      // "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+      "exec": "~/.config/waybar/scripts/playerctl/playerctl.sh",
       "on-click": "playerctl -p $(< /tmp/player) play-pause",
       "on-click-right": "player -n",
-      "on-scroll-up": "playerctl -p $(< /tmp/player) previous",
-      "on-scroll-down": "hyprctl dispatch workspace +1 next",
+      "on-scroll-up": "playerctl -p $(< /tmp/player) next",
+      "on-scroll-down": "playerctl -p $(< /tmp/player) previous",
       "format-icons": {
-        "Playing": "<span> </span>",
-        "Paused": "<span> </span>"
+        "Playing": "<span color=\"#8D3A3C\">  </span>",
+        "Paused": "<span color=\"#8D3A3C\">  </span>"
       },
     },
 	"network": {
