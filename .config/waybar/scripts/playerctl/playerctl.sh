@@ -1,5 +1,26 @@
 #!/bin/bash
 
+[[ ! -f /tmp/player ]] && player
+c_player=$(</tmp/player)
+l_player=$c_player
+
+PLAYER_FOLLOW() {
+    if [[ $(playerctl -s metadata artist -p "$1") ]]; then
+        playerctl -p "$1" metadata --format '{"text": "{{artist}} - {{markup_escape(title)}}", "tooltip": "{{playerName}} : {{artist}} - {{markup_escape(title)}}", "alt": "{{status}}", "class": "{{status}}"}' -F &
+    else 
+        playerctl -p "$1" metadata --format '{"text": "{{markup_escape(title)}}", "tooltip": "{{playerName}} : {{artist}} - {{markup_escape(title)}}", "alt": "{{status}}", "class": "{{status}}"}' -F &
+    fi
+}
+PLAYER_FOLLOW "$c_player"
+while inotifywait -q -e close_write /tmp/player > /dev/null; do 
+    c_player=$(</tmp/player)
+    killall -q playerctl
+    if [[ "$l_player" != "$c_player" ]]; then
+        l_player=$c_player
+        PLAYER_FOLLOW "$c_player"
+    fi
+done 
+
 #prepend_zero () {
 #    seq -f "%02g" $1 $1
 #}
@@ -18,20 +39,6 @@
 # then
 	 # echo -n "Offline" 
 # else
-[[ ! -f /tmp/player ]] && player
-
-PLAYER_FOLLOW() {
-    if [[ $(playerctl -s metadata artist -p "$(< /tmp/player)") ]]; then
-        playerctl -p "$(< /tmp/player)" metadata --format '{"text": "{{artist}} - {{markup_escape(title)}}", "tooltip": "{{playerName}} : {{artist}} - {{markup_escape(title)}}", "alt": "{{status}}", "class": "{{status}}"}' -F &
-    else 
-        playerctl -p "$(< /tmp/player)" metadata --format '{"text": "{{markup_escape(title)}}", "tooltip": "{{playerName}} : {{artist}} - {{markup_escape(title)}}", "alt": "{{status}}", "class": "{{status}}"}' -F &
-    fi
-}
-PLAYER_FOLLOW
-while inotifywait -q -e close_write /tmp/player > /dev/null; do 
-    killall -q playerctl
-    PLAYER_FOLLOW
-done 
 # if [[ $cmusOutput == *Offline* ]]; then
 #   echo '{"text":""}'
 # else
