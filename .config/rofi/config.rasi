@@ -1,13 +1,14 @@
-@import "~/.cache/wal/colors-rofi-dark.rasi"
+@import "~/.cache/wal/colors-rofi.rasi"
 configuration {
-	modi: "window,run,drun,calc,emoji";
+	/* modi: "window,run,drun,calc,emoji"; */
+	modi: "run,drun,calc,emoji";
   lines: 12;
   padding: 18;
   width: 60;
   columns: 3;
   font: "Jetbrains Mono Nerd Font Mono 11";
   location: 0;
-  show-icons: true;
+  show-icons: false;
   /* icon-theme: "Papirus"; */
   icon-theme: "Qogir-dark";
   sidebar-mode: true;
@@ -20,4 +21,163 @@ configuration {
   kb-mode-next: "Super+l,Shift+Right,Control+Tab,Control+l";
   kb-mode-previous: "Super+h,Shift+Left,Control+Shift+Tab,Control+h";
   kb-remove-char-back: "BackSpace";
+     display-drun:               "";
+    display-run:                "";
+    display-filebrowser:        "";
+    display-window:             "";
+    display-emoji: "";
+    display-clipboard: "";
+    display-calc: "";
+    display-power-menu: "";
+/*  */
+    /*  */
+/*  */
+}
+
+
+#window {
+    background-color: @background;
+    width: 505px;
+    height: 550px;
+    
+    border: 2px;
+    border-color: @foreground;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+#mainbox {
+    border: 0;
+    padding: 0;
+}
+
+#message {
+    border: 0px;
+    border-color: @border-color;
+    padding: 1px;
+}
+
+#textbox {
+    text-color: @foreground;
+}
+
+#inputbar {
+    children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+}
+
+#textbox-prompt-colon {
+    expand: false;
+    str: ":";
+    margin: 0px 0.3em 0em 0em;
+    text-color: @normal-foreground;
+}
+
+#listview {
+    fixed-height: 0;
+    border: 0px;
+    /* border: 2px 0px 0px; */
+    border-color: @border-color;
+    spacing: 2px;
+    scrollbar: true;
+    padding: 2px 0px 0px;
+}
+
+#element {
+    border: 0;
+    padding: 2.5px;
+}
+
+#element.normal.normal {
+    background-color: @normal-background;
+    text-color: @normal-foreground;
+}
+
+#element.normal.urgent {
+    background-color: @urgent-background;
+    text-color: @urgent-foreground;
+}
+
+#element.normal.active {
+    background-color: @active-background;
+    text-color: @active-foreground;
+}
+
+#element.selected.normal {
+    border-radius: 4px;
+    background-color: @selected-normal-background;
+    text-color: @active-background;
+}
+
+#element.selected.urgent {
+    background-color: @selected-urgent-background;
+    text-color: @selected-urgent-foreground;
+}
+
+#element.selected.active {
+    background-color: @selected-active-background;
+    text-color: @selected-active-foreground;
+}
+
+#element.alternate.normal {
+    background-color: @alternate-normal-background;
+    text-color: @alternate-normal-foreground;
+}
+
+#element.alternate.urgent {
+    background-color: @alternate-urgent-background;
+    text-color: @alternate-urgent-foreground;
+}
+
+#element.alternate.active {
+    background-color: @alternate-active-background;
+    text-color: @alternate-active-foreground;
+}
+
+#scrollbar {
+    width: 2px;
+    border: 0;
+    handle-width: 2px;
+    padding: 0;
+}
+
+#sidebar {
+    border: 2px 0px 0px;
+    border-color: @border-color;
+}
+
+#button {
+    text-color: @normal-foreground;
+    /* text-color: @active-background; */
+    padding: 2.5px;
+}
+
+#button.selected {
+    background-color: @selected-normal-background;
+    /* border: 2px; */
+    border-radius: 4px;
+    text-color: @selected-normal-foreground;
+    text-color: @active-background;
+}
+
+#inputbar {
+    spacing: 0;
+    text-color: @normal-foreground;
+    padding: 1px;
+    margin:0px;
+    padding:0px;
+}
+
+#case-indicator {
+    spacing: 0;
+    text-color: @normal-foreground;
+}
+
+#entry {
+    spacing: 0;
+    text-color: @normal-foreground;
+}
+
+#prompt {
+    spacing: 0;
+    text-color: @normal-foreground;
 }
