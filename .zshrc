@@ -26,6 +26,8 @@ export ZSH="$HOME/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
 
+# export QT_QPA_PLATFORM=wayland
+
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -206,8 +208,10 @@ function watch(){
   cd $wd
 }
 alias pm="pulsemixer"
-alias sd="cd ~ && cd \$((fd -td; find .config -type d; fd -td -H -E ".config" `fd -td --max-depth 1` ) | fzf)"
-alias ed="cd ~ && lvim \$(fd -H -tf -x file | awk -F: '/ASCII text/ {print $1}' | fzf)"
+# alias sd="cd ~ && cd \$((fd -td; find .config -type d; fd -td -H -E ".config" `fd -td --max-depth 1` ) | fzf)"
+# alias ed="cd ~ && lvim \$(fd -H -tf -x file | fzf)"
+
+alias pc="peaclock --config-dir ~/.config/peaclock"
 
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
@@ -221,5 +225,4 @@ bindkey ' ' magic-space
 #  name=$(basename $d)
 #  hash -d $name=$HOME/$name
 # done
-
 # source ~/Downloads/Apps/zsh-autocomplete/zsh-autocomplete.plugin.zsh
