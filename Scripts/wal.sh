@@ -10,11 +10,11 @@ CONFIG="$HOME/.config"
 # Main
 if [[ -f "$(which wal)" ]]; then
 	if [[ "$1" ]]; then
+		swww img -t any --transition-bezier 0.0,0.0,1.0,1.0 --transition-duration .75 --transition-step 255 --transition-fps 60 "$1"
 		wpg -s "$1"
 		wal-telegram -r
 		pywal-discord
     # cp ~/.cache/wal/colors-zathura ~/.config/zathura/zathurarc
-    cp ~/.cache/wal/colors-flameshot.ini ~/.config/flameshot/flameshot.ini
 
 		# change i3s wallpaper config
 		printf '%s' "$1" > /home/nima/.wallpaper_path
@@ -41,9 +41,8 @@ if [[ -f "$(which wal)" ]]; then
 	  tr -d '\n' < /home/nima/.cache/wal/colors.css | sed 's/.*:root/:root/gi' >> "$CONFIG/qutebrowser/pywal.css"
 		sed -i 's+span.*color=.*\">+span color=\\\"$_color2\\\">+g' "$CONFIG/waybar/config" 
 		sed -i  "s/\$_color2/$color2/" "$CONFIG/waybar/config" 
-		killall waybar; nohup waybar &> /dev/null &
-		nohup swaybg -i "$1" &> /dev/null &
-
+		killall waybar; waybar &> /dev/null &
+		# swaybg -m fill -i "$(< ~/.wallpaper_path)" &> /dev/null &
 		# sync xournalpp background to pywal
 		~/Scripts/xournalpp-backgroundcolor.py
     # sed -i -e 's/background = "#.*"/background = "'"#$(echo $background | tr -d "#")$alpha"'"/g' "$HOME/.cache/wal/colors-dunst"
@@ -69,11 +68,10 @@ if [[ -f "$(which wal)" ]]; then
 
     i3-msg restart
     killall dunst
-		[[ $(ps -e | rg Hyprland | wc -c) -gt 0 ]] && killall dunst;nohup dunst -conf /home/nima/.cache/wal/colors-dunst-hyprland &> /dev/null & 
+		# [[ $(ps -e | rg Hyprland | wc -c) == "0" ]] && killall dunst;nohup dunst -conf /home/nima/.cache/wal/colors-dunst-hyprland &> /dev/null & 
     # nohup dunst -config ~/.cache/wal/colors-dunst &
-    cp ~/.cache/wal/stalonetrayrc ~/.config
 		killall mpd-notification
-		nohup mpd-notification -m ~/Music > /dev/null &
+		mpd-notification -m ~/Music &> /dev/null &
     # betterlockscreen -u "$1" --blur 1.0 --dim 55
 	else
 		echo -e "[!] Please enter the path to wallpaper. \n"
