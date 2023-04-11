@@ -32,15 +32,15 @@ set $font-size 10
 # run unclutter (hides mouse cursor)
 exec unclutter --timeout 2
 
+# modifier variables
+set $mod Mod4
+set $alt Mod1
+
 # set systray toggle
 bindsym $mod+t exec /home/nima/.local/bin/systray
 
 # lock command variable
 # set $lock betterlockscreen -l blur
-
-# modifier variables
-set $mod Mod4
-set $alt Mod1
 
 
 # toggle microphone mute
@@ -359,12 +359,12 @@ mode "move" {
         bindsym $Right move right 5 px
 # slow move
         bindsym ctrl+Left move left 1 px
-        bindsym ctrl+Left move left 1 px
+        bindsym ctrl+Right move right 1 px
         bindsym ctrl+Down move down 1 px
         bindsym ctrl+Up move up 1 px
         # vim
         bindsym ctrl+$Left move left 1 px
-        bindsym ctrl+$Left move left 1 px
+        bindsym ctrl+$Right move right 1 px
         bindsym ctrl+$Down move down 1 px
         bindsym ctrl+$Up move up 1 px
        # exit move mode
@@ -599,7 +599,7 @@ set_from_resource $foreground i3wm.foreground
 set_from_resource $bg-noalpha i3wm.background
 set_from_resource $primary i3wm.color2
 set_from_resource $inactive i3wm.color5
-set $background #060518bf
+set $background #0d0d0dbf
 # class                 border      backgr.     text            indicator
 client.focused          $background $background $primary        $background
 # client.focused          $background    $primary    $bg-noalpha     $background

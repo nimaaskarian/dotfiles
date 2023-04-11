@@ -10,7 +10,7 @@ CONFIG="$HOME/.config"
 # Main
 if [[ -f "$(which wal)" ]]; then
 	if [[ "$1" ]]; then
-		swww img -t any --transition-bezier 0.0,0.0,1.0,1.0 --transition-duration .75 --transition-step 255 --transition-fps 60 "$1"
+		~/.config/hypr/scripts/wall/set.sh "$1"
 		wpg -s "$1"
 		wal-telegram -r
 		pywal-discord

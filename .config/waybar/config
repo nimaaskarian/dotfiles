@@ -3,7 +3,7 @@
     "layer": "top",
     "height": 24,
     "modules-left": ["wlr/workspaces"],
-    "modules-center": ["custom/playerctl"],
+    "modules-center": ["custom/playerctl", "custom/cava"],
     "modules-right": [ "network", "pulseaudio", "custom/jdate", "clock", "tray"],
     // Modules configuration
 	"clock": {
@@ -48,9 +48,17 @@
       "on-scroll-up": "playerctl -p $(< /tmp/player) next",
       "on-scroll-down": "playerctl -p $(< /tmp/player) previous",
       "format-icons": {
-        "Playing": "<span color=\"#8D3A3C\">  </span>",
-        "Paused": "<span color=\"#8D3A3C\">  </span>"
+        "Playing": "<span color=\"#D38F79\">  </span>",
+        "Paused": "<span color=\"#D38F79\">  </span>"
       },
+    },
+    "custom/cava": {
+      "format": "<span>{}</span>",
+      "exec": "~/.config/waybar/scripts/cava.sh"
+    },
+    "custom/jdate": {
+    "format" : "<span>{}</span>",
+    "exec" : "~/.config/waybar/scripts/jdate.sh"
     },
 	"network": {
         	"format-wifi": "",

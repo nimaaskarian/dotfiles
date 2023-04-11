@@ -1,8 +1,15 @@
 #!/bin/bash
 
-[[ ! -f /tmp/player ]] && player
-c_player=$(</tmp/player)
+file=/tmp/player
+[[ ! -f $file ]] && player
+
+c_player=$(< $file)
 l_player=$c_player
+
+[[ $(playerctl -s metadata title -p "$c_player") ]] || player
+[[ $(playerctl -s metadata title -p "$c_player") ]] || while inotifywait -q -e close_write $file > /dev/null; do 
+    [[ $(playerctl -s metadata title -p "$1") ]] && player && break
+done
 
 PLAYER_FOLLOW() {
     if [[ $(playerctl -s metadata artist -p "$1") ]]; then
@@ -12,10 +19,10 @@ PLAYER_FOLLOW() {
     fi
 }
 PLAYER_FOLLOW "$c_player"
-while inotifywait -q -e close_write /tmp/player > /dev/null; do 
-    c_player=$(</tmp/player)
-    killall -q playerctl
+while inotifywait -q -e close_write $file > /dev/null; do 
+    c_player=$(<$file)
     if [[ "$l_player" != "$c_player" ]]; then
+        killall -q playerctl
         l_player=$c_player
         PLAYER_FOLLOW "$c_player"
     fi

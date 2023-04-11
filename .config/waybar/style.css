@@ -42,14 +42,19 @@ window#waybar {
 	border-radius: 5px;
 }
 
-#custom-date, #clock, #battery, #pulseaudio, #network, #custom-randwall {
+#custom-cava, #custom-jdate ,#custom-date, #clock, #battery, #pulseaudio, #network, #custom-randwall {
     background-color: @color0;
 	padding: 5px 7px;
 	margin: 10px 5px 0px 5px;
   border-radius: 8px;
   border: solid 2px @color7;
 }
-
+#custom-cava{
+    color: @color2
+}
+#custom-jdate{
+	margin-left: 0px;
+}
 #custom-date {
 	color: #D3869B;
 }

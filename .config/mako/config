@@ -1,8 +1,14 @@
 font=JetbrainsMono Nerd Font Mono 10
-background-color=#091A28bf
-text-color=#c7bdbe
+background-color=#0d0d0dbf
+text-color=#f0dcd1
 padding=15
-margin=0
-outer-margin=20
-border-color=#c7bdbe
+margin=5
+outer-margin=15
+border-color=#f0dcd1
 border-radius=8
+anchor=top-center
+text-alignment=center
+max-visible=3
+
+[mode=dnd]
+invisible=1
