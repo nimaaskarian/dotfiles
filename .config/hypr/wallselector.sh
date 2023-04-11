@@ -1,7 +1,14 @@
 #!/bin/bash
 dir=$HOME/Pictures/Wallpapers
-cd "$dir" || exit
-output=$(fd -tf . | while read -r A ; do echo -en "$A\x00icon\x1f$dir/$A\n";
-done | rofi -dmenu -show-icons) &&
+randkeyword=Random
 
-"$HOME/.local/bin/wal.sh" "$dir/$output" 
+output=$("$HOME/.config/hypr/wallhelper.sh" "$dir" "$randkeyword" | rofi -dmenu -show-icons -window-title "" );
+
+[[ $output ]] || exit
+
+if [[ $output == "$randkeyword" ]]; then
+  ~/.config/hypr/randwall.sh
+else
+"$HOME/.local/bin/wal.sh" "$dir/$output"
+fi
+

@@ -9,24 +9,25 @@ configuration {
   font: "Jetbrains Mono Nerd Font Mono 11";
   location: 0;
   show-icons: false;
+  /* show-icons: true; */
   /* icon-theme: "Papirus"; */
   icon-theme: "Qogir-dark";
   sidebar-mode: true;
-  kb-row-up: "Super+k,Up,Control+k,Shift+Tab,Shift+ISO_Left_Tab";
-  kb-row-down: "Super+j,Down,Control+j";
+  kb-row-up: "Alt+k,Super+k,Up,Control+k,Shift+Tab,Shift+ISO_Left_Tab";
+  kb-row-down: "Alt+j,Super+j,Down,Control+j";
   kb-accept-entry: "Control+m,Return,KP_Enter";
   terminal: "kitty";
   kb-remove-to-eol: "Control+Shift+e";
   kb-mode-complete: "Control+L";
-  kb-mode-next: "Super+l,Shift+Right,Control+Tab,Control+l";
-  kb-mode-previous: "Super+h,Shift+Left,Control+Shift+Tab,Control+h";
+  kb-mode-next: "Alt+l,Super+l,Shift+Right,Control+Tab,Control+l";
+  kb-mode-previous: "Alt+h,Super+h,Shift+Left,Control+Shift+Tab,Control+h";
   kb-remove-char-back: "BackSpace";
      display-drun:               "";
     display-run:                "";
     display-filebrowser:        "";
     display-window:             "";
     display-emoji: "";
-    display-clipboard: "";
+    display-dmenu: "";
     display-calc: "";
     display-power-menu: "";
 /*  */
@@ -37,8 +38,10 @@ configuration {
 
 #window {
     background-color: @background;
-    width: 505px;
-    height: 550px;
+    /* width: 505px; */
+    /* height: 550px; */
+    height: 505px;
+    width: 550px;
     
     border: 2px;
     border-color: @foreground;
@@ -86,6 +89,12 @@ configuration {
     border: 0;
     padding: 2.5px;
 }
+element-text {
+    vertical-align: 0.5;
+}
+element-icon { 
+    size: 6ch;
+} 
 
 #element.normal.normal {
     background-color: @normal-background;
