@@ -1,3 +1,16 @@
+#  _____     _    _            __              _           _      
+# |_   _|_ _| |__| |___   ___ / _|  __ ___ _ _| |_ ___ _ _| |_ ___
+#   | |/ _` | '_ \ / -_) / _ \  _| / _/ _ \ ' \  _/ -_) ' \  _(_-<
+#   |_|\__,_|_.__/_\___| \___/_|   \__\___/_||_\__\___|_||_\__/__/
+# _instant_prompt
+# _variables
+# __zinit
+# _plugins
+# _p10k
+# _compinit
+# _aliases
+
+
 #  ___         _            _                             _   
 # |_ _|_ _  __| |_ __ _ _ _| |_   _ __ _ _ ___ _ __  _ __| |_ 
 #  | || ' \(_-<  _/ _` | ' \  _| | '_ \ '_/ _ \ '  \| '_ \  _|
@@ -30,7 +43,7 @@ export EDITOR=lvim
 # |_  (_)_ _ (_) |_ 
 #  / /| | ' \| |  _|
 # /___|_|_||_|_|\__|
-# _zinit
+# __zinit
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
     print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
@@ -59,12 +72,15 @@ zinit light-mode for \
 # |_| |_|\_,_\__, |_|_||_/__/
 #            |___/           
 # _plugins
-zinit for \
-    light-mode \
-  zsh-users/zsh-autosuggestions \
-    light-mode \
-  zdharma-continuum/fast-syntax-highlighting \
-  zdharma-continuum/history-search-multi-word \
+
+zinit wait lucid for \
+ atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    zdharma-continuum/fast-syntax-highlighting \
+    zdharma-continuum/history-search-multi-word \
+ blockf \
+    zsh-users/zsh-completions \
+ atload"!_zsh_autosuggest_start" \
+    zsh-users/zsh-autosuggestions
 
 zinit ice wait lucid
 zinit ice depth=1; zinit light romkatv/powerlevel10k
