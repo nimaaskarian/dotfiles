@@ -48,8 +48,8 @@
       "on-scroll-up": "playerctl -p $(< /tmp/player) next",
       "on-scroll-down": "playerctl -p $(< /tmp/player) previous",
       "format-icons": {
-        "Playing": "<span color=\"#D38F79\">  </span>",
-        "Paused": "<span color=\"#D38F79\">  </span>"
+        "Playing": "<span color=\"#9B6C6D\">  </span>",
+        "Paused": "<span color=\"#9B6C6D\">  </span>"
       },
     },
     "custom/cava": {
