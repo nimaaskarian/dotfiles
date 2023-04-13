@@ -96,19 +96,6 @@ zinit light jeffreytse/zsh-vi-mode
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh 
 
 
-#   ___                _      _ _   
-#  / __|___ _ __  _ __(_)_ _ (_) |_ 
-# | (__/ _ \ '  \| '_ \ | ' \| |  _|
-#  \___\___/_|_|_| .__/_|_||_|_|\__|
-#                |_|                
-# _compinit
-
-zstyle :compinstall filename '/home/nima/.zshrc'
-autoload -Uz compinit
-compinit
-zinit cdreplay -q
-
-
 #    _   _ _                 
 #   /_\ | (_)__ _ ___ ___ ___
 #  / _ \| | / _` (_-</ -_|_-<
