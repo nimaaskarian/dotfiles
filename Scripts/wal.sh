@@ -17,7 +17,7 @@ if [[ -f "$(which wal)" ]]; then
     # cp ~/.cache/wal/colors-zathura ~/.config/zathura/zathurarc
 
 		# change i3s wallpaper config
-		printf '%s' "$1" > /home/nima/.wallpaper_path
+		printf '%s' "$1" > "$HOME/.cache/wallpaper_path"
 		# sed -i -e 's@set $wallpaper .*@set $wallpaper '"$1"'@g' "$HOME"/.config/i3/config		
 
 		# Source the pywal color file
