@@ -1,5 +1,7 @@
-cd ~
-mv .zsh_history .zsh_history_old
-strings .zsh_history_old > .zsh_history
-fc -r .zsh_history
-rm ~/.zsh_history_old
+#!/bin/bash
+
+his=$HOME/.cache/zsh_history
+mv "$his" "${his}_old"
+strings "${his}_old" > .zsh_history
+fc -r "$his"
+rm "${his}_old"

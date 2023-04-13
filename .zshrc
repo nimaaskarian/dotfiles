@@ -9,6 +9,8 @@
 # _p10k
 # _compinit
 # _aliases
+# _binds
+# -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 
 
 #  ___         _            _                             _   
@@ -17,9 +19,11 @@
 # |___|_||_/__/\__\__,_|_||_\__| | .__/_| \___/_|_|_| .__/\__|
 #                                |_|                |_|       
 # _instant_prompt
+
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+# -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 
 
 #   ___                       _ 
@@ -33,10 +37,12 @@ SAVEHIST=100000
 setopt autocd extendedglob nomatch notify
 unsetopt beep
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' menu select
 
 # _variables
 export PATH=$PATH:$HOME/.local/bin/
 export EDITOR=lvim
+# -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 
 
 #  _____      _ _   
@@ -44,6 +50,7 @@ export EDITOR=lvim
 #  / /| | ' \| |  _|
 # /___|_|_||_|_|\__|
 # __zinit
+
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
     print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
@@ -64,6 +71,7 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-bin-gem-node \
     zdharma-continuum/zinit-annex-patch-dl \
     zdharma-continuum/zinit-annex-rust
+# -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 
 
 #  ___ _           _         
@@ -85,6 +93,7 @@ zinit wait lucid for \
 zinit ice wait lucid
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 zinit light jeffreytse/zsh-vi-mode
+# -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 
 
 #  ___  _  __  _   
@@ -94,6 +103,7 @@ zinit light jeffreytse/zsh-vi-mode
 # _p10k
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh 
+# -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 
 
 #    _   _ _                 
@@ -123,3 +133,15 @@ alias zbarimg="zbarimg --raw -q"
 alias glone="~/Scripts/glone.py"
 alias pm="pulsemixer"
 alias pc="peaclock --config-dir ~/.config/peaclock"
+# -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+
+
+#  ___ _         _    
+# | _ |_)_ _  __| |___
+# | _ \ | ' \/ _` (_-<
+# |___/_|_||_\__,_/__/
+# _binds
+
+bindkey -v "^?" backward-delete-char
+bindkey ' ' magic-space
+# -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
