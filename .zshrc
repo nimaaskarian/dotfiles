@@ -9,6 +9,9 @@
 # _p10k
 # _aliases
 # _binds
+
+# calcurse B)
+calcurse -at
 # -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 
 
@@ -92,6 +95,8 @@ zinit wait lucid for \
 zinit ice wait lucid
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 zinit light jeffreytse/zsh-vi-mode
+# command-not-found
+source /usr/share/doc/pkgfile/command-not-found.zsh
 # -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 
 
@@ -132,6 +137,11 @@ alias zbarimg="zbarimg --raw -q"
 alias glone="~/Scripts/glone.py"
 alias pm="pulsemixer"
 alias pc="peaclock --config-dir ~/.config/peaclock"
+function sd(){
+ld=$PWD
+cd ~
+output=$(fd --full-path ~ -td -H | fzf) && cd $output || cd $ld
+}
 # -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 
 
