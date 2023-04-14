@@ -140,7 +140,7 @@ alias pc="peaclock --config-dir ~/.config/peaclock"
 function sd(){
 ld=$PWD
 cd ~
-output=$(fd --full-path ~ -td -H | fzf) && cd $output || cd $ld
+output=$(fd -td -H | fzf) && cd $output || cd $ld
 }
 # -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 
