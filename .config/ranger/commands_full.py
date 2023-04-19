@@ -1932,7 +1932,7 @@ class yank(Command):
                     ['pbcopy'],
                 ],
             }
-            ordered_managers = ['pbcopy', 'wl-copy', 'xclip', 'xsel']
+            ordered_managers = ['wl-copy', 'pbcopy', 'xclip', 'xsel']
             executables = get_executables()
             for manager in ordered_managers:
                 if manager in executables:

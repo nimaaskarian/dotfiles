@@ -11,7 +11,7 @@ CONFIG="$HOME/.config"
 if [[ -f "$(which wal)" ]]; then
 	if [[ "$1" ]]; then
 		~/.config/hypr/scripts/wall/set.sh "$1"
-		wpg -s "$1"
+		wpg -n -s "$1"
 		wal-telegram -r
 		pywal-discord
     # cp ~/.cache/wal/colors-zathura ~/.config/zathura/zathurarc
@@ -22,7 +22,9 @@ if [[ -f "$(which wal)" ]]; then
 
 		# Source the pywal color file
 		. "$HOME/.cache/wal/colors.sh"
-		cp "$HOME/.cache/wal/colors" ~/Documents/Front\ End/nitab-pro/build/
+		# cp "$HOME/.cache/wal/colors" ~/Documents/Front\ End/nitab-pro/build/
+		[ -f $HOME/.config/neofetch/source.png ] && rm $HOME/.config/neofetch/source.png
+		inkscape -h 256 -w 256 "$HOME/.cache/wal/colors-archlinux.svg" -o "$HOME/.config/neofetch/source.png"
 
 	# declare -A hyprcolors
 	# 	hyprcolors=(

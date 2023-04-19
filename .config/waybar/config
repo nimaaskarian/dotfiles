@@ -4,6 +4,7 @@
     "height": 24,
     "modules-left": ["wlr/workspaces"],
     "modules-center": ["custom/playerctl", "custom/cava"],
+    // "modules-center": ["custom/playerctl"],
     "modules-right": [ "network", "pulseaudio", "custom/jdate", "clock", "tray"],
     // Modules configuration
 	"clock": {
@@ -40,7 +41,7 @@
     "custom/playerctl": {
       "format": "{icon} <span>{}</span>",
       "return-type": "json",
-      "max-length": 35,
+      "max-length": 40,
       // "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
       "exec": "~/.config/waybar/scripts/playerctl/playerctl.sh",
       "on-click": "playerctl -p $(< /tmp/player) play-pause",
@@ -48,8 +49,8 @@
       "on-scroll-up": "playerctl -p $(< /tmp/player) next",
       "on-scroll-down": "playerctl -p $(< /tmp/player) previous",
       "format-icons": {
-        "Playing": "<span color=\"#9B6C6D\">  </span>",
-        "Paused": "<span color=\"#9B6C6D\">  </span>"
+        "Playing": "<span color=\"#8E6671\">  </span>",
+        "Paused": "<span color=\"#8E6671\">  </span>"
       },
     },
     "custom/cava": {

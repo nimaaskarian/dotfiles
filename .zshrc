@@ -39,11 +39,12 @@ fi
 #  / __|___ _ _  ___ _ _ __ _| |
 # | (_ / -_) ' \/ -_) '_/ _` | |
 #  \___\___|_||_\___|_| \__,_|_|
-#  _general
+# _general
 HISTFILE=~/.cache/zsh_history
 HISTSIZE=10000
 SAVEHIST=100000
 # ^W don't delete whole argument
+WORDCHARS=' *?_-.[]~=&;!#$%^(){}<>/'
 autoload -Uz select-word-style
 select-word-style normal
 zstyle ':zle:*' word-style unspecified
