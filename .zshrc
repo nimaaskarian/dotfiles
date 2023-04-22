@@ -148,41 +148,23 @@ alias np="pacman"
 alias pwc='pwd | c'
 alias ins='sudo pacman -S'
 alias upg='sudo pacman -Syu'
-alias s="systemctl"
-alias tb="taskbook"
+alias s="sudo systemctl"
 alias cpy="~/Scripts/cpp-interpreter/cpp.py"
 alias mv="mv -vi"
+alias cp="cp -vi"
 alias zbarimg="zbarimg --raw -q"
 alias glone="~/Scripts/glone.py"
 alias pm="pulsemixer"
 alias pc="peaclock --config-dir ~/.config/peaclock"
 alias gd="fd -td -H |fzf"
-function gdf(){
-    ld=$PWD
-    [ $1 ] && dir=$1 || dir=$HOME
-    cd $dir
-    output=$(fd -td -H | fzf) &&
-    echo $dir/$output
-    cd $ld
-}
 alias gf="fd -tf -H |fzf"
-function gff(){
-    ld=$PWD
-    [ $1 ] && dir=$1 || dir=$HOME
-    cd $dir
-    output=$(fd -tf -H | fzf) &&
-    echo $dir/$output &&
-    cd $ld
-}
 function ef() {
-    ld=$PWD
-    cd ~
-    output=$(gff $1) && lvim "$output" || cd "$ld"
+    [ $1 ] && pushd $1 || pushd ~
+    output=$(gf) && lvim "$output" || popd
 }
 function sd(){
-    ld=$PWD
-    cd ~
-    output=$(gdf $1) && cd "$output" || cd "$ld"
+    [ $1 ] && pushd $1 || pushd ~
+    output=$(gf) && cd "$output" || popd
 }
 # -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 
@@ -193,14 +175,17 @@ function sd(){
 # |___/_|_||_\__,_/__/
 # _binds
 
+# bindkey '^[[A' up-line-or-search
+# bindkey '^[[B' down-line-or-search
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search # Up
+bindkey "^[[B" down-line-or-beginning-search # Down
+
 bindkey -v "^?" backward-delete-char 
 bindkey ' ' magic-space
-# -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
-zinit ice wait lucid
-zinit ice depth=1; zinit light romkatv/powerlevel10k
-zinit light jeffreytse/zsh-vi-mode
-# command-not-found
-source /usr/share/doc/pkgfile/command-not-found.zsh
 # -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 
 
@@ -211,75 +196,4 @@ source /usr/share/doc/pkgfile/command-not-found.zsh
 # _p10k
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh 
-# -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
-
-
-#    _   _ _                 
-#   /_\ | (_)__ _ ___ ___ ___
-#  / _ \| | / _` (_-</ -_|_-<
-# /_/ \_\_|_\__,_/__/\___/__/
-# _aliases
-   
-alias c="wl-copy"
-alias cc="PAGER='/home/nima/Scripts/glowless' calcurse"
-alias ls='lsd'
-alias la='ls -lA'
-alias lt='ls --tree'
-alias lg='colorls --gs'
-alias py=python3
-function z(){
-    nohup zathura "$1" &> /dev/null &
-}
-alias p="sudo pacman"
-alias np="pacman"
-alias pwc='pwd | c'
-alias ins='sudo pacman -S'
-alias upg='sudo pacman -Syu'
-alias s="systemctl"
-alias tb="taskbook"
-alias cpy="~/Scripts/cpp-interpreter/cpp.py"
-alias mv="mv -vi"
-alias zbarimg="zbarimg --raw -q"
-alias glone="~/Scripts/glone.py"
-alias pm="pulsemixer"
-alias pc="peaclock --config-dir ~/.config/peaclock"
-alias gd="fd -td -H |fzf"
-function gdf(){
-    ld=$PWD
-    [ $1 ] && dir=$1 || dir=$HOME
-    cd $dir
-    output=$(fd -td -H | fzf) &&
-    echo $dir/$output
-    cd $ld
-}
-alias gf="fd -tf -H |fzf"
-function gff(){
-    ld=$PWD
-    [ $1 ] && dir=$1 || dir=$HOME
-    cd $dir
-    output=$(fd -tf -H | fzf) &&
-    echo $dir/$output &&
-    cd $ld
-}
-function ef() {
-    ld=$PWD
-    cd ~
-    output=$(gff $1) && lvim "$output" || cd "$ld"
-}
-function sd(){
-    ld=$PWD
-    cd ~
-    output=$(gdf $1) && cd "$output" || cd "$ld"
-}
-# -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
-
-
-#  ___ _         _    
-# | _ |_)_ _  __| |___
-# | _ \ | ' \/ _` (_-<
-# |___/_|_||_\__,_/__/
-# _binds
-
-bindkey -v "^?" backward-delete-char 
-bindkey ' ' magic-space
 # -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
