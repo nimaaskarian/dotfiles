@@ -1,10 +1,10 @@
 font=JetbrainsMono Nerd Font Mono 10
-background-color=#0d0d0dbf
-text-color=#f0dcd1
+background-color=#0f151cbf
+text-color=#e6d2eb
 padding=15
 margin=5
 outer-margin=15
-border-color=#f0dcd1
+border-color=#e6d2eb
 border-radius=8
 anchor=top-center
 text-alignment=center
@@ -12,3 +12,6 @@ max-visible=3
 
 [mode=dnd]
 invisible=1
+
+[mode=stream]
+output=DP-2
