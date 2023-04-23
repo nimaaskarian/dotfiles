@@ -164,7 +164,7 @@ function ef() {
 }
 function sd(){
     [ $1 ] && pushd $1 || pushd ~
-    output=$(gf) && cd "$output" || popd
+    output=$(gd) && cd "$output" || popd
 }
 # -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 

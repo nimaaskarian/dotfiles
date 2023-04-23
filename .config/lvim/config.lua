@@ -53,9 +53,9 @@ lvim.builtin.treesitter.ensure_installed = {
 }
 
 -- Telescope options
-lvim.builtin.telescope.defaults.layout_config.horizontal.mirror = false
-lvim.builtin.telescope.defaults.layout_strategy = "horizontal"
-lvim.builtin.telescope.defaults.layout_config.preview_cutoff = 120
+-- lvim.builtin.telescope.defaults.layout_config.horizontal.mirror = false
+-- lvim.builtin.telescope.defaults.layout_strategy = "horizontal"
+-- lvim.builtin.telescope.defaults.layout_config.preview_cutoff = 120
 
 -- User files
 require "nima.alpha"

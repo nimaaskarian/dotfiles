@@ -599,7 +599,7 @@ set_from_resource $foreground i3wm.foreground
 set_from_resource $bg-noalpha i3wm.background
 set_from_resource $primary i3wm.color2
 set_from_resource $inactive i3wm.color5
-set $background #130d0ebf
+set $background #0f151cbf
 # class                 border      backgr.     text            indicator
 client.focused          $background $background $primary        $background
 # client.focused          $background    $primary    $bg-noalpha     $background

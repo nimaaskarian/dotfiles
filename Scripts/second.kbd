@@ -17,7 +17,8 @@ fallthrough true
 allow-cmd true    
 ;; use 'ls /dev/input/by-id/' for detachable keyboards and
 ;; 'ls /dev/input/by-path/' for builtin keyboards location'
-input  (device-file "/dev/input/by-id/usb-BY_Tech_Usb_Gaming_Keyboard-event-kbd")
+;; input  (device-file "/dev/input/by-id/usb-BY_Tech_Usb_Gaming_Keyboard-event-kbd")
+input  (device-file "/dev/input/by-id/usb-SEM_USB_Keyboard-event-kbd")
 ;; Not sure what this does. Please check the docs.
 output (uinput-sink "My KMonad output")
 )
@@ -62,7 +63,6 @@ vi   (tap-hold-next-release 190 esc (layer-toggle vim))
 ;; ssf  (sticky-key 500 (layer-toggle rshift))
 ;;rsf (layer-toggle rshift)
 )
-
 (deflayer qwerty
   caps 1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
