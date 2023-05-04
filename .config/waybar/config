@@ -23,16 +23,18 @@
         "on-click": "activate",
 		"format-icons": {
       "1" :"",
-      "2" :"",
+      "2" :"",
       "3" :"",
       "4" :"",
-      "5" :"",
+      "5" :"",
       "6" :"",
-      "7" :"",
+      "7" :"",
       "8" :"",
       "9" :"",
-      "10" :"",
-      "11" :"",
+      "10" :"",
+      "11" : "",
+      "13" : "",
+      
 			"default": ""
      },
 		"sort-by-number": true,
@@ -49,8 +51,8 @@
       "on-scroll-up": "playerctl -p $(< /tmp/player) next",
       "on-scroll-down": "playerctl -p $(< /tmp/player) previous",
       "format-icons": {
-        "Playing": "<span color=\"#8E6671\">  </span>",
-        "Paused": "<span color=\"#8E6671\">  </span>"
+        "Playing": "<span color=\"#706167\">  </span>",
+        "Paused": "<span color=\"#706167\">  </span>"
       },
     },
     "custom/cava": {

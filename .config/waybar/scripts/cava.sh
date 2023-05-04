@@ -20,7 +20,7 @@ if [ -p $pipe ]; then
 fi
 mkfifo $pipe
 
-# write cava config
+# make a temp config and write to it
 config_file="/tmp/polybar_cava_config"
 echo "
 [general]
