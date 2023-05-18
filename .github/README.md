@@ -13,6 +13,11 @@ default config :(
 ## Editors
 ### LunarVim
 with some configs.
+## File managers
+### nnn
+nnn configured with zshrc variables.
+### ranger
+ranger configured with its own config file. It has everything you may want from a file manager.
 ## Other stuff
 ### waybar
 ### swww
