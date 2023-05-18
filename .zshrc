@@ -1,17 +1,5 @@
-#  _____     _    _            __              _           _      
-# |_   _|_ _| |__| |___   ___ / _|  __ ___ _ _| |_ ___ _ _| |_ ___
-#   | |/ _` | '_ \ / -_) / _ \  _| / _/ _ \ ' \  _/ -_) ' \  _(_-<
-#   |_|\__,_|_.__/_\___| \___/_|   \__\___/_||_\__\___|_||_\__/__/
-# _instant_prompt
-# _general
-# _variables
-# __zinit
-# _plugins
-# _p10k
-# _aliases
-# _binds
-
-# calcurse B)
+# vim:fileencoding=utf-8:foldmethod=marker
+# Calcurse startup{{{
 calcurse_output=$(calcurse -at -d 2)
 if [[ $(printf $calcurse_output | wc -c) -gt 0 ]]; then
   printf 'today: '
@@ -19,27 +7,14 @@ if [[ $(printf $calcurse_output | wc -c) -gt 0 ]]; then
   printf '\n'
   printf "$calcurse_output\n"
 fi
-# -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
-
-
-#  ___         _            _                             _   
-# |_ _|_ _  __| |_ __ _ _ _| |_   _ __ _ _ ___ _ __  _ __| |_ 
-#  | || ' \(_-<  _/ _` | ' \  _| | '_ \ '_/ _ \ '  \| '_ \  _|
-# |___|_||_/__/\__\__,_|_||_\__| | .__/_| \___/_|_|_| .__/\__|
-#                                |_|                |_|       
-# _instant_prompt
+# }}}
+# Instant prompt{{{
 
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-# -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
-
-
-#   ___                       _ 
-#  / __|___ _ _  ___ _ _ __ _| |
-# | (_ / -_) ' \/ -_) '_/ _` | |
-#  \___\___|_||_\___|_| \__,_|_|
-# _general
+# }}}
+# General{{{
 HISTFILE=~/.cache/zsh_history
 HISTSIZE=10000
 SAVEHIST=100000
@@ -59,14 +34,13 @@ zstyle ':completion:*' menu select
 # _variables
 export PATH=$PATH:$HOME/.local/bin/
 export EDITOR=lvim
-# -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
-
-
-#  _____      _ _   
-# |_  (_)_ _ (_) |_ 
-#  / /| | ' \| |  _|
-# /___|_|_||_|_|\__|
-# __zinit
+# export NNN_OPENER=nuke
+export NNN_COLORS="1234"
+export NNN_BMS="D:$HOME/Scripts;v:$HOME/Downloads"
+export NNN_TMPFILE="$HOME/.cache/nnn-lastd"
+export ZSH_SYSTEM_CLIPBOARD_METHOD="wlc"
+# }}}
+# Zinit{{{
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -80,6 +54,8 @@ fi
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
+# }}}
+# Plugins{{{
 
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
@@ -88,15 +64,6 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-bin-gem-node \
     zdharma-continuum/zinit-annex-patch-dl \
     zdharma-continuum/zinit-annex-rust
-# -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
-
-
-#  ___ _           _         
-# | _ \ |_  _ __ _(_)_ _  ___
-# |  _/ | || / _` | | ' \(_-<
-# |_| |_|\_,_\__, |_|_||_/__/
-#            |___/           
-# _plugins
 
 zinit wait lucid for \
  atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
@@ -111,37 +78,32 @@ zinit light zsh-users/zsh-autosuggestions
 
 zinit ice wait lucid
 zinit ice depth=1; zinit light romkatv/powerlevel10k
+
+zinit light kutsan/zsh-system-clipboard
 zinit light jeffreytse/zsh-vi-mode
-# command-not-found
-source /usr/share/doc/pkgfile/command-not-found.zsh
-# -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
-
-
-#  ___  _  __  _   
-# | _ \/ |/  \| |__
-# |  _/| | () | / /
-# |_|  |_|\__/|_\_\
-# _p10k
-
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh 
-# -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
-
-
-#    _   _ _                 
-#   /_\ | (_)__ _ ___ ___ ___
-#  / _ \| | / _` (_-</ -_|_-<
-# /_/ \_\_|_\__,_/__/\___/__/
-# _aliases
+# }}}
+# Aliases{{{
    
 alias c="wl-copy"
 alias cc="PAGER='/home/nima/Scripts/glowless' calcurse"
-alias ls='lsd'
-alias la='ls -lA'
+function nnn(){
+    /bin/nnn -Cde $@;
+    $(sed "s/'//g" ~/.cache/nnn-lastd)
+}
+alias ls='nnn'
+alias la='nnn -H'
 alias lt='ls --tree'
 alias lg='colorls --gs'
 alias py=python3
 function z(){
-    nohup zathura "$1" &> /dev/null &
+    nohup zathura "$@" &> /dev/null &
+}
+function w3m(){
+    if [[ $1 ]]; then
+        /bin/w3m $@
+    else
+        /bin/w3m ~/Scripts/nitab-plain/nitab-plain.html
+    fi
 }
 alias p="sudo pacman"
 alias np="pacman"
@@ -156,24 +118,21 @@ alias zbarimg="zbarimg --raw -q"
 alias glone="~/Scripts/glone.py"
 alias pm="pulsemixer"
 alias pc="peaclock --config-dir ~/.config/peaclock"
-alias gd="fd -td -H |fzf"
-alias gf="fd -tf -H |fzf"
+alias gd="fd -td -H --base-directory $PWD |fzf"
+alias gf="fd -tf -H --base-directory $PWD|fzf"
 function ef() {
-    [ $1 ] && pushd $1 || pushd ~
-    output=$(gf) && lvim "$output" || popd
+    dir=$HOME
+    [ $1 ] && dir=$1
+    output=$(fd -tf -H --base-directory | fzf) && lvim "$dir/$output"
 }
 function sd(){
-    [ $1 ] && pushd $1 || pushd ~
-    output=$(gd) && cd "$output" || popd
+    dir=$HOME
+    [ $1 ] && dir=$1
+    output=$(fd -td -H  --base-directory "$dir"| fzf) && cd "$dir/$output"
 }
-# -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
-
-
-#  ___ _         _    
-# | _ |_)_ _  __| |___
-# | _ \ | ' \/ _` (_-<
-# |___/_|_||_\__,_/__/
-# _binds
+alias neofetchm="neofetch --config $HOME/.config/neofetch/config.minimal.conf"
+# }}}
+# Binds{{{
 
 # bindkey '^[[A' up-line-or-search
 # bindkey '^[[B' down-line-or-search
@@ -186,14 +145,40 @@ bindkey "^[[B" down-line-or-beginning-search # Down
 
 bindkey -v "^?" backward-delete-char 
 bindkey ' ' magic-space
-# -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
-
-
-#  ___  _  __  _   
-# | _ \/ |/  \| |__
-# |  _/| | () | / /
-# |_|  |_|\__/|_\_\
-# _p10k
-
+# }}}
+# Other (p10k, command not found){{{
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh 
-# -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+source /usr/share/doc/pkgfile/command-not-found.zsh
+# }}}
+# nnn cd on quit{{{
+n ()
+{
+    # Block nesting of nnn in subshells
+    [ "${NNNLVL:-0}" -eq 0 ] || {
+        echo "nnn is already running"
+        return
+    }
+
+    # The behaviour is set to cd on quit (nnn checks if NNN_TMPFILE is set)
+    # If NNN_TMPFILE is set to a custom path, it must be exported for nnn to
+    # see. To cd on quit only on ^G, remove the "export" and make sure not to
+    # use a custom path, i.e. set NNN_TMPFILE *exactly* as follows:
+    #      NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+
+    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
+    # stty start undef
+    # stty stop undef
+    # stty lwrap undef
+    # stty lnext undef
+
+    # The command builtin allows one to alias nnn to n, if desired, without
+    # making an infinitely recursive alias
+    command nnn "$@"
+
+    [ ! -f "$NNN_TMPFILE" ] || {
+        . "$NNN_TMPFILE"
+        rm -f "$NNN_TMPFILE" > /dev/null
+    }
+}
+# }}}

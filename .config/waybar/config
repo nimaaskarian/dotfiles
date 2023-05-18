@@ -2,9 +2,9 @@
     "position": "top",
     "layer": "top",
     "height": 24,
-    "modules-left": ["wlr/workspaces"],
-    "modules-center": ["custom/playerctl", "custom/cava"],
-    // "modules-center": ["custom/playerctl"],
+    "modules-left": ["wlr/workspaces", "hyprland/window"],
+    // "modules-center": ["custom/playerctl", "cava"],
+    "modules-center": ["custom/playerctl"],
     "modules-right": [ "network", "pulseaudio", "custom/jdate", "clock", "tray"],
     // Modules configuration
 	"clock": {
@@ -14,14 +14,19 @@
         	"format-alt": "{:%d/%m}"
 	},
 	
+  "hyprland/window":{
+    "format": "<span>{}</span>",
+    "separate-outputs": true,
+    "max-length": 30,
+  },
 
 	"wlr/workspaces": {
         "disable-scroll": false,
-        "on-scroll-up": "hyprctl dispatch workspace -1",
-        "on-scroll-down": "hyprctl dispatch workspace +1",
+        "on-scroll-up": "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1",
         "format": "{icon}",
         "on-click": "activate",
-		"format-icons": {
+        "format-icons": {
       "1" :"",
       "2" :"",
       "3" :"",
@@ -51,13 +56,31 @@
       "on-scroll-up": "playerctl -p $(< /tmp/player) next",
       "on-scroll-down": "playerctl -p $(< /tmp/player) previous",
       "format-icons": {
-        "Playing": "<span color=\"#706167\">  </span>",
-        "Paused": "<span color=\"#706167\">  </span>"
+        "Playing": "<span color=\"#877563\">  </span>",
+        "Paused": "<span color=\"#877563\">  </span>"
       },
     },
-    "custom/cava": {
-      "format": "<span>{}</span>",
-      "exec": "~/.config/waybar/scripts/cava.sh"
+"cava": {
+//        "cava_config": "$XDG_CONFIG_HOME/cava/cava.conf",
+        "framerate": 60,
+        "autosens": 1,
+        "sensitivity": 100,
+        "bars": 14,
+        "lower_cutoff_freq": 50,
+        "higher_cutoff_freq": 10000,
+        "method": "pulse",
+        "source": "auto",
+        "stereo": true,
+        "reverse": false,
+        "bar_delimiter": 0,
+        "monstercat": false,
+        "waves": false,
+        "noise_reduction": 0.77,
+        "input_delay": 2,
+        "format-icons" : ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
+        "actions": {
+                   "on-click-right": "mode"
+                   }
     },
     "custom/jdate": {
     "format" : "<span>{}</span>",
@@ -68,7 +91,7 @@
         	"format-ethernet": " {ifname}",
         	"format-linked": " {ifname} (No IP)",
         	"format-disconnected": "",
-        	"format-alt": " {ifname}: {ipaddr}/{cidr}",
+        	"format-alt": " {ifname}: {ipaddr}/{cidr}",
           "tooltip-format": "{essid}",
           "on-click-right": "nm-connection-editor"
 	},
