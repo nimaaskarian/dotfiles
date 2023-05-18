@@ -19,3 +19,4 @@ with some configs.
 ### wal.sh
 ### wallpaper picker (dmenu/rofi)
 ### mic toggler (dmenu/rofi)
+### and more useful bash and py [scripts](https://github.com/nimaaskarian/dotfiles/tree/master/Scripts)!
