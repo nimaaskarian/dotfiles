@@ -1,11 +1,11 @@
 lvim.plugins = {
-  {
-    "phaazon/hop.nvim",
-    branch = 'v2',
-    config = function()
-      require('hop').setup({keys='fhgitroepvxqdyblzcksuan'})
-    end
-  },
+  -- {
+  --   "phaazon/hop.nvim",
+  --   branch = 'v2',
+  --   config = function()
+  --     require('hop').setup({keys='fhgitroepvxqdyblzcksuan'})
+  --   end
+  -- },
 { "iamcco/markdown-preview.nvim",
     build = "cd app && npm install",
     init = function()
@@ -37,14 +37,26 @@ lvim.plugins = {
     config = function() require('guess-indent').setup {} end,
   },
   {
-    "kevinhwang91/rnvimr",
-    cmd = "RnvimrToggle",
+    "luukvbaal/nnn.nvim",
     config = function()
-      vim.g.rnvimr_draw_border = 1
-      vim.g.rnvimr_pick_enable = 1
-      vim.g.rnvimr_bw_enable = 1
+    require("nnn").setup({
+      picker = {
+        cmd = "~/Scripts/nnn-w",
+        style = { border = "rounded" },
+        session = "shared",
+      },
+    })
     end,
   },
+  -- {
+  --   "kevinhwang91/rnvimr",
+  --   cmd = "RnvimrToggle",
+  --   config = function()
+  --     vim.g.rnvimr_draw_border = 1
+  --     vim.g.rnvimr_pick_enable = 1
+  --     vim.g.rnvimr_bw_enable = 1
+  --   end,
+  -- },
   {
     "folke/todo-comments.nvim",
     dependencies = "nvim-lua/plenary.nvim",
@@ -101,6 +113,7 @@ lvim.plugins = {
     end
   },
   { 'tpope/vim-surround' },
+  {"tpope/vim-repeat"},
   { 'AlphaTechnolog/pywal.nvim' },
   {
     "folke/trouble.nvim",

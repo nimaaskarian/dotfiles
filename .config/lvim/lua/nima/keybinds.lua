@@ -12,7 +12,7 @@ lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
 lvim.keys.normal_mode["<Tab>"] = ":BufferLineCycleNext<CR>"
 lvim.keys.normal_mode["<S-Tab>"] = ":BufferLineCyclePrev<CR>"
 lvim.builtin.which_key.mappings["r"] = {
-  "<cmd>RnvimrToggle<cr>", "Ranger"
+  "<cmd>NnnPicker<cr>", "Nnn"
 }
 lvim.builtin.which_key.mappings["o"] = {
   '<cmd>call append(line("."),   repeat([""], v:count1))<CR>', "Newline below"
