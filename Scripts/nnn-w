@@ -1,0 +1,5 @@
+#!/bin/bash
+
+source /home/nima/.nnn_variables
+
+nnn "$@"
