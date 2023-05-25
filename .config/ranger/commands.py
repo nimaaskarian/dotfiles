@@ -6,7 +6,7 @@ from threading import Thread
 class setwp(Command):
 	def execute(self):
 		self.fm.execute_console("shell /home/nima/Scripts/wal.sh "+str(self.fm.thisfile))
-		self.fm.execute_console("shell /home/nima/Scripts/chcpio.sh")
+		# self.fm.execute_console("shell /home/nima/Scripts/chcpio.sh")
 
 class zip(Command):
     def __init__(self, *args, **kwargs):
@@ -60,7 +60,7 @@ class yank(Command):
                     ['pbcopy'],
                 ],
             }
-            ordered_managers = ['wl-copy', 'pbcopy', 'xclip', 'xsel']
+            ordered_managers = ['wl-copy', 'xclip', 'xsel']
             executables = get_executables()
             for manager in ordered_managers:
                 if manager in executables:

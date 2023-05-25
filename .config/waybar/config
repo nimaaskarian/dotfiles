@@ -5,21 +5,34 @@
     "modules-left": ["wlr/workspaces", "hyprland/window"],
     // "modules-center": ["custom/playerctl", "cava"],
     "modules-center": ["custom/playerctl"],
-    "modules-right": [ "network", "pulseaudio", "custom/jdate", "clock", "tray"],
+    "modules-right": [ "network", "pulseaudio", "custom/jdate","hyprland/language", "clock", "tray"],
     // Modules configuration
 	"clock": {
 		"format": "{:%I:%M %p}",
-		"tooltip": "true",
-        	"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        	"format-alt": "{:%d/%m}"
+        "format-alt": "{:%Y/%m/%d}",
+
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "weeks-pos": "right",
+            "format": {
+                "today": "<span color='#afaf00'><b><u>{}</u></b></span>"
+            }
+        },
+
+
 	},
 	
   "hyprland/window":{
     "format": "<span>{}</span>",
     "separate-outputs": true,
-    "max-length": 30,
+    "max-length": 25,
   },
-
+"hyprland/language": {
+    "format": "{}",
+    "format-en": "en",
+    "format-fa": "fa",
+    // "keyboard-name": "at-translated-set-2-keyboard",
+},
 	"wlr/workspaces": {
         "disable-scroll": false,
         "on-scroll-up": "hyprctl dispatch workspace e+1",
@@ -55,36 +68,20 @@
       "on-click-right": "player -n",
       "on-scroll-up": "playerctl -p $(< /tmp/player) next",
       "on-scroll-down": "playerctl -p $(< /tmp/player) previous",
+      // "format-icons": {
+        // "Playing": "<span> </span>",
+        // "Paused": "<span> </span>"
+      // },
+      // for colorless config
       "format-icons": {
-        "Playing": "<span color=\"#877563\">  </span>",
-        "Paused": "<span color=\"#877563\">  </span>"
+        "Playing": "<span color='#afaf00'> </span>",
+        "Paused": "<span color='#afaf00'> </span>"
       },
     },
-"cava": {
-//        "cava_config": "$XDG_CONFIG_HOME/cava/cava.conf",
-        "framerate": 60,
-        "autosens": 1,
-        "sensitivity": 100,
-        "bars": 14,
-        "lower_cutoff_freq": 50,
-        "higher_cutoff_freq": 10000,
-        "method": "pulse",
-        "source": "auto",
-        "stereo": true,
-        "reverse": false,
-        "bar_delimiter": 0,
-        "monstercat": false,
-        "waves": false,
-        "noise_reduction": 0.77,
-        "input_delay": 2,
-        "format-icons" : ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
-        "actions": {
-                   "on-click-right": "mode"
-                   }
-    },
     "custom/jdate": {
-    "format" : "<span>{}</span>",
-    "exec" : "~/.config/waybar/scripts/jdate.sh"
+        "interval": 1800,
+        "format" : "<span>{}</span>",
+        "exec" : "~/.config/waybar/scripts/jdate.sh"
     },
 	"network": {
         	"format-wifi": "",
@@ -115,7 +112,7 @@
 		"format-icons": {
 			"default": ["", "", ""]
 		},
-		"on-click": "pamixer -t",
+		"on-click": "st -e pulsemixer",
 		"on-click-right": "pavucontrol",
     "tooltip-format": "{volume}%"
   },
