@@ -12,8 +12,7 @@ if [[ -f "$(which wal)" ]]; then
 	if [[ "$1" ]]; then
 
 		if [ "$2" ]; then
-			wpg --theme "$2"
-			wal --theme "$2"
+			wpg -Ti "$1" "$2" -s "$1"
 		else
 			wpg -n -s "$1"
 		fi
@@ -21,7 +20,7 @@ if [[ -f "$(which wal)" ]]; then
 		[ "$WAYLAND_DISPLAY" ] && ~/.config/hypr/scripts/wall/set.sh "$1"
 		# ~/.suckless/cpwal.sh
 		
-		wal-telegram -r
+		wal-telegram -r --background "$1"
 		pywal-discord
     # cp ~/.cache/wal/colors-zathura ~/.config/zathura/zathurarc
 
@@ -48,8 +47,7 @@ if [[ -f "$(which wal)" ]]; then
     sed -i -e "s/\$background #.*/\$background #$(echo $background | tr -d "#")$alpha/g" "$CONFIG/i3/config" 
 		sed -i 's/:root.*//gi' "$CONFIG/qutebrowser/pywal.css"
 	  tr -d '\n' < /home/nima/.cache/wal/colors.css | sed 's/.*:root/:root/gi' >> "$CONFIG/qutebrowser/pywal.css"
-		sed -i 's+span.*color=.*\">+span color=\\\"$_color2\\\">+g' "$CONFIG/waybar/config" 
-		sed -i  "s/\$_color2/$color2/" "$CONFIG/waybar/config" 
+		sed -i "s+span.*color=.*'>+span color='$color2'>+g" "$CONFIG/waybar/config" 
 		killall waybar; waybar &> /dev/null &
 		# swaybg -m fill -i "$(< ~/.wallpaper_path)" &> /dev/null &
 		# sync xournalpp background to pywal
@@ -62,7 +60,7 @@ if [[ -f "$(which wal)" ]]; then
 	makocolors=(
 			["background-color"]="${background}${alpha}"
 			["text-color"]="$foreground"
-			["border-color"]="$foreground"
+			["border-color"]="$color2"
 	)
 
 	for color_name in "${!makocolors[@]}"; do

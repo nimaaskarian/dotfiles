@@ -2,5 +2,6 @@ cursor_size: 1
 indicator: none
 buttons: f d s
 screen: m
+normal_system_cursor: 1
 hint_bgcolor: {background}
 hint_fgcolor: {foreground}
