@@ -1,6 +1,6 @@
 # vim:fileencoding=utf-8:foldmethod=marker
 # Calcurse startup{{{
-calcurse_output=$(calcurse -at -d 2)
+calcurse_output=$(calcurse -at -d 1)
 if [[ $(printf $calcurse_output | wc -c) -gt 0 ]]; then
   printf 'today: '
   date +'%a'
@@ -14,8 +14,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 # }}}
-source ~/.nnn_variables
 # General {{{
+source ~/.nnn_variables
 HISTFILE=~/.cache/zsh_history
 HISTSIZE=10000
 SAVEHIST=100000
@@ -31,6 +31,7 @@ unsetopt beep
 # small to capital letters
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' menu select
+zmodload zsh/complist
 
 # _variables
 export PATH=$PATH:$HOME/.local/bin/
@@ -85,11 +86,12 @@ alias bw="~/Documents/Learning/cpp/bingewatcher-cpp/bw"
 alias cc="PAGER='/home/nima/Scripts/glowless' calcurse"
 alias ls='nnn'
 alias la='nnn -H'
-alias lt='ls --tree'
-alias lg='colorls --gs'
+alias lt='exa --icons --tree'
+alias l='exa --icons -l'
+alias lg='exa --icons -l --git'
 alias py=python3
 function z(){
-    nohup zathura "$@" &> /dev/null &
+    zathura "$@" &!
 }
 function w3m(){
     if [[ $1 ]]; then
@@ -111,17 +113,11 @@ alias zbarimg="zbarimg --raw -q"
 alias glone="~/Scripts/glone.py"
 alias pm="pulsemixer"
 alias pc="peaclock --config-dir ~/.config/peaclock"
-alias gd="fd -td -H --base-directory $PWD |fzf"
-alias gf="fd -tf -H --base-directory $PWD|fzf"
 function ef() {
-    dir=$HOME
-    [ $1 ] && dir=$1
-    output=$(fd -tf -H --base-directory | fzf) && lvim "$dir/$output"
+output=$(OPTIONS=-tf ~/Scripts/select-dir.sh $*) && $EDITOR $output
 }
-function sd(){
-    dir=$HOME
-    [ $1 ] && dir=$1
-    output=$(fd -td -H  --base-directory "$dir"| fzf) && cd "$dir/$output"
+function sdir() {
+output=$(~/Scripts/select-dir.sh $*) && cd $output
 }
 alias neofetchm="neofetch --config $HOME/.config/neofetch/config.minimal.conf"
 # }}}
@@ -135,9 +131,18 @@ zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search # Up
 bindkey "^[[B" down-line-or-beginning-search # Down
-
+bindkey -M emacs "^[[Z" reverse-menu-complete
+bindkey -M viins "^[[Z" reverse-menu-complete
+bindkey -M vicmd "^[[Z" reverse-menu-complete
 bindkey -v "^?" backward-delete-char 
 bindkey ' ' magic-space
+bindkey '^I^I' autosuggest-accept
+# use the vi navigation keys in menu completion
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect '^[' undo
 # }}}
 # Other (p10k, command not found){{{
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh 
