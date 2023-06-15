@@ -114,10 +114,10 @@ alias glone="~/Scripts/glone.py"
 alias pm="pulsemixer"
 alias pc="peaclock --config-dir ~/.config/peaclock"
 function ef() {
-output=$(OPTIONS=-tf ~/Scripts/select-dir.sh $*) && $EDITOR $output
+output=$(OPTIONS=-tf ~/Scripts/fd-fzf.sh $*) && $EDITOR $output
 }
 function sdir() {
-output=$(~/Scripts/select-dir.sh $*) && cd $output
+output=$(~/Scripts/fd-fzf.sh $*) && cd $output
 }
 alias neofetchm="neofetch --config $HOME/.config/neofetch/config.minimal.conf"
 # }}}
