@@ -1,32 +1,22 @@
 * {{
-    active-background: {color2};
-    active-foreground: @foreground;
-    normal-background: transparent;
-    normal-foreground: @foreground;
-    urgent-background: {color1};
-    urgent-foreground: @foreground;
-
-    /* alternate-normal-background: @background; */
-    alternate-normal-background: transparent;
-
-    alternate-active-background: transparent;
-    alternate-active-foreground: @foreground;
-    alternate-normal-foreground: @foreground;
-    alternate-urgent-background: @background;
-    alternate-urgent-foreground: @foreground;
-
-    selected-normal-background: transparent;
-    /* selected-normal-background: {color2}; */
-
-    selected-active-background: {color1};
-    selected-active-foreground: @foreground;
-    selected-normal-foreground: @foreground;
-    selected-urgent-background: {color3};
-    selected-urgent-foreground: @foreground;
-
-    background-color: transparent;
+    color0: {color0};
+    color1: {color1};
+    color2: {color2};
+    color3: {color3};
+    color4: {color4};
+    color5: {color5};
+    color6: {color6};
+    color7: {color7};
+    color8: {color8};
+    color9: {color9};
+    color10: {color10};
+    color11: {color11};
+    color12: {color12};
+    color13: {color13};
+    color14: {color14};
+    color15: {color15};
     background: rgba( {background.rgb}, 75% );
+    background-no-alpha: {background};
     foreground: {foreground};
-    border-color: @background;
     spacing: 2;
 }}

@@ -2,31 +2,33 @@
     "position": "top",
     "layer": "top",
     "height": 24,
-    "modules-left": ["wlr/workspaces", "hyprland/window"],
+    "modules-left": ["wlr/workspaces", "hyprland/window", "hyprland/submap"],
     // "modules-center": ["custom/playerctl", "cava"],
     "modules-center": ["custom/playerctl"],
-    "modules-right": [ "network", "pulseaudio", "custom/jdate","hyprland/language", "clock", "tray"],
+    "modules-right": [ "network", "pulseaudio","hyprland/language", "custom/jdate", "tray"],
     // Modules configuration
-	"clock": {
-		"format": "{:%I:%M %p}",
-        "format-alt": "{:%Y/%m/%d}",
-
-        "tooltip-format": "<tt><small>{calendar}</small></tt>",
-        "calendar": {
-            "weeks-pos": "right",
-            "format": {
-                "today": "<span color='#afaf00'><b><u>{}</u></b></span>"
-            }
-        },
-
-
-	},
+	// "clock": {
+	// 	"format": "{:%I:%M %p}",
+ //        "format-alt": "{:%Y/%m/%d}",
+ //        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+ //        "calendar": {
+ //            "weeks-pos": "right",
+ //            "format": {
+ //                "today": "<span color='#afaf00'><b><u>{}</u></b></span>"
+ //            }
+ //        },
+	// },
 	
   "hyprland/window":{
     "format": "<span>{}</span>",
     "separate-outputs": true,
     "max-length": 25,
   },
+"hyprland/submap": {
+    "format": "{}",
+    "max-length": 8,
+    "tooltip": false
+},
 "hyprland/language": {
     "format": "{}",
     "format-en": "en",
@@ -68,27 +70,28 @@
       "on-click-right": "player -n",
       "on-scroll-up": "playerctl -p $(< /tmp/player) next",
       "on-scroll-down": "playerctl -p $(< /tmp/player) previous",
-      // "format-icons": {
-        // "Playing": "<span> </span>",
-        // "Paused": "<span> </span>"
-      // },
-      // for colorless config
       "format-icons": {
-        "Playing": "<span color='#afaf00'> </span>",
-        "Paused": "<span color='#afaf00'> </span>"
+        "Playing": "<span> </span>",
+        "Paused": "<span> </span>"
       },
+      // // for colorless config
+      // "format-icons": {
+      //   "Playing": "<span color='#afaf00'> </span>",
+      //   "Paused": "<span color='#afaf00'> </span>"
+      // },
     },
     "custom/jdate": {
-        "interval": 1800,
+        // "interval": 60,
         "format" : "<span>{}</span>",
-        "exec" : "~/.config/waybar/scripts/jdate.sh"
+        "exec" : "~/.config/waybar/scripts/jdate/jdate.sh",
+        "on-click": "~/.config/waybar/scripts/jdate/jdate-toggle.sh"
     },
 	"network": {
         	"format-wifi": "",
         	"format-ethernet": " {ifname}",
         	"format-linked": " {ifname} (No IP)",
         	"format-disconnected": "",
-        	"format-alt": " {ifname}: {ipaddr}/{cidr}",
+        	"format-alt": " {ifname}: {ipaddr}/{cidr}",
           "tooltip-format": "{essid}",
           "on-click-right": "nm-connection-editor"
 	},
@@ -112,7 +115,7 @@
 		"format-icons": {
 			"default": ["", "", ""]
 		},
-		"on-click": "st -e pulsemixer",
+		"on-click": "alacritty -e pulsemixer",
 		"on-click-right": "pavucontrol",
     "tooltip-format": "{volume}%"
   },
