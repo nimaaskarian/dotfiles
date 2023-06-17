@@ -11,8 +11,11 @@ lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
 lvim.keys.normal_mode["<Tab>"] = ":BufferLineCycleNext<CR>"
 lvim.keys.normal_mode["<S-Tab>"] = ":BufferLineCyclePrev<CR>"
+-- lvim.builtin.which_key.mappings["r"] = {
+--   "<cmd>NnnPicker %:p:h<cr>", "Nnn"
+-- }
 lvim.builtin.which_key.mappings["r"] = {
-  "<cmd>NnnPicker<cr>", "Nnn"
+  "<cmd>RnvimrToggle<cr>", "Ranger"
 }
 lvim.builtin.which_key.mappings["o"] = {
   '<cmd>call append(line("."),   repeat([""], v:count1))<CR>', "Newline below"
@@ -21,7 +24,7 @@ lvim.builtin.which_key.mappings["O"] = {
   '<cmd>call append(line(".")-1,   repeat([""], v:count1))<CR>', "Newline above"
 }
 lvim.builtin.which_key.mappings["n"] = {
-  '<cmd>ene!<CR>', "New file"
+   '<cmd>ene!<CR>', "New File"
 }
 lvim.builtin.which_key.mappings["S"] = {
   name = "Split/Sudo",
@@ -29,6 +32,22 @@ lvim.builtin.which_key.mappings["S"] = {
   r = { "<cmd>SudaRead<CR>", "Read" },
   h = { "<cmd>split<CR>", "Horizontal" },
   v = { "<cmd>vsplit<CR>", "Vertical" }
+}
+lvim.builtin.which_key.mappings["m"] = {
+  name = "Markdown",
+  c = {
+    '<cmd>. luado if string.find(line,"%[x%]") then return line:gsub("%[x%]", "[ ]") else return line:gsub("%[ %]", "[x]") end<CR>',
+    "Toggle checkbox"
+  },
+  l = {
+    '<cmd>norm o[](https://)<CR><esc>^ci[',
+    "Link"
+  },
+  n = { "<cmd>ObsidianNew<CR>", "Obsidian note"},
+  d = { "<cmd>ObsidianToday<CR>", "Obsidian today"},
+  o = { "<cmd>ObsidianOpen<CR>", "Obsidian open"},
+  s = { "<cmd>ObsidianSearch<CR>", "Obsidian search"},
+  t = { "<cmd>ObsidianTemplate<CR>", "Obsidian template"},
 }
 lvim.builtin.which_key.mappings["R"] = {
   name = "Resize",

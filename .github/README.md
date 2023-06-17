@@ -1,6 +1,13 @@
 # Dotfiles
 Configs for softwares I use daily. (except for [dwm](https://github.com/nimaaskarian/dwm)
 and [st](https://github.com/nimaaskarian/st). they have their own repo)
+## Installation (archlinux) (not tested)
+Run script below in bash. (or zsh).  
+```
+# adds a new user with home called "na-dotfiles"
+sudo useradd -m na-dotfiles
+while read -r line; do 
+```
 ## Window managers
 ### Hyprland (pywal)
 ![image](https://github.com/nimaaskarian/dotfiles/assets/88832088/222e4b63-a928-47dc-8e03-68482ab39a4d)

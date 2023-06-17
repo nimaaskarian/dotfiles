@@ -24,4 +24,4 @@ for arg in args:
         options.append(arg)
 
 for repo in repos:
-    subprocess.run(["git","clone",f"{base_url}{repo}.git"]+args)
+    subprocess.run(["git","clone",f"{base_url}{repo}.git"]+args[1:])

@@ -90,6 +90,7 @@ alias lt='exa --icons --tree'
 alias l='exa --icons -l'
 alias lg='exa --icons -l --git'
 alias py=python3
+alias dotg="git --git-dir=$HOME/.cfg --work-tree=$HOME"
 function z(){
     zathura "$@" &!
 }
@@ -106,7 +107,6 @@ alias pwc='pwd | c'
 alias ins='sudo pacman -S'
 alias upg='sudo pacman -Syu'
 alias s="sudo systemctl"
-alias cpy="~/Scripts/cpp-interpreter/cpp.py"
 alias mv="mv -vi"
 alias cp="cp -vi"
 alias zbarimg="zbarimg --raw -q"

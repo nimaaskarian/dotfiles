@@ -2,7 +2,7 @@
  playlist_disable_highlight_delay = "0"  
  playlist_display_mode = "columns"  
  playlist_show_remaining_time = "yes"
-
+ execute_on_song_change = songinfo
  browser_display_mode = "columns"  
  autocenter_mode = "yes"
  fancy_scrolling = "yes"
@@ -41,7 +41,7 @@ audio_output {
        path            "/tmp/mpd.fifo"
        format          "44100:16:2"
 }
-visualizer_fifo_path = "/tmp/mpd.fifo"
+visualizer_data_source = "/tmp/mpd.fifo"
 visualizer_output_name = "my_fifo"
 visualizer_sync_interval = "30"
 visualizer_type = "spectrum"

@@ -13,6 +13,7 @@ if [[ -f "$(which wal)" ]]; then
 
 		if [ "$2" ]; then
 			wpg -Ti "$1" "$2" -s "$1"
+			wal --theme "$2"
 		else
 			wpg -n -s "$1"
 		fi

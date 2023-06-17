@@ -4,6 +4,7 @@ configuration {
 	modi: "run,drun,calc,emoji";
   lines: 12;
   padding: 18;
+ /*  auto-select: true; */
   width: 60;
   columns: 3;
   font: "Jetbrains Mono Nerd Font Mono 11";
@@ -16,7 +17,7 @@ configuration {
   kb-row-up: "Alt+k,Super+k,Up,Control+k,Shift+Tab,Shift+ISO_Left_Tab";
   kb-row-down: "Alt+j,Super+j,Down,Control+j";
   kb-accept-entry: "Control+m,Return,KP_Enter";
-  terminal: "kitty";
+  terminal: "st";
   kb-remove-to-eol: "Control+Shift+e";
   kb-mode-complete: "Control+L";
   kb-mode-next: "Alt+l,Super+l,Shift+Right,Control+Tab,Control+l";
@@ -40,10 +41,9 @@ configuration {
     background-color: @background;
     /* width: 505px; */
     /* height: 550px; */
-    height: 505px;
-    width: 550px;
-    
-    border: 2px;
+    height: 455px;
+    width: 300px;
+    border: 0px;
     border-color: @foreground;
     border-radius: 8px;
     padding: 15px;
@@ -56,7 +56,7 @@ configuration {
 
 #message {
     border: 0px;
-    border-color: @border-color;
+    border-color: @foreground;
     padding: 1px;
 }
 
@@ -66,20 +66,37 @@ configuration {
 
 #inputbar {
     children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+    padding: 10px 0px;
+    text-color: @color1;
+    border:2px;
+    border-color: @color1;
+    border-radius: 6px;
+    padding-bottom: 20px;
 }
 
 #textbox-prompt-colon {
     expand: false;
-    str: ":";
+    str: "";
     margin: 0px 0.3em 0em 0em;
-    text-color: @normal-foreground;
+}
+#prompt{
+    background-color: @color1;
+    text-color: @background-no-alpha;
+    border-radius: 4px;
+    padding: 5px 5px 4px 3px;
+}
+#entry{
+    padding: 4px 3px;
+    text-color: @color1;
+    placeholder-color: @color1;
+    placeholder: "Type...";
 }
 
 #listview {
     fixed-height: 0;
     border: 0px;
     /* border: 2px 0px 0px; */
-    border-color: @border-color;
+    border-color: @foreground;
     spacing: 2px;
     scrollbar: true;
     padding: 2px 0px 0px;
@@ -88,38 +105,41 @@ configuration {
 #element {
     border: 0;
     padding: 2.5px;
+    padding: 5px 7px;
 }
 element-text {
     vertical-align: 0.5;
 }
 element-icon { 
-    size: 6ch;
+    size: 7ch;
+    /* text-color: @normal-foreground; */
+    /* fill: @normal-foreground; */
 } 
 
 #element.normal.normal {
-    background-color: @normal-background;
-    text-color: @normal-foreground;
+    background-color: transparent;
+    text-color: @foreground;
 }
 
 #element.normal.urgent {
-    background-color: @urgent-background;
-    text-color: @urgent-foreground;
+    background-color: transparent;
+    text-color: @foreground;
 }
 
 #element.normal.active {
-    background-color: @active-background;
-    text-color: @active-foreground;
+    background-color: transparent;
+    text-color: @foreground;
 }
 
 #element.selected.normal {
     border-radius: 4px;
-    background-color: @selected-normal-background;
-    text-color: @active-background;
+    background-color: @color2;
+    text-color: @background-no-alpha;
 }
 
 #element.selected.urgent {
-    background-color: @selected-urgent-background;
-    text-color: @selected-urgent-foreground;
+    background-color: transparent;
+    text-color: @foreground;
 }
 
 #element.selected.active {
@@ -128,18 +148,18 @@ element-icon {
 }
 
 #element.alternate.normal {
-    background-color: @alternate-normal-background;
-    text-color: @alternate-normal-foreground;
+    background-color: transparent;
+    text-color: @foreground;
 }
 
 #element.alternate.urgent {
-    background-color: @alternate-urgent-background;
-    text-color: @alternate-urgent-foreground;
+    background-color: transparent;
+    text-color: @foreground;
 }
 
 #element.alternate.active {
-    background-color: @alternate-active-background;
-    text-color: @alternate-active-foreground;
+    background-color: transparent;
+    text-color: @foreground;
 }
 
 #scrollbar {
@@ -151,26 +171,31 @@ element-icon {
 
 #sidebar {
     border: 2px 0px 0px;
-    border-color: @border-color;
+    border-color: @foreground;
 }
 
+#mode-switcher{
+    border: 2px;
+    border-radius: 8px;
+    border-color: @color3;
+}
 #button {
-    text-color: @normal-foreground;
+    text-color: @color3;
+    background-color: transparent;
     /* text-color: @active-background; */
     padding: 2.5px;
 }
 
 #button.selected {
-    background-color: @selected-normal-background;
+    text-color: @background-no-alpha;
+    background-color: @color3;
     /* border: 2px; */
     border-radius: 4px;
-    text-color: @selected-normal-foreground;
-    text-color: @active-background;
 }
 
 #inputbar {
     spacing: 0;
-    text-color: @normal-foreground;
+    text-color: @foreground;
     padding: 1px;
     margin:0px;
     padding:0px;
@@ -178,15 +203,5 @@ element-icon {
 
 #case-indicator {
     spacing: 0;
-    text-color: @normal-foreground;
-}
-
-#entry {
-    spacing: 0;
-    text-color: @normal-foreground;
-}
-
-#prompt {
-    spacing: 0;
-    text-color: @normal-foreground;
+    text-color: @foreground;
 }

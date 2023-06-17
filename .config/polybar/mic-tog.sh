@@ -1,4 +1,4 @@
-if [ $(pactl get-source-mute 0 | wc -c) -eq 10 ]
+if [[ $(pactl get-source-mute 0)  == *"No"* ]]
 then
   echo ""
 else
