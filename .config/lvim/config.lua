@@ -1,8 +1,10 @@
 -- General
 lvim.log.level = "warn"
 lvim.format_on_save = false
+lvim.builtin.lualine.options.theme = "pywal16-nvim"
 lvim.colorscheme = "pywal16"
 lvim.builtin.theme.name = "pywal16"
+
 lvim.leader = "space"
 lvim.transparent_window = true
 
@@ -38,6 +40,7 @@ vim.cmd([[
   augroup end
 ]])
 vim.cmd "autocmd BufRead,BufNewFile ~/.nnn_variables set filetype=bash"
+vim.cmd "autocmd BufRead,BufNewFile */.nitabrc set filetype=bash"
 vim.cmd 'autocmd BufFilePost *.kbd :lua vim.api.nvim_buf_set_option(0, "commentstring", ";; %s")'
 vim.cmd 'autocmd BufRead,BufNewFile *.kbd :lua vim.api.nvim_buf_set_option(0, "commentstring", ";; %s")'
 vim.cmd([[

@@ -7,6 +7,12 @@ lvim.plugins = {
   --   end
   -- },
   {
+    "ThePrimeagen/harpoon",
+    dependencies = {
+      {"nvim-lua/plenary.nvim"}
+    }
+  },
+  {
     "epwalsh/obsidian.nvim",
     lazy = false,
     -- event = { "BufReadPre */Obsidian Notes/**.md" },
@@ -245,14 +251,27 @@ lvim.plugins = {
   { 'tpope/vim-surround' },
   {"tpope/vim-repeat"},
   {
-    'uZer/pywal16.nvim',
+    'nimaaskarian/pywal16.nvim',
     name = "pywal16",
     config = function ()
       require("pywal16").setup()
     end,
   },
   {
+    "AlphaTechnolog/pywal.nvim",
+    name = "pywal",
+    config = function ()
+      require("pywal").setup()
+    end,
+  },
+  {
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
   },
+  {
+    "vonheikemen/fine-cmdline.nvim",
+    dependencies = {
+      {'MunifTanjim/nui.nvim'},
+    }
+  }
 }

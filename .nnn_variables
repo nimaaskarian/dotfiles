@@ -1,4 +1,4 @@
-export NNN_COLORS="1234"
+export NNN_COLORS="2346"
 export NNN_BMS="S:$HOME/Scripts;D:$HOME/Downloads;B:$HOME/Documents/Books"
 export NNN_PLUG='g:git-changes;f:finder;o:fzopen;p:preview-tui;t:nmount;v:imgview;d:dragdrop'
 export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"

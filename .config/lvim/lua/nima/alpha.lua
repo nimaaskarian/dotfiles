@@ -183,14 +183,14 @@ local section_mru = {
 local buttons = {
     type = "group",
     val = {
-        dashboard.button("f", "  Find File", ":Telescope find_files<CR>"),
-        dashboard.button("n", "  New File", ":ene!<CR>"),
-        dashboard.button("o", "  New Obsidian", ":ObsidianNew<CR>"),
-        dashboard.button("d", "  Today Obsidian", ":ObsidianToday<CR>"),
-        dashboard.button("p", "  Recent Projects ", ":Telescope projects<CR>"),
-        dashboard.button("r", "  Recently Used Files", ":Telescope oldfiles<CR>"),
-        dashboard.button("w", "  Find Word", ":Telescope live_grep<CR>"),
-        dashboard.button("c", "  Configuration", ":edit " .. user_config_path .. "<CR>"),
+        dashboard.button("f", "󰱽  Find File", ":Telescope find_files<CR>"),
+        dashboard.button("n", "  New File", ":ene!<CR>"),
+        dashboard.button("o", "  New Obsidian", ":ObsidianNew<CR>"),
+        dashboard.button("d", "  Today Obsidian", ":ObsidianToday<CR>"),
+        dashboard.button("p", "  Recent Projects ", ":Telescope projects<CR>"),
+        dashboard.button("r", "  Recently Used Files", ":Telescope oldfiles<CR>"),
+        dashboard.button("w", "󰊄  Find Word", ":Telescope live_grep<CR>"),
+        dashboard.button("c", "󰒓  Configuration", ":edit " .. user_config_path .. "<CR>"),
     },
 
 }

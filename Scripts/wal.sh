@@ -12,13 +12,14 @@ if [[ -f "$(which wal)" ]]; then
 	if [[ "$1" ]]; then
 
 		if [ "$2" ]; then
-			wpg -Ti "$1" "$2" -s "$1"
+			wpg -Ti $1 $2 -s $1
 			wal --theme "$2"
 		else
 			wpg -n -s "$1"
 		fi
 
 		[ "$WAYLAND_DISPLAY" ] && ~/.config/hypr/scripts/wall/set.sh "$1"
+		~/Scripts/pywal-obsidianmd.sh "$HOME/Documents/Obsidian Notes/main"
 		# ~/.suckless/cpwal.sh
 		
 		wal-telegram -r --background "$1"
@@ -32,6 +33,9 @@ if [[ -f "$(which wal)" ]]; then
 		# Source the pywal color file
 		. "$HOME/.cache/wal/colors.sh"
 		# cp "$HOME/.cache/wal/colors" ~/Documents/Front\ End/nitab-pro/build/
+		rm ~/Documents/Front\ End/nitab-vanilla/css/colors.css
+		cp ~/.cache/wal/colors.css "$HOME/Documents/Front End/nitab-vanilla/css" -f
+
 
 	# declare -A hyprcolors
 	# 	hyprcolors=(
@@ -49,7 +53,8 @@ if [[ -f "$(which wal)" ]]; then
 		sed -i 's/:root.*//gi' "$CONFIG/qutebrowser/pywal.css"
 	  tr -d '\n' < /home/nima/.cache/wal/colors.css | sed 's/.*:root/:root/gi' >> "$CONFIG/qutebrowser/pywal.css"
 		sed -i "s+span.*color=.*'>+span color='$color2'>+g" "$CONFIG/waybar/config" 
-		killall waybar; waybar &> /dev/null &
+		killall waybar
+		waybar &disown
 		# swaybg -m fill -i "$(< ~/.wallpaper_path)" &> /dev/null &
 		# sync xournalpp background to pywal
 		~/Scripts/xournalpp-backgroundcolor.py
@@ -79,7 +84,7 @@ if [[ -f "$(which wal)" ]]; then
 		# [[ $(ps -e | rg Hyprland | wc -c) == "0" ]] && killall dunst;nohup dunst -conf /home/nima/.cache/wal/colors-dunst-hyprland &> /dev/null & 
     # nohup dunst -config ~/.cache/wal/colors-dunst &
 		killall mpd-notification
-		mpd-notification -m ~/Music &> /dev/null &
+		mpd-notification -m ~/Music &disown
     # betterlockscreen -u "$1" --blur 1.0 --dim 55
 	else
 		echo -e "[!] Please enter the path to wallpaper. \n"

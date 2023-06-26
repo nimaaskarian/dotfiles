@@ -4,19 +4,19 @@ import:
 font:
   # The normal (roman) font face to use.
   normal:
-    family: JetBrainsMono Nerd Font Mono 
+    family: JetBrainsMono Nerd Font
     # Style can be specified to pick a specific face.
     style: Regular
 
   # The bold font face
   bold:
-    family: JetBrainsMono Nerd Font Mono 
+    family: JetBrainsMono Nerd Font
     # Style can be specified to pick a specific face.
     style: Bold
 
   # The italic font face
   italic:
-    family: JetBrainsMono Nerd Font Mono
+    family: JetBrainsMono Nerd Font
     # Style can be specified to pick a specific face.
     style: Italic
   size: 12.0
@@ -28,10 +28,10 @@ window:
   padding: 
     x: 10
     y: 10
-shell:
-  program: /bin/zsh
-  args:
-     - --login
+# shell:
+#   program: /bin/zsh
+#   args:
+#      - --login
 
 key_bindings:
   - { key: K,      mods: Shift|Control,                   action: ScrollLineUp            }  # Vi Mode

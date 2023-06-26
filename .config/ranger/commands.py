@@ -4,9 +4,9 @@ from collections import deque
 from threading import Thread
 
 class setwp(Command):
-	def execute(self):
-		self.fm.execute_console("shell /home/nima/Scripts/wal.sh "+str(self.fm.thisfile))
-		# self.fm.execute_console("shell /home/nima/Scripts/chcpio.sh")
+    def execute(self,*args,**kwargs):
+        self.fm.open_console("shell /home/nima/Scripts/wal.sh "+str(self.fm.thisfile)+" ")
+        # self.fm.execute_console("shell /home/nima/Scripts/chcpio.sh")
 
 class zip(Command):
     def __init__(self, *args, **kwargs):

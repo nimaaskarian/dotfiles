@@ -76,8 +76,9 @@ zinit light zsh-users/zsh-autosuggestions
 zinit ice wait lucid
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
-# zinit light kutsan/zsh-system-clipboard
-zinit light jeffreytse/zsh-vi-mode
+zinit light kutsan/zsh-system-clipboard
+# zinit light jeffreytse/zsh-vi-mode
+zinit light brorbw/zsh-vi-mode
 # }}}
 # Aliases{{{
    
@@ -89,6 +90,7 @@ alias la='nnn -H'
 alias lt='exa --icons --tree'
 alias l='exa --icons -l'
 alias lg='exa --icons -l --git'
+alias obsidian="firejail --noprofile --net=none obsidian"
 alias py=python3
 alias dotg="git --git-dir=$HOME/.cfg --work-tree=$HOME"
 function z(){
@@ -101,6 +103,7 @@ function w3m(){
         /bin/w3m ~/Scripts/nitab-plain/nitab-plain.html
     fi
 }
+alias mpv="mpv --gpu-context=wayland"
 alias p="sudo pacman"
 alias np="pacman"
 alias pwc='pwd | c'
@@ -136,7 +139,7 @@ bindkey -M viins "^[[Z" reverse-menu-complete
 bindkey -M vicmd "^[[Z" reverse-menu-complete
 bindkey -v "^?" backward-delete-char 
 bindkey ' ' magic-space
-bindkey '^I^I' autosuggest-accept
+# bindkey '^I^I' autosuggest-accept
 # use the vi navigation keys in menu completion
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
@@ -145,6 +148,6 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect '^[' undo
 # }}}
 # Other (p10k, command not found){{{
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh 
 source /usr/share/doc/pkgfile/command-not-found.zsh
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh 
 # }}}

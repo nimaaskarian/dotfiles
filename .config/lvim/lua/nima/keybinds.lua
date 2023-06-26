@@ -17,6 +17,15 @@ lvim.keys.normal_mode["<S-Tab>"] = ":BufferLineCyclePrev<CR>"
 lvim.builtin.which_key.mappings["r"] = {
   "<cmd>RnvimrToggle<cr>", "Ranger"
 }
+lvim.builtin.which_key.mappings["H"] = {
+  name = "Harpoon",
+  m = {"<cmd>lua require('harpoon.mark').add_file()<CR>", "Mark"},
+  o = {"<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", "Open"},
+  N = {":lua require('harpoon.ui').nav_file()<left>","Navigate"},
+  n = {"<cmd>lua require('harpoon.ui').nav_next()<cr>","Next"},
+  p = {"<cmd>lua require('harpoon.ui').nav_prev()<cr>","Previous"},
+  s = {"<cmd>Telescope harpoon marks<CR>", "Search"},
+}
 lvim.builtin.which_key.mappings["o"] = {
   '<cmd>call append(line("."),   repeat([""], v:count1))<CR>', "Newline below"
 }

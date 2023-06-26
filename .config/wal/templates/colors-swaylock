@@ -28,17 +28,17 @@ inside-color={background.strip}bf
 inside-clear-color={background.strip}0F
 inside-caps-lock-color={background.strip}10
 inside-ver-color={background.strip}bf
-inside-wrong-color={color4.strip}FF
+inside-wrong-color={color1.strip}FF
 
 ring-color={background.strip}bf
 ring-clear-color={background.strip}bf
-ring-caps-lock-color={color7.strip}bf
-ring-ver-color={color1.strip}bf
-ring-wrong-color={color4.strip}bf
+ring-caps-lock-color={color1.strip}bf
+ring-ver-color={color3.strip}bf
+ring-wrong-color={color1.strip}bf
 
 line-color=00000000
 line-clear-color={color4.strip}FF
-line-caps-lock-color=009ddcFF
+line-caps-lock-color={color1.strip}bf
 line-ver-color={color4.strip}FF
 line-wrong-color={color4.strip}FF
 
