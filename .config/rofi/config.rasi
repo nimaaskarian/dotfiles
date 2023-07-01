@@ -75,7 +75,7 @@ configuration {
     padding-bottom: 20px;
 }
 #num-filtered-rows{
-    color: @background-no-alpha;
+    color: transparent;
 }
 
 #textbox-prompt-colon {
