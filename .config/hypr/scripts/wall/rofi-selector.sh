@@ -1,14 +1,27 @@
 #!/bin/bash
 dir=$HOME/Pictures/Wallpapers
-randkeyword=Random
 
-output=$("$HOME/.config/hypr/scripts/wall/helper.sh" "$dir" "$randkeyword" | rofi -dmenu -show-icons -window-title "" );
+cd "$dir" || exit
 
+output=$(fd -tf . | while read -r A ; do echo -en "$A\x00icon\x1f$dir/$A\n"; done | rofi -l 0 -i -dmenu -show-icons -window-title "" );
 [ "$output" ] || exit
 
-if [ "$output" = "$randkeyword" ]; then
-  ~/.config/hypr/scripts/wall/rand.sh
+random() {
+  fd_cmd=$1
+  [ "$1" ] || fd_cmd=$(rofi -dmenu -l 0 -i -mesg "Type random selection fd arguments [-tf .]" -window-title "")
+  ~/.config/hypr/scripts/wall/rand.sh "$fd_cmd" "$2"
+}
+
+
+if [[ "$output" == "rand"* ]]; then
+  random
 else
-"$HOME/.local/bin/wal.sh" "$dir/$output"
+  theme=$(rofi -dmenu -l 0 -i -mesg "Type theme name:" -window-title "")
+  if [ -f "$dir/$output" ]; then
+    "$HOME/.local/bin/wal.sh" "$dir/$output" "$theme"
+  else 
+    output=$(printf "%s" "$output" | sd "^fd " "")
+    random "$output" "$theme"
+  fi
 fi
 

@@ -5,7 +5,7 @@ killall xdg-desktop-portal-hyprland
 # killall xdg-desktop-portal
 /usr/lib/xdg-desktop-portal-hyprland &
 
-sleep 2
+sleep 1
 # systemctl start xdg-desktop-portal-hyprland --user &
 # sleep 2
 /usr/lib/xdg-desktop-portal &
