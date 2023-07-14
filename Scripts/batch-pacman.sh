@@ -4,6 +4,7 @@ tmpfile=$(mktemp --suffix "-edit-batch-rm-pacman")
 constfile=$(mktemp --suffix "-const-batch-rm-pacman")
 pacman -Qe > "$tmpfile"
 pacman -Qe > "$constfile"
+chmod -w "$constfile"
 $EDITOR "$tmpfile"
 remove=$(grep -Fvxf "$tmpfile" "$constfile" | awk '{print $1}')
 install=$(grep -Fvxf "$constfile" "$tmpfile")
