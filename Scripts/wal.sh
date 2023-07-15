@@ -11,22 +11,27 @@ CONFIG="$HOME/.config"
 # Main
 if [[ -f "$(which wal)" ]]; then
 	if [[ "$1" ]]; then
+		[ "$WAYLAND_DISPLAY" ] && ~/.config/hypr/scripts/wall/set.sh "$1"
 
 		if [ "$2" ]; then
+			# no reload if theme hasn't changed
 			wal --theme "$2" 
 			wpg -i "$1" "$HOME/.cache/wal/colors.json"
 			wpg -s "$1"
 			printf '%s' "$2" > "$HOME/.cache/theme_name"
+			[ "$previous_theme" = "$2" ] && {
+				wal-telegram --background "$1"
+				exit 
+			}
 		else
 			wpg -n -s "$1"
 		fi
 		printf '%s' "$1" > "$HOME/.cache/wallpaper_path"
 
-		[ "$WAYLAND_DISPLAY" ] && ~/.config/hypr/scripts/wall/set.sh "$1"
+		wal-telegram --background "$1"
 		~/Scripts/pywal-obsidianmd.sh "$HOME/Documents/Obsidian Notes/main"
 		# ~/.suckless/cpwal.sh
 		
-		wal-telegram --background "$1"
 		~/Scripts/discord-pywal/make.sh
 		pywal-discord
 		. "$HOME/.cache/wal/colors.sh"
@@ -52,10 +57,6 @@ if [[ -f "$(which wal)" ]]; then
 			sed -i "0,/^$color_name.*/{s//$color_name=${makocolors[$color_name]}/}" "$CONFIG/mako/config"
 		done
 
-		# no reload if theme hasn't changed
-		if [ "$2" ]; then
-			[ "$previous_theme" = "$2" ] && exit
-		fi
 		# reloading
 		makoctl reload
 		killall waybar
