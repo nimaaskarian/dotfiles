@@ -29,12 +29,12 @@ setopt autocd extendedglob nomatch notify
 # no beep
 unsetopt beep
 # small to capital letters
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' matcher-list 'r:|=*' 'l:|=* r:|=*' 'm:{a-z}={A-Z}'
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 
 # _variables
-export PATH=$PATH:$HOME/.local/bin/
+export PATH=$PATH:$HOME/.local/bin/:$HOME/.config/emacs/bin
 export EDITOR=lvim
 # }}}
 # Zinit{{{
@@ -81,7 +81,8 @@ zinit light kutsan/zsh-system-clipboard
 zinit light brorbw/zsh-vi-mode
 # }}}
 # Aliases{{{
-   
+raw="https://raw.githubusercontent.com"
+git="https://github.com"
 alias c="wl-copy"
 alias bw="~/Documents/Learning/cpp/bingewatcher-cpp/bw"
 alias cc="PAGER='/home/nima/Scripts/glowless' calcurse"
@@ -108,6 +109,7 @@ alias p="sudo pacman"
 alias np="pacman"
 alias pwc='pwd | c'
 alias ins='sudo pacman -S'
+alias uins='~/Scripts/batch-pacman.sh'
 alias upg='sudo pacman -Syu'
 alias s="sudo systemctl"
 alias mv="mv -vi"
