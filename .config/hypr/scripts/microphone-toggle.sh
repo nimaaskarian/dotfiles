@@ -7,5 +7,5 @@ if [ "$OUTPUT" == "Mute: yes" ]; then
 else
   OUTPUT="Microphone Unmuted"
 fi
-dunstify "$OUTPUT" 
+notify-send "$OUTPUT" 
 done

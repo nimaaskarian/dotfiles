@@ -3,7 +3,7 @@ dir=$HOME/Pictures/Wallpapers
 
 cd "$dir" || exit
 
-output=$(fd -tf . | while read -r A ; do echo -en "$A\x00icon\x1f$dir/$A\n"; done | rofi -l 0 -i -dmenu -show-icons -window-title "" );
+output=$(fd -tf . | grep -v "wal_sample"  | while read -r A ; do echo -en "$A\x00icon\x1f$dir/$A\n"; done | rofi -l 0 -i -dmenu -show-icons -window-title "" );
 [ "$output" ] || exit
 
 random() {
@@ -20,8 +20,10 @@ else
   if [ -f "$dir/$output" ]; then
     "$HOME/.local/bin/wal.sh" "$dir/$output" "$theme"
   else 
-    output=$(printf "%s" "$output" | sd "^fd " "")
-    random "$output" "$theme"
+    [[ $output == "fd "* ]] && {
+      output=$(printf "%s" "$output" | sd "^fd " "")
+      random "$output" "$theme"
+    }
   fi
 fi
 
