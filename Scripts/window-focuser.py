@@ -18,4 +18,5 @@ for i in reversed(range(len(classes))):
 rofi_proccess = subprocess.Popen(["rofi","-dmenu","-format","i","-i"],stdin=subprocess.PIPE, stdout=subprocess.PIPE,stderr=subprocess.PIPE)
 
 output = int(bytes.decode(rofi_proccess.communicate(input=str.encode("\n".join(classes)))[0]))
-print(addresses[output])
+
+os.popen(f'hyprctl dispatch focuswindow "address:{addresses[output]}"')
