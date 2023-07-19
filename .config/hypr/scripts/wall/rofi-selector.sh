@@ -19,8 +19,8 @@ get_theme() {
 if [[ "$output" == "rand"* ]]; then
   random
 else
-  theme=$(get_theme)
   if [ -f "$dir/$output" ]; then
+    theme=$(get_theme)
     "$HOME/.local/bin/wal.sh" "$dir/$output" "$theme"
   else 
     [[ $output == "fd "* ]] && {
