@@ -15,7 +15,7 @@ if [[ -f "$(which wal)" ]]; then
 
 		if [ "$2" ]; then
 			# no reload if theme hasn't changed
-			wal --theme "$2" 
+			wal --theme $2
 			wpg -i "$1" "$HOME/.cache/wal/colors.json"
 			wpg -s "$1"
 			printf '%s' "$2" > "$HOME/.cache/theme_name"
@@ -24,7 +24,8 @@ if [[ -f "$(which wal)" ]]; then
 				exit 
 			}
 		else
-			wpg -n -s "$1"
+			wal -i "$1"
+			wpg -i "$1" "$HOME/.cache/wal/colors.json"
 		fi
 		printf '%s' "$1" > "$HOME/.cache/wallpaper_path"
 
@@ -61,7 +62,7 @@ if [[ -f "$(which wal)" ]]; then
 		makoctl reload
 		killall waybar
 		waybar & disown
-		killall discord-screenaudio && discord-screenaudio &>/dev/null & disown 
+		# killall discord-screenaudio && discord-screenaudio &>/dev/null & disown 
 		killall Discord && discord &>/dev/null & disown 
 		i3-msg restart
 		killall dunst
