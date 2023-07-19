@@ -22,34 +22,35 @@ key-hl-color={color7.strip}
 
 separator-color=00000000
 
-layout-text-color={color4.strip}
+layout-text-color={color7.strip}FF
+layout-bg-color={background.strip}bf
 
 inside-color={background.strip}bf
-inside-clear-color={background.strip}0F
+inside-clear-color={background.strip}bF
 inside-caps-lock-color={background.strip}10
 inside-ver-color={background.strip}bf
 inside-wrong-color={color1.strip}FF
 
 ring-color={background.strip}bf
 ring-clear-color={background.strip}bf
-ring-caps-lock-color={color1.strip}bf
-ring-ver-color={color3.strip}bf
+ring-caps-lock-color={color3.strip}bf
+ring-ver-color={color2.strip}bf
 ring-wrong-color={color1.strip}bf
 
 line-color=00000000
-line-clear-color={color4.strip}FF
-line-caps-lock-color={color1.strip}bf
-line-ver-color={color4.strip}FF
-line-wrong-color={color4.strip}FF
+line-clear-color=00000000
+line-caps-lock-color={color3.strip}bf
+line-ver-color={color2.strip}FF
+line-wrong-color={color1.strip}FF
 
 font-size=20
-text-color={color4.strip}
+text-color={color7.strip}
 text-clear-color={color4.strip}FF
-text-ver-color={color7.strip}FF
-text-wrong-color=ee2e2400
+text-ver-color={color2.strip}FF
+text-wrong-color={color1.strip}FF
 
-bs-hl-color={color4.strip}FF
-caps-lock-key-hl-color={color4.strip}FF
-caps-lock-bs-hl-color={color4.strip}FF
+bs-hl-color={color7.strip}FF
+caps-lock-key-hl-color={color3.strip}FF
+caps-lock-bs-hl-color={color3.strip}FF
 disable-caps-lock-text
-text-caps-lock-color=009ddc
+text-caps-lock-color={color3.strip}FF
