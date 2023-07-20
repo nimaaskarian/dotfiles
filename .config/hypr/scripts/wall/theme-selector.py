@@ -3,7 +3,11 @@
 import os, subprocess, json
 
 themes = os.popen("wal --theme | sed 's/\x1B\[[0-9;]\{1,\}[A-Za-z]//g;s/^ - //g'").read().splitlines()
-user_themes = themes[themes.index("User Themes:")+1:themes.index("Dark Themes:")]
+if "User Themes:" in themes:
+    user_themes = themes[themes.index("User Themes:")+1:themes.index("Dark Themes:")]
+else:
+    user_themes= []
+
 dark_themes = themes[themes.index("Dark Themes:")+1:themes.index("Light Themes:")]
 light_themes = themes[themes.index("Light Themes:")+1:themes.index("Extra:")]
 random_themes = ["random",  "random_dark","random_light"]
@@ -18,7 +22,7 @@ def parse_theme(theme:str,dir:str,message=""):
     colors_data = json.load(colors)["colors"]
     color0 = colors_data[f"color{0}"]
     output = ""
-    for i in range(1,8):
+    for i in range(8):
         background_color= colors_data[f"color{i}"]
         output += f"<span background='{background_color}' foreground='{color0}'> {i} </span>"
     return f"{message} {theme}\n{output}"
