@@ -323,7 +323,7 @@
     <!-- Keybindings for running applications -->
     <keybind key="W-Return">
       <action name="Execute">
-        <command>kitty</command>
+        <command>alacritty</command>
       </action>
     </keybind>
     <keybind key="W-A-q">
@@ -331,7 +331,7 @@
         <command>xkb-switch -s us;rofi -show p -modi p:rofi-power-menu</command>
       </action>
     </keybind>
-    <keybind key="W-d">
+    <keybind key="A-d">
       <action name="Execute">
         <command>~/Scripts/english-wrapper.sh rofi -show drun</command>
       </action>

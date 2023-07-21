@@ -1,5 +1,6 @@
 #!/bin/bash
 
+[ -f /tmp/jdate ] || touch /tmp/jdate
 
 while true; do
   if [ "$(cat /tmp/jdate)" ]; then

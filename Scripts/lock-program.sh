@@ -11,10 +11,11 @@ function write_time_to_file() {
 }
 function help_options() {
   echo Usage: 
-  echo "  lock-program.sh -f <FILENAME> -p <PROCESS NAME> -t <TIME LIMIT> -c <CLASS NAME>"
+  echo "  lock-program.sh -f <FILENAME> -p <PROCESS NAME> -t <TIME LIMIT> -c <CLASS NAME> -P"
   echo "<FILENAME> is optional. If not specifed, <PROCESS NAME> or <CLASS NAME> will be used instead."
   echo "<TIME LIMIT> is in seconds and its optional. If not specifed, program won't kill the given process"
   echo "<CLASS NAME> will be used instead of <PROCESS NAME> if specifed; in this case <PROCESS NAME> will be used to kill the program."
+  echo "-P      print"
   exit 1
 }
 
@@ -22,7 +23,7 @@ function help_options() {
   help_options
 }
 time=-1
-while getopts "t:f:p:c:" OPTION; do
+while getopts "t:f:p:c:P" OPTION; do
     case $OPTION in
     f)
         file_name=$OPTARG
@@ -33,12 +34,15 @@ while getopts "t:f:p:c:" OPTION; do
     p)
         process_name=$OPTARG
         ;;
+    P)
+      print=1
+      ;;
     c)
         class_name=$OPTARG
         ;;
     *)
         echo "Incorrect options provided"
-        exit 1
+        help_options
         ;;
     esac
 done
@@ -52,7 +56,13 @@ done
     help_options
   fi
 }
-
+function mktmp() {
+  date +"$DIR/%Y-%m-%d.lock-program-$file_name"
+}
+[ "$print" ] && {
+  cat "$(mktmp)"
+  exit
+}
 
 
 {
@@ -64,13 +74,14 @@ done
 
 function is_active(){
   if [ "$class_name" ]; then
-    [ "$class_name" = "$(hyprctl activewindow | grep class | sd 'class: ' '' | awk '{print $1}')" ] && echo TRUE
+    if [ "$WAYLAND_DISPLAY" ]; then
+      [ "$class_name" = "$(hyprctl activewindow | grep class | awk '{print $2}')" ] && printf "%c" 1
+    else
+      [ "$class_name" = "$(xdotool getactivewindow getwindowclassname)" ] && printf "%c" 1
+    fi
   else
     ps -fC "$process_name" --no-heading
   fi
-}
-function mktmp() {
-  date +"$DIR/%Y-%m-%d.lock-program-$file_name"
 }
 function reset_runtime_with_file() {
   cat_content=$(cat "$tmp")
@@ -93,7 +104,7 @@ while true; do
       write_time_to_file
     fi
     i=$((i+1))
-    [ $i -gt 30 ] && {
+    [ $i -gt 60 ] && {
       write_time_to_file
     }
   fi

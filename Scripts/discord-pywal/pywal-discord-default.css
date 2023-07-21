@@ -5,7 +5,9 @@
 element {
     font-size: 100%;
 } /* end element */
-
+body, *{
+  font-family: JetBrains Mono, Vazirmatn
+}
 .theme-dark {
     --header-primary: var(--color15);
     --header-secondary: var(--color7);

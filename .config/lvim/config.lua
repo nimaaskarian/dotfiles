@@ -7,7 +7,7 @@ lvim.colorscheme = "pywal16"
 lvim.builtin.theme.name = "pywal16"
 
 lvim.leader = "space"
-lvim.transparent_window = true
+-- lvim.transparent_window = true
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
@@ -42,25 +42,25 @@ vim.opt.spelllang = "en"
 vim.opt.ignorecase = true
 vim.opt.wildignorecase = true-- }}}
 -- Highlight groups{{{
-vim.cmd([[
-  augroup MyColors
-  autocmd!
-  autocmd ColorScheme * highlight StatusLine guifg=none
-  autocmd ColorScheme * highlight VertSplit guibg=none
-  augroup end
-]])
-vim.cmd "au ColorScheme * hi StatusLine ctermbg=none guibg=none"
-vim.cmd "au ColorScheme * hi StatusLineNC ctermbg=none guibg=none"
-vim.cmd "au ColorScheme * hi NvimTreeStatusLineNC ctermbg=none guibg=none"
-vim.cmd "au ColorScheme * hi LineNr ctermbg=none guibg=none"
-vim.cmd "au ColorScheme * hi IndentBlankLineChar ctermbg=none guibg=none"
-vim.cmd "au ColorScheme * hi TelescopeNormal ctermbg=none guibg=none"
-vim.cmd "au ColorScheme * hi Folded ctermbg=none guibg=none"
-vim.cmd "au ColorScheme * hi LspFloatWinNormal ctermbg=none guibg=none"
-vim.cmd "au ColorScheme * hi CursorLine ctermfg=none ctermbg=none guibg=none guifg=none"
-vim.cmd "au ColorScheme * hi CursorLineNr ctermbg=none guibg=none"
-vim.cmd "au ColorScheme * hi WhichKeyFLoat ctermbg=none guibg=none"
-vim.cmd "au ColorScheme * hi WhichKeyBorder ctermbg=none guibg=none"
+-- vim.cmd([[
+--   augroup MyColors
+--   autocmd!
+--   autocmd ColorScheme * highlight StatusLine guifg=none
+--   autocmd ColorScheme * highlight VertSplit guibg=none
+--   augroup end
+-- ]])
+-- vim.cmd "au ColorScheme * hi StatusLine ctermbg=none guibg=none"
+-- vim.cmd "au ColorScheme * hi StatusLineNC ctermbg=none guibg=none"
+-- vim.cmd "au ColorScheme * hi NvimTreeStatusLineNC ctermbg=none guibg=none"
+-- vim.cmd "au ColorScheme * hi LineNr ctermbg=none guibg=none"
+-- vim.cmd "au ColorScheme * hi IndentBlankLineChar ctermbg=none guibg=none"
+-- vim.cmd "au ColorScheme * hi TelescopeNormal ctermbg=none guibg=none"
+-- vim.cmd "au ColorScheme * hi Folded ctermbg=none guibg=none"
+-- vim.cmd "au ColorScheme * hi LspFloatWinNormal ctermbg=none guibg=none"
+-- vim.cmd "au ColorScheme * hi CursorLine ctermfg=none ctermbg=none guibg=none guifg=none"
+-- vim.cmd "au ColorScheme * hi CursorLineNr ctermbg=none guibg=none"
+-- vim.cmd "au ColorScheme * hi WhichKeyFLoat ctermbg=none guibg=none"
+-- vim.cmd "au ColorScheme * hi WhichKeyBorder ctermbg=none guibg=none"
 -- }}}
 -- Manual Filetypes{{{
 vim.cmd "autocmd BufRead,BufNewFile ~/.nnn_variables set filetype=bash"
@@ -319,6 +319,9 @@ lvim.keys.normal_mode["<S-Tab>"] = ":BufferLineCyclePrev<CR>"
 lvim.builtin.which_key.mappings["r"] = {
   "<cmd>RnvimrToggle<cr>", "Ranger"
 }
+lvim.builtin.which_key.mappings["t"] = {
+  "<cmd>TroubleToggle<cr>", "Troubles"
+}
 lvim.builtin.which_key.mappings["H"] = {
   name = "Harpoon",
   m = {"<cmd>lua require('harpoon.mark').add_file()<CR>", "Mark"},
@@ -544,10 +547,10 @@ lvim.plugins = {
     "terrortylor/nvim-comment",
     config = function() require('nvim_comment').setup() end,
   },
-  {
-    'nmac427/guess-indent.nvim',
-    config = function() require('guess-indent').setup {} end,
-  },
+  -- {
+  --   'nmac427/guess-indent.nvim',
+  --   config = function() require('guess-indent').setup {} end,
+  -- },
   {
     "luukvbaal/nnn.nvim",
     config = function()

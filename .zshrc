@@ -1,4 +1,8 @@
 # vim:fileencoding=utf-8:foldmethod=marker
+# Title {{{
+# preexec() { print -Pn "\e]0;$1\a" }
+preexec() { print -Pn "\e]0;$1 %~\a" }
+# }}}
 # Calcurse startup{{{
 calcurse_output=$(calcurse -at -d 1)
 if [[ $(printf $calcurse_output | wc -c) -gt 0 ]]; then

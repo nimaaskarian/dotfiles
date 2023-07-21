@@ -8,9 +8,10 @@ chmod -w "$constfile"
 $EDITOR "$tmpfile"
 remove=$(grep -Fvxf "$tmpfile" "$constfile" | awk '{print $1}')
 install=$(grep -Fvxf "$constfile" "$tmpfile")
-if [ "$remove" ]; then
+if [ "$remove" ] && [[ "$install" != *$remove* ]]; then
   echo "Are you sure you want to remove these packages?"
   while read -r l; do
+    [[ "$install" = *$l* ]] && continue
     echo $l | cut -f 2 -d ' '| tr '\n' ' ' 
   done <<< "$remove"
   read -rp "(Y/n) " userinput

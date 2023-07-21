@@ -1,10 +1,10 @@
-font=JetbrainsMono Nerd Font Mono 10
-background-color=#282828bf
-text-color=#BDAE93
+font=JetBrains Mono 10
+background-color=#263238bf
+text-color=#CDD3DE
 padding=15
 margin=5
 outer-margin=15
-border-color=#98971A
+border-color=#8BD649
 border-radius=8
 anchor=top-center
 text-alignment=center

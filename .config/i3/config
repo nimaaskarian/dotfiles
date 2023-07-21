@@ -598,7 +598,7 @@ mode "$mode_gaps_left" {
 set $foreground #cdcac6
 set $primary #8C6D67
 set $inactive #818080
-set $background #282828bf
+set $background #263238bf
 # class                 border      backgr.     text            indicator
 client.focused          $background $background $primary        $background
 # client.focused          $background    $primary    $bg-noalpha     $background

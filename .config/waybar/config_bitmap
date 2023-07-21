@@ -14,7 +14,7 @@
  //        "calendar": {
  //            "weeks-pos": "right",
  //            "format": {
- //                "today": "<span color='#8BD649'><b><u>{}</u></b></span>"
+ //                "today": "<span color='#BF616A'><b><u>{}</u></b></span>"
  //            }
  //        },
 	// },
@@ -42,20 +42,20 @@
         "format": "{icon}",
         "on-click": "activate",
         "format-icons": {
-      "1" :"",
-      "2" :"",
-      "3" :"",
-      "4" :"",
-      "5" :"",
-      "6" :"",
-      "7" :"",
-      "8" :"",
-      "9" :"",
-      "10" :"",
-      "11" : "",
-      "13" : "",
+      "1" :"",
+      // "2" :"",
+      "3" :"",
+      "4" :"",
+      "5" :"",
+      // "6" :"",
+      // "7" :"",
+      // "8" :"",
+      // "9" :"",
+      "10" :"",
+      // "11" : "",
+      // "13" : "",
       
-			"default": ""
+			"default": ""
      },
 		"sort-by-number": true,
 		},
@@ -71,13 +71,13 @@
       "on-scroll-up": "playerctl -p $(< /tmp/player) next",
       "on-scroll-down": "playerctl -p $(< /tmp/player) previous",
       "format-icons": {
-        "Playing": "<span> </span>",
-        "Paused": "<span> </span>"
+        "Playing": "<span> </span>",
+        "Paused": "<span> </span>"
       },
       // // for colorless config
       // "format-icons": {
-      //   "Playing": "<span color='#8BD649'> </span>",
-      //   "Paused": "<span color='#8BD649'> </span>"
+      //   "Playing": "<span color='#BF616A'> </span>",
+      //   "Paused": "<span color='#BF616A'> </span>"
       // },
     },
     "custom/jdate": {
@@ -87,10 +87,10 @@
         "on-click": "~/.config/waybar/scripts/jdate/jdate-toggle.sh"
     },
 	"network": {
-        	"format-wifi": "",
-        	"format-ethernet": " {ifname}",
+        	"format-wifi": "",
+        	"format-ethernet": " {ifname}",
         	"format-linked": " {ifname} (No IP)",
-        	"format-disconnected": "",
+        	"format-disconnected": "",
         	"format-alt": " {ifname}: {ipaddr}/{cidr}",
           "tooltip-format": "{essid}",
           "on-click-right": "nm-connection-editor"
@@ -111,9 +111,9 @@
 
 	"pulseaudio": {
 		"format": "{icon}",
-        	"format-muted": "",
+        	"format-muted": "",
 		"format-icons": {
-			"default": ["", "", ""]
+			"default": ["", "", ""]
 		},
 		"on-click": "alacritty -e pulsemixer",
 		"on-click-right": "pavucontrol",

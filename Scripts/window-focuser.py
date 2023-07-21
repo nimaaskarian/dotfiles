@@ -1,11 +1,13 @@
 #!/sbin/python3
 
 
-import os,subprocess
+import os,subprocess, json
 
-classes = os.popen("hyprctl clients -j | jq '.[] | .class'").read().replace('"','').splitlines()
-addresses = os.popen("hyprctl clients -j | jq '.[] | .address'").read().replace('"','').splitlines()
-titles = os.popen("hyprctl clients -j | jq '.[] | .title'").read().replace('"','').splitlines()
+clients = json.loads(os.popen("hyprctl clients -j").read())
+classes = [ client["class"] for client in clients ]
+addresses = [ client["address"] for client in clients ]
+titles = [ client["title"] for client in clients ]
+print(classes, addresses, titles)
 
 for i in reversed(range(len(classes))):
     if len( classes[i] ) < 1:

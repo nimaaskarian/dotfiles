@@ -40,10 +40,10 @@ configuration {
 
 #window {
     background-color: @background;
-    /* width: 505px; */
+    width: 350px; 
     /* height: 550px; */
     height: 455px;
-    width: 300px;
+    /* width: 300px; */
     border: 0px;
     border-color: @foreground;
     border-radius: 8px;
@@ -84,6 +84,7 @@ configuration {
     margin: 0px 0.3em 0em 0em;
 }
 #prompt{
+    font: "feather 12";
     background-color: @color1;
     text-color: @background-no-alpha;
     border-radius: 4px;

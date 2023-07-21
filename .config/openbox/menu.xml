@@ -396,8 +396,8 @@
   <item label="Telegram">
     <action name="Execute"><command>telegram-desktop</command></action>
   </item>
-  <item label="Kitty">
-    <action name="Execute"><command>kitty</command></action>
+  <item label="Alacritty">
+    <action name="Execute"><command>alacritty</command></action>
   </item>
   <item label="Chromium">
     <action name="Execute"><command>chromium</command></action>

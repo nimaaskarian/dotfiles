@@ -4,6 +4,7 @@
     border: none;
     border-radius: 6px;
     font-family: Jetbrains Mono,Vazirmatn, JetbrainsMono Nerd Font Mono, feather;
+    /* font-family: waffle,Terminess Nerd Font Mono,Vazirmatn; */
     font-size: 12px;
     font-style: normal;
     min-height: 0;
@@ -53,7 +54,7 @@ window#waybar > * > *>*>*{
     margin-top: 10px;
     margin-bottom: 0px;
 }
-#window.empty, #submap.empty{
+#window.empty, #submap.empty, .empty{
     background-color: transparent;
     padding: 0px;
     margin: 0px;
