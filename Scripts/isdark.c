@@ -39,8 +39,8 @@ int main(int argc, char *argv[])
   if (!cflag && !rflag) {
     printUsageAndExit(argv);
   }
-  int j = 0;
   if (cflag) {
+    int j = 0;
     for (int i = COLOR_START_INDEX; i < COLOR_START_INDEX+6; i++) {
       colorInt[j]+=convertDigitHexToDecimal(color[i],1-(i-COLOR_START_INDEX)%2);
       if ((i-COLOR_START_INDEX)%2) 
