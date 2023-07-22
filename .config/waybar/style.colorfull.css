@@ -59,24 +59,18 @@ window#waybar > * > *>*>*{
     padding: 0px;
     margin: 0px;
 }
-#cava,#language, #custom-jdate ,#custom-date, #clock, #battery, #pulseaudio, #network, #window{
+#cpu, #cava,#language, #custom-jdate ,#custom-date, #clock, #battery, #pulseaudio, #network, #window{
 	padding: 5px 7px;
 	margin-top: 10px;
     margin-right: 5px;
 }
 
-#language{
-    background-color: @color6;
-}
 
 #tray {
     margin: 10px 10px 0px -5px;
     padding: 0px 7px;
 }
 
-#custom-jdate {
-    background-color: @color7;
-}
 #clock {
     border-color: @color7;
     background-color: @color7;
@@ -84,20 +78,27 @@ window#waybar > * > *>*>*{
     font-weight: bold;
 }
 
-
-#network{
+#cpu{
     background-color: @color4;
+}
+#network{
+  background-color: @color5;
 }
 
 #pulseaudio {
-    background-color: @color5;
+  background-color: @color6;
 }
-
+#language{
+  background-color: @color7;
+}
 #pulseaudio.muted {
-    background-color: @color7;
+  background-color: @color7;
+}
+#custom-jdate {
+  background-color: @color8;
 }
 
-#custom-playerctl {
+#custom-playerctl{
 	background-color: @color2;
 	padding: 5px 7px;
   margin-top: 10px;
