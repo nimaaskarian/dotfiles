@@ -54,12 +54,7 @@ window#waybar > * > *>*>*{
     margin-top: 10px;
     margin-bottom: 0px;
 }
-#window.empty, #submap.empty, .empty{
-    background-color: transparent;
-    padding: 0px;
-    margin: 0px;
-}
-#cpu, #cava,#language, #custom-jdate ,#custom-date, #clock, #battery, #pulseaudio, #network, #window{
+#temperature,#cpu, #cava,#language, #custom-jdate ,#custom-date, #clock, #battery, #pulseaudio, #network, #window{
 	padding: 5px 7px;
 	margin-top: 10px;
     margin-right: 5px;
@@ -74,32 +69,49 @@ window#waybar > * > *>*>*{
 #clock {
     border-color: @color7;
     background-color: @color7;
+    color: @foreground7;
     margin-right: 10px;
     font-weight: bold;
 }
 
 #cpu{
     background-color: @color4;
+    color: @foreground4;
+}
+#temperature{
+    background-color: @color1;
+    color: @foreground2;
 }
 #network{
   background-color: @color5;
+  color: @foreground5;
 }
 
 #pulseaudio {
   background-color: @color6;
+  color: @foreground6;
 }
 #language{
   background-color: @color7;
+  color: @foreground7;
 }
 #pulseaudio.muted {
   background-color: @color7;
+  color: @foreground7;
 }
 #custom-jdate {
   background-color: @color8;
+  color: @foreground8;
 }
 
 #custom-playerctl{
 	background-color: @color2;
+	color: @foreground2;
 	padding: 5px 7px;
   margin-top: 10px;
+}
+#window.empty, #submap.empty, .empty, window#waybar.empty #window{
+    background-color: transparent;
+    padding: 0px;
+    margin: 0px;
 }

@@ -5,7 +5,7 @@
     "modules-left": ["wlr/workspaces", "hyprland/window", "hyprland/submap"],
     "modules-center": ["custom/playerctl"],
     // "modules-center": ["custom/playerctl"],
-    "modules-right": [ "cpu","network", "pulseaudio","hyprland/language", "custom/jdate", "tray"],
+    "modules-right": [ "cpu","temperature","network", "pulseaudio","hyprland/language", "custom/jdate", "tray"],
     // Modules configuration
 	// "clock": {
 	// 	"format": "{:%I:%M %p}",
@@ -46,8 +46,15 @@
     "format": " {usage}%",
     "max-length": 10,
   },
+  "temperature": {
+    // "thermal-zone": 2,
+    // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+    "critical-threshold": 40,
+    "format-critical": "{temperatureC}°C ",
+    "format": ""
+},
   "hyprland/window":{
-    "format": "<span>{}</span>",
+    "format": "{}",
     "separate-outputs": true,
     "max-length": 25,
   },

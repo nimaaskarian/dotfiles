@@ -1,5 +1,10 @@
 include /home/nima/.cache/wal/colors-zathura
 set font "Jetbrains Mono 10"
+
+set window-title-home-tilde true
+set statusbar-basename true
+set selection-clipboard clipboard
+
 map <C-m> feedkeys ":bmark "
 map <C-l> feedkeys ":blist <Tab>"
 map <C-R> feedkeys ":source <Return>"
