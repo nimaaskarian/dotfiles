@@ -13,6 +13,6 @@ light_color=$color7
   while read -r l; do
     color=$dark_color
     [ "$(isdark -r "$l")" -eq 1 ] && color=$light_color
-    echo "@define-color forground$nth rgb($color)" >> $waybar_colors_file
+    echo "@define-color forground$nth rgb($color);" >> $waybar_colors_file
     nth=$((nth+1))
   done
