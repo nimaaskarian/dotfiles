@@ -2,8 +2,12 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <ctype.h>
+#include <math.h>
 
 #define COLOR_START_INDEX 1
+#define R colorInt[0]
+#define G colorInt[1]
+#define B colorInt[2]
 int convertDigitHexToDecimal(char hex, int nthDigit);
 int powInt(int base, int power); 
 void printUsageAndExit(char *argv[]);
@@ -28,7 +32,7 @@ int main(int argc, char *argv[])
       case 'r': {
         if (cflag) printUsageAndExit(argv);
         rflag = 1;
-        if (sscanf(optarg, "%d,%d,%d", &colorInt[0], &colorInt[1], &colorInt[2]) != 3)
+        if (sscanf(optarg, "%d,%d,%d", &R, &G, &B) != 3)
           printUsageAndExit(argv);
         break;
       }
@@ -47,9 +51,8 @@ int main(int argc, char *argv[])
         j++;
     }
   }
-  // printf("(%d) (%d) (%d)\n", colorInt[0],colorInt[1],colorInt[2]);
-  double luma = (double)(color[0]*2+colorInt[1]*3+colorInt[2])/6;
-  int isDark = luma <= 85;
+  double luma = sqrt(0.299*R*R+0.587*G*G+0.114*B*B);
+  int isDark = luma <= 127.5;
   printf("%d\n", isDark);
   return EXIT_SUCCESS;
 }
