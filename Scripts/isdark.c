@@ -4,29 +4,50 @@
 #include <ctype.h>
 #include <math.h>
 
-#define COLOR_START_INDEX 1
 #define R colorInt[0]
 #define G colorInt[1]
 #define B colorInt[2]
+
 int convertDigitHexToDecimal(char hex, int nthDigit);
 int powInt(int base, int power); 
 void printUsageAndExit(char *argv[]);
 
 int main(int argc, char *argv[])
 {
-  char color[6] = {0,0,0,0,0,0};
+  char colorChars[6] = {0,0,0,0,0,0};
   int colorInt[3] = {0,0,0};
   int opt = 0;
 
-  int cflag = 0, rflag = 0;
-  while ((opt = getopt(argc, argv, "c:r:")) != -1) {
-
+  int cflag = 0, rflag = 0, lflag = 0, printIsDark = 1;
+  while ((opt = getopt(argc, argv, "c:r:lL")) != -1) {
     switch (opt) {
       case 'c': {
-        if (cflag) printUsageAndExit(argv);
+        if (rflag) printUsageAndExit(argv);
         cflag = 1;
-        for (int i = COLOR_START_INDEX; i < COLOR_START_INDEX+6; i++)
-          color[i] = optarg[i];
+
+        int colorCount = sscanf(optarg, "#%c%c%c%c%c%c", &colorChars[0], &colorChars[1], &colorChars[2],&colorChars[3], &colorChars[4], &colorChars[5]);
+        if (colorCount == 3) {
+          // when we have 3 chars, we want to split them so:
+          // 0: 0,1
+          // 1: 2,3
+          // 2, 4,5
+          colorChars[4] = colorChars[2];
+          colorChars[2] = colorChars[1];
+
+          for (int i = 0; i < 6; i+=2)
+            colorChars[i+1] = colorChars[i];
+        }
+        else if(colorCount != 6)
+          printUsageAndExit(argv);
+        break;
+      }
+      case 'l':{
+        lflag = 1;
+        break;
+      }
+      case 'L':{
+        lflag = 1;
+        printIsDark = 0;
         break;
       }
       case 'r': {
@@ -36,8 +57,11 @@ int main(int argc, char *argv[])
           printUsageAndExit(argv);
         break;
       }
-      default: /* '?' */
+     case '?':
         printUsageAndExit(argv);
+        return 1;
+      default:
+        abort ();
     }
   }
   if (!cflag && !rflag) {
@@ -45,15 +69,24 @@ int main(int argc, char *argv[])
   }
   if (cflag) {
     int j = 0;
-    for (int i = COLOR_START_INDEX; i < COLOR_START_INDEX+6; i++) {
-      colorInt[j]+=convertDigitHexToDecimal(color[i],1-(i-COLOR_START_INDEX)%2);
-      if ((i-COLOR_START_INDEX)%2) 
+    for (int i = 0; i < 6; i++) {
+      colorInt[j]+=convertDigitHexToDecimal(colorChars[i],1-i%2);
+      if (i%2) 
         j++;
     }
   }
   double luma = sqrt(0.299*R*R+0.587*G*G+0.114*B*B);
-  int isDark = luma <= 127.5;
-  printf("%d\n", isDark);
+  // MIN_luma: 0
+  // MAX_luma: 255
+  // a color is dark when luma <= %50 * MAX_luma 
+  if (printIsDark) {
+    int isDark = luma <= 127.5;
+    printf("%d\n", isDark);
+  }
+
+  if (lflag)
+    printf("luma: %f\n", luma);
+
   return EXIT_SUCCESS;
 }
 
@@ -78,7 +111,6 @@ int powInt(int base, int power)
 
 void printUsageAndExit(char *argv[])
 {
-  fprintf(stderr, "Usage: %s [-c] hexcolor | [-r] r,g,b\n",
-    argv[0]);
+  fprintf(stderr, "Usage: %s [-c] hexcolor | [-r] r,g,b [-l]\n", argv[0]);
   exit(EXIT_FAILURE);
 }
