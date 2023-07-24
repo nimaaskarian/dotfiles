@@ -16,7 +16,7 @@ window#waybar {
 }
 #workspaces {
     font-family: feather;
-	background-color: @color0;
+	background-color: @foreground3_alpha;
     border: 2px solid @color3;
 	margin: 10px 5px 0px 10px;
     font-weight: bold;
@@ -35,7 +35,7 @@ window#waybar > * > *>*>*{
 
 #workspaces button.active {
     background-color: @color3;
-    color: @color0_noalpha;
+    color: @foreground3;
 }
 
 #workspaces button:hover {
@@ -44,6 +44,7 @@ window#waybar > * > *>*>*{
 }
 #window{
     background-color: @color1;
+    color: @foreground1;
     padding: 5px 7px;
     margin-top: 10px;
     margin-bottom: 0px;

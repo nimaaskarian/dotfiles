@@ -1,3 +1,5 @@
+// vim:fileencoding=utf-8:foldmethod=marker
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -8,9 +10,12 @@
 #define G colorInt[1]
 #define B colorInt[2]
 
+// Declarations {{{
+inline double getRgbLuma(int r,int g, int b);
 int convertDigitHexToDecimal(char hex, int nthDigit);
 int powInt(int base, int power); 
 void printUsageAndExit(char *argv[]);
+// }}}
 
 int main(int argc, char *argv[])
 {
@@ -75,7 +80,7 @@ int main(int argc, char *argv[])
         j++;
     }
   }
-  double luma = sqrt(0.299*R*R+0.587*G*G+0.114*B*B);
+  double luma = getRgbLuma(R,G,B);
   // MIN_luma: 0
   // MAX_luma: 255
   // a color is dark when luma <= %50 * MAX_luma 
@@ -88,6 +93,17 @@ int main(int argc, char *argv[])
     printf("luma: %f\n", luma);
 
   return EXIT_SUCCESS;
+}
+
+inline double getRgbLuma(int r,int g, int b)
+{
+  return sqrt(0.299*r*r+0.587*g*g+0.114*b*b);
+}
+
+void printUsageAndExit(char *argv[])
+{
+  fprintf(stderr, "Usage: %s [-c] hexcolor | [-r] r,g,b [-l]\n", argv[0]);
+  exit(EXIT_FAILURE);
 }
 
 int convertDigitHexToDecimal(char hex, int nthDigit) 
@@ -109,8 +125,3 @@ int powInt(int base, int power)
   return output;
 }
 
-void printUsageAndExit(char *argv[])
-{
-  fprintf(stderr, "Usage: %s [-c] hexcolor | [-r] r,g,b [-l]\n", argv[0]);
-  exit(EXIT_FAILURE);
-}

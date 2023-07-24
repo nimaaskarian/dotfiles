@@ -22,5 +22,7 @@ echo light: $light_color >> $logfile
     [ "$(~/.local/bin/isdark -r "$l")" -eq 1 ] && color=$light_color
     echo $color
     echo "@define-color foreground$nth rgb($color);" >> $waybar_colors_file
+    [ $nth -eq 3 ] && 
+      echo "@define-color foreground${nth}_alpha rgba($color,0.75);" >> $waybar_colors_file
     nth=$((nth+1))
   done

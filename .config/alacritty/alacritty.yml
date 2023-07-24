@@ -15,8 +15,8 @@ window:
   dynamic_title: true
   opacity: 0.80
   padding: 
-    x: 10
-    y: 10
+    x: 5
+    y: 5
   dynamic_padding: true
 
 key_bindings:

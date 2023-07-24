@@ -29,6 +29,7 @@ if [[ -f "$(which wal)" ]]; then
 			wpg -i "$1" "$HOME/.cache/wal/colors-wpg.json"
 		fi
 
+    ~/Scripts/change-waybar-colors-dark.sh
 		wal-telegram --background "$1"
 		~/Scripts/pywal-obsidianmd.sh "$HOME/Documents/Obsidian Notes/main"
 		# ~/.suckless/cpwal.sh
