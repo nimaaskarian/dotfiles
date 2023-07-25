@@ -58,3 +58,11 @@ except ValueError as e:
 if rofi_select_index >= 0:
     theme=([current_theme_name]+random_themes+user_themes+dark_themes+light_themes)[rofi_select_index]
     print(theme.replace(".json",""), end="")
+
+if rofi_process.stdout is not None:
+    rofi_process.stdout.close()
+if rofi_process.stderr is not None:
+    rofi_process.stderr.close()
+if rofi_process.stdin is not None:
+    rofi_process.stdin.close()
+rofi_process.wait()
