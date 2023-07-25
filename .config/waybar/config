@@ -14,7 +14,7 @@
  //        "calendar": {
  //            "weeks-pos": "right",
  //            "format": {
- //                "today": "<span color='#00f769'><b><u>{}</u></b></span>"
+ //                "today": "<span color='#abbb52'><b><u>{}</u></b></span>"
  //            }
  //        },
 	// },
@@ -110,8 +110,8 @@
       },
       // // for colorless config
       // "format-icons": {
-      //   "Playing": "<span color='#00f769'> </span>",
-      //   "Paused": "<span color='#00f769'> </span>"
+      //   "Playing": "<span color='#abbb52'> </span>",
+      //   "Paused": "<span color='#abbb52'> </span>"
       // },
     },
     "custom/jdate": {
@@ -149,8 +149,8 @@
 		"format-icons": {
 			"default": ["", "", ""]
 		},
-		"on-click": "alacritty -e pulsemixer",
-		"on-click-right": "pavucontrol",
+		"on-click-right": "alacritty -e pulsemixer",
+		"on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
     "tooltip-format": "{volume}%"
   },
   // "custom/randwall": {

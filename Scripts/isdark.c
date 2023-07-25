@@ -30,7 +30,11 @@ int main(int argc, char *argv[])
         if (rflag) printUsageAndExit(argv);
         cflag = 1;
 
-        int colorCount = sscanf(optarg, "#%c%c%c%c%c%c", &colorChars[0], &colorChars[1], &colorChars[2],&colorChars[3], &colorChars[4], &colorChars[5]);
+        int colorCount = 
+          sscanf(optarg, "#%c%c%c%c%c%c", 
+                 &colorChars[0], &colorChars[1], 
+                 &colorChars[2], &colorChars[3],
+                 &colorChars[4], &colorChars[5]);
         if (colorCount == 3) {
           // when we have 3 chars, we want to split them so:
           // 0: 0,1
