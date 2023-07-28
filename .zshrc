@@ -1,4 +1,7 @@
 # vim:fileencoding=utf-8:foldmethod=marker
+# Source .profile {{{
+source ~/.profile
+# }}}
 # Title {{{
 # preexec() { print -Pn "\e]0;$1\a" }
 preexec() { print -Pn "\e]0;$1 %~\a" }
@@ -19,7 +22,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 # }}}
 # General {{{
-source ~/.nnn_variables
 HISTFILE=~/.cache/zsh_history
 HISTSIZE=10000
 SAVEHIST=100000
@@ -36,10 +38,6 @@ unsetopt beep
 zstyle ':completion:*' matcher-list 'r:|=*' 'l:|=* r:|=*' 'm:{a-z}={A-Z}'
 zstyle ':completion:*' menu select
 zmodload zsh/complist
-
-# _variables
-export PATH=$PATH:$HOME/.local/bin/:$HOME/.config/emacs/bin
-export EDITOR=lvim
 # }}}
 # Zinit{{{
 
