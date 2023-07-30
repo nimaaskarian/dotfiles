@@ -26,9 +26,17 @@ if [[ -f "$(which wal)" ]]; then
 			}
 		else
 			wal -i "$1"
-			wpg -i "$1" "$HOME/.cache/wal/colors-wpg.json"
+			wpg -s "$1"
 		fi
+		. "$HOME/.cache/wal/colors.sh"
 
+    # gradients for cava file
+    sed -i '/gradient_color/d' ~/.config/cava/config
+    i=1
+    cbetween -f "$color2" -t "$color1" -i -c 6 | while read -r l; do 
+      echo gradient_color_$i = \'$l\';i=$((i+1)); 
+    done >> ~/.config/cava/config
+    pkill -USR2 cava
     ~/Scripts/change-waybar-colors-dark.sh
 		wal-telegram --background "$1"
 		~/Scripts/pywal-obsidianmd.sh "$HOME/Documents/Obsidian Notes/main"
@@ -36,7 +44,6 @@ if [[ -f "$(which wal)" ]]; then
 		
 		~/Scripts/discord-pywal/make.sh
 		pywal-discord
-		. "$HOME/.cache/wal/colors.sh"
 		# cp "$HOME/.cache/wal/colors" ~/Documents/Front\ End/nitab-pro/build/
 
 		rm ~/Documents/Front\ End/nitab-vanilla/css/colors.css
