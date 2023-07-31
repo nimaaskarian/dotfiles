@@ -13,6 +13,10 @@ typedef struct DoubleColor {
   double r, g, b;
 } DoubleColor;
 
+typedef struct sRGB {
+  double r, g, b;
+} sRGB;
+
 static inline void threeDigitHexToSix(Color *color);
 static inline Color black()
 {
@@ -51,10 +55,66 @@ static inline Color addColors(Color a,Color b)
   return output;
 }
 
-static inline int getColorFromOptarg(Color *color)
+static inline sRGB colorToSRGB(Color color)
 {
-  if((sscanf(optarg, "#%02x%02x%02x", &color->r,&color->g,&color->b)) != 3) {
-    if (sscanf(optarg,"#%01x%01x%01x",&color->r,&color->g, &color->b) == 3) {
+  sRGB output;
+  output.r = (double)color.r/255;
+  output.g = (double)color.g/255;
+  output.b = (double)color.b/255;
+  return output;
+}
+static inline Color sRGBToColor(sRGB color)
+{
+  Color output;
+  output.r = (int)color.r*255;
+  output.g = (int)color.g*255;
+  output.b = (int)color.b*255;
+  return output;
+}
+
+static inline int getColorFromRgbCharPointer(Color *color, char*charPtr)
+{
+  if (sscanf(charPtr, "%d,%d,%d", &color->r, &color->g, &color->b) != 3) {
+    return EXIT_FAILURE;
+  }
+  return EXIT_SUCCESS;
+}
+
+static inline double contrastRatio(double luma1, double luma2)
+{
+  if (luma1>luma2)
+     return ( luma1 +0.05 )/( luma2 +0.05);
+  else
+     return ( luma2 +0.05 )/( luma1 +0.05);
+}
+
+static inline double relativeLuminance(Color color)
+{
+  const double compareConstant = 0.04045,divisionConstant=1.055,
+    addConstant=0.055, exponentConstant = 2.4;
+
+  sRGB srgb = colorToSRGB(color);
+  if (srgb.r <= compareConstant)
+    srgb.r = srgb.r/12.92;
+  else
+    srgb.r = pow(((srgb.r+addConstant)/divisionConstant), exponentConstant);
+
+  if (srgb.b <= compareConstant)
+    srgb.b = srgb.b/12.92;
+  else
+    srgb.b = pow(((srgb.b+addConstant)/divisionConstant), exponentConstant);
+
+  if (srgb.g <= compareConstant)
+    srgb.g = srgb.g/12.92;
+  else
+    srgb.g = pow(((srgb.g+addConstant)/divisionConstant), exponentConstant);
+
+  return 0.2126*srgb.r + 0.7152*srgb.g + 0.0722 * srgb.b;
+}
+static inline int getColorFromCharPointer(Color *color, char *charPtr)
+{
+  if((sscanf(charPtr, "#%02x%02x%02x", &color->r,&color->g,&color->b)) != 3) {
+    if (sscanf(charPtr,"#%01x%01x%01x",&color->r,&color->g, &color->b) == 3) {
       threeDigitHexToSix(color);
     } else
       return EXIT_FAILURE;
@@ -84,6 +144,7 @@ static inline void threeDigitHexToSix(Color *color)
 
 static inline double getColorLuma(Color color)
 {
+  // return 0.2126 * color.r + 0.7152 * color.g + 0.0722 * color.b;
   return sqrt(0.299*color.r*color.r+0.587*color.g*color.g+0.114*color.b*color.b);
 }
 #endif
