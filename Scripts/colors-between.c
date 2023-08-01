@@ -8,16 +8,20 @@ int main(int argc, char *argv[])
   unsigned int colorsCount = 8;
 
   int opt = 0;
-  while ((opt = getopt(argc, argv, "f:t:c:")) != -1) {
+  int iflag = 0;
+  while ((opt = getopt(argc, argv, "f:t:c:i")) != -1) {
     switch (opt) {
+      case 'i':
+        iflag = 1;
+        break;
       case 'c':
         colorsCount = atoi(optarg);
         break;
       case 't':
-        getColorFromOptarg(&toColor);
+        getColorFromCharPointer(&toColor, optarg);
         break;
       case 'f':
-        getColorFromOptarg(&fromColor);
+        getColorFromCharPointer(&fromColor, optarg);
         break;
     }
   }
@@ -29,9 +33,14 @@ int main(int argc, char *argv[])
   colorDifference.g = (double)( toColor.g - fromColor.g )/colorsCount;
   colorDifference.b = (double)( toColor.b - fromColor.b )/colorsCount;
 
-  for (int i = 1; i < colorsCount; ++i) {
+  for (int i = 1-iflag; i < colorsCount+iflag; ++i) {
     printColor(addDoubleColorToColor(fromColor, multipleDoubleColor(colorDifference ,i) ));
   }
     
   return EXIT_SUCCESS;
+}
+
+void printHelpAndExit(char *argv[])
+{
+  printf("%s [-i] [-f] fromColor [-t] toColor [-c] stepsCount",argv[0]);
 }

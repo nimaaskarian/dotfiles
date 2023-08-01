@@ -126,6 +126,10 @@ static inline void printColor(Color color)
 {
   printf("#%02x%02x%02x\n", color.r,color.g,color.b);
 }
+static inline void printColorRgb(Color color)
+{
+  printf("%d,%d,%d\n", color.r,color.g,color.b);
+}
 
 static inline void printDoubleColor(DoubleColor color)
 {

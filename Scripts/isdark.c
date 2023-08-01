@@ -3,14 +3,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <ctype.h>
-#include <math.h>
-typedef struct Color {
-  int r; 
-  int g;
-  int b;
-} Color;
+#include "color.h"
 
-static inline double getColorLuma(Color);
 void printUsageAndExit(char *argv[]);
 
 int main(int argc, char *argv[])
@@ -24,8 +18,7 @@ int main(int argc, char *argv[])
       case 'c': {
         if (rflag) printUsageAndExit(argv);
         cflag = 1;
-
-        if((sscanf(optarg, "#%02x%02x%02x", &color.r,&color.g,&color.b)) != 3)
+        if (getColorFromCharPointer(&color, optarg) == EXIT_FAILURE)
           printUsageAndExit(argv);
         break;
       }
@@ -41,7 +34,7 @@ int main(int argc, char *argv[])
       case 'r': {
         if (cflag) printUsageAndExit(argv);
         rflag = 1;
-        if (sscanf(optarg, "%d,%d,%d", &color.r, &color.g, &color.b) != 3)
+        if (getColorFromRgbCharPointer(&color,optarg))
           printUsageAndExit(argv);
         break;
       }
@@ -68,11 +61,6 @@ int main(int argc, char *argv[])
     printf("luma: %f\n", luma);
 
   return EXIT_SUCCESS;
-}
-
-static inline double getColorLuma(Color color)
-{
-  return sqrt(0.299*color.r*color.r+0.587*color.g*color.g+0.114*color.b*color.b);
 }
 
 void printUsageAndExit(char *argv[])

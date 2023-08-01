@@ -4,7 +4,6 @@
     border: none;
     border-radius: 6px;
     font-family: Jetbrains Mono,Vazirmatn, JetbrainsMono Nerd Font Mono, feather;
-    /* font-family: waffle,Terminess Nerd Font Mono,Vazirmatn; */
     font-size: 12px;
     font-style: normal;
     min-height: 0;
@@ -13,58 +12,56 @@
 window#waybar {
     background: transparent;
     color: @color0_noalpha;
+    font-weight: 600;
 }
 #workspaces {
-    font-family: feather;
-	background-color: @foreground3_alpha;
-    border: 2px solid @color3;
-	margin: 10px 5px 0px 10px;
-    font-weight: bold;
+  font-family: feather;
+  background-color: @foreground3_alpha;
+  border: 2px solid @color3;
 }
 window#waybar > * > *>*>*{
     min-height: 24px;
 }
 #workspaces button {
-    padding: 0px 5px;
-	border-radius: 3px;
-    color: @color3;
-
-    /* font-size: 18px; */
-    background-color: transparent;
+  font-weight: 700;
+  border-radius: 3px;
+  color: @color3;
+  background-color: transparent;
 }
 
 #workspaces button.active {
-    background-color: @color3;
-    color: @foreground3;
+  background-color: @color3;
+  color: @foreground3;
 }
 
 #workspaces button:hover {
 	background-color: @color3_alpha;
-	color: @color0;
+  color: @foreground3;
+}
+widget, widget > box > label, widget > label{
+  padding: 5px 7px;
 }
 #window{
     background-color: @color1;
     color: @foreground1;
-    padding: 5px 7px;
-    margin-top: 10px;
-    margin-bottom: 0px;
 }
 #submap{
     background-color: @color7;
-    padding: 5px 7px;
-    margin-top: 10px;
-    margin-bottom: 0px;
 }
-#temperature,#cpu, #cava,#language, #custom-jdate ,#custom-date, #clock, #battery, #pulseaudio, #network, #window{
+box.modules-right.horizontal > widget > * {
+  padding: 5px 7px;
+  margin-left: 5px;
+}
+box.modules-left.horizontal > widget > * {
+  margin-right: 5px;
+}
+box.modules-center.horizontal > widget > * {
 	padding: 5px 7px;
-	margin-top: 10px;
-    margin-right: 5px;
 }
-
 
 #tray {
-    margin: 10px 10px 0px -5px;
-    padding: 0px 7px;
+  margin-left: -5px;
+  padding: 0px 7px;
 }
 
 #clock {
@@ -76,6 +73,10 @@ window#waybar > * > *>*>*{
 }
 
 #cpu{
+    background-color: @color4;
+    color: @foreground4;
+}
+#hardware{
     background-color: @color4;
     color: @foreground4;
 }
@@ -108,8 +109,10 @@ window#waybar > * > *>*>*{
 #custom-playerctl{
 	background-color: @color2;
 	color: @foreground2;
-	padding: 5px 7px;
-  margin-top: 10px;
+}
+window#waybar > box{
+  padding:10px;
+  padding-bottom:0;
 }
 #window.empty, #submap.empty, .empty, window#waybar.empty #window{
     background-color: transparent;

@@ -17,7 +17,7 @@ get_theme() {
   ~/.config/hypr/scripts/wall/theme-selector.py
 }
 if [[ "$output" == "rand" ]]; then
-  random
+  random "-tf ."
 elif [[ "$output" == "cur" ]]; then
   ~/Scripts/wal.sh "$(cat ~/.cache/wallpaper_path)" "$(get_theme)"
 else

@@ -14,7 +14,7 @@
  //        "calendar": {
  //            "weeks-pos": "right",
  //            "format": {
- //                "today": "<span color='#abbb52'><b><u>{}</u></b></span>"
+ //                "today": "<span color='#8BD649'><b><u>{}</u></b></span>"
  //            }
  //        },
 	// },
@@ -110,8 +110,8 @@
       },
       // // for colorless config
       // "format-icons": {
-      //   "Playing": "<span color='#abbb52'> </span>",
-      //   "Paused": "<span color='#abbb52'> </span>"
+      //   "Playing": "<span color='#8BD649'> </span>",
+      //   "Paused": "<span color='#8BD649'> </span>"
       // },
     },
     "custom/jdate": {
