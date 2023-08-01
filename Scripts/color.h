@@ -9,13 +9,9 @@ typedef struct Color {
   int r, g, b; 
 } Color;
 
-typedef struct DoubleColor {
-  double r, g, b;
-} DoubleColor;
-
 typedef struct sRGB {
   double r, g, b;
-} sRGB;
+} StdColor;
 
 static inline void threeDigitHexToSix(Color *color);
 static inline Color black()
@@ -27,7 +23,7 @@ static inline Color black()
   return output;
 }
 
-static inline DoubleColor multipleDoubleColor(DoubleColor a, unsigned int m)
+static inline StdColor multipleStdColor(StdColor a, unsigned int m)
 {
   a.r *= m;
   a.g *= m;
@@ -35,9 +31,9 @@ static inline DoubleColor multipleDoubleColor(DoubleColor a, unsigned int m)
   return a;
 }
 
-static inline Color addDoubleColorToColor(Color a,DoubleColor b)
+static inline StdColor addStdColors(StdColor a,StdColor b) 
 {
-  Color output = a;
+  StdColor output = a;
   output.r += b.r;
   output.g += b.g;
   output.b += b.b;
@@ -55,20 +51,20 @@ static inline Color addColors(Color a,Color b)
   return output;
 }
 
-static inline sRGB colorToSRGB(Color color)
+static inline StdColor colorToStdColor(Color color)
 {
-  sRGB output;
+  StdColor output;
   output.r = (double)color.r/255;
   output.g = (double)color.g/255;
   output.b = (double)color.b/255;
   return output;
 }
-static inline Color sRGBToColor(sRGB color)
+static inline Color StdColorToColor(StdColor color)
 {
   Color output;
-  output.r = (int)color.r*255;
-  output.g = (int)color.g*255;
-  output.b = (int)color.b*255;
+  output.r = (int)(color.r*255);
+  output.g = (int)(color.g*255);
+  output.b = (int)(color.b*255);
   return output;
 }
 
@@ -93,7 +89,7 @@ static inline double relativeLuminance(Color color)
   const double compareConstant = 0.04045,divisionConstant=1.055,
     addConstant=0.055, exponentConstant = 2.4;
 
-  sRGB srgb = colorToSRGB(color);
+  StdColor srgb = colorToStdColor(color);
   if (srgb.r <= compareConstant)
     srgb.r = srgb.r/12.92;
   else
@@ -129,11 +125,6 @@ static inline void printColor(Color color)
 static inline void printColorRgb(Color color)
 {
   printf("%d,%d,%d\n", color.r,color.g,color.b);
-}
-
-static inline void printDoubleColor(DoubleColor color)
-{
-  printf("%f, %f, %f\n", color.r,color.g,color.b);
 }
 
 static inline void threeDigitHexToSix(Color *color) 

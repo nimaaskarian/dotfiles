@@ -4,7 +4,7 @@
 
 int main(int argc, char *argv[])
 {
-  Color fromColor, toColor;
+  Color fromColor = black(), toColor = black();
   unsigned int colorsCount = 8;
 
   int opt = 0;
@@ -27,14 +27,17 @@ int main(int argc, char *argv[])
   }
   // because we need one more step than specified number!
   colorsCount++;
+  StdColor stdToColor = colorToStdColor(toColor);
+  StdColor stdFromColor = colorToStdColor(fromColor);
 
-  DoubleColor colorDifference;
-  colorDifference.r = (double)( toColor.r - fromColor.r )/colorsCount;
-  colorDifference.g = (double)( toColor.g - fromColor.g )/colorsCount;
-  colorDifference.b = (double)( toColor.b - fromColor.b )/colorsCount;
+  StdColor colorDifference;
+  colorDifference.r = (stdToColor.r - stdFromColor.r)/colorsCount;
+  colorDifference.g = (stdToColor.g - stdFromColor.g)/colorsCount;
+  colorDifference.b = (stdToColor.b - stdFromColor.b)/colorsCount;
 
   for (int i = 1-iflag; i < colorsCount+iflag; ++i) {
-    printColor(addDoubleColorToColor(fromColor, multipleDoubleColor(colorDifference ,i) ));
+    StdColor currentAddition = multipleStdColor(colorDifference ,i);
+    printColor(StdColorToColor(addStdColors(stdFromColor,  currentAddition)));
   }
     
   return EXIT_SUCCESS;
