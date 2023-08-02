@@ -7,15 +7,19 @@
 #   $innerfile &
 # done
 innerfile="$HOME/.config/waybar/scripts/jdate/jdate-inside.sh"
-do_jdate=0
-function toggle_do_jdate() {
-  if [ $do_jdate -eq 0 ]; then
-    do_jdate=1
-  else
-    do_jdate=0
-  fi
+MAX=2
+MIN=0
+do_jdate=$MIN
+function do_jdate_increase() {
+  do_jdate=$((do_jdate+1))
+  [ $do_jdate -gt $MAX ] && do_jdate=$MIN
 }
-trap "toggle_do_jdate" USR2
+function do_jdate_decrease() {
+  do_jdate=$((do_jdate-1))
+  [ $do_jdate -lt $MIN ] && do_jdate=$MAX
+}
+trap "do_jdate_increase" USR2
+trap "do_jdate_decrease" USR1
 
 while true; do
   $innerfile $do_jdate 
