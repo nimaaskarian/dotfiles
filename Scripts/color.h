@@ -68,14 +68,6 @@ static inline Color StdColorToColor(StdColor color)
   return output;
 }
 
-static inline int getColorFromRgbCharPointer(Color *color, char*charPtr)
-{
-  if (sscanf(charPtr, "%d,%d,%d", &color->r, &color->g, &color->b) != 3) {
-    return EXIT_FAILURE;
-  }
-  return EXIT_SUCCESS;
-}
-
 static inline double contrastRatio(double luma1, double luma2)
 {
   if (luma1>luma2)
@@ -84,33 +76,31 @@ static inline double contrastRatio(double luma1, double luma2)
      return ( luma2 +0.05 )/( luma1 +0.05);
 }
 
+static inline void fixStdColorParameterForRelativeLuma(double *param)
+{
+  if (*param <= 0.04045)
+    *param = *param/12.92;
+  else
+    *param = pow(((*param+0.055)/1.055), 2.4);
+
+}
 static inline double relativeLuminance(Color color)
 {
-  const double compareConstant = 0.04045,divisionConstant=1.055,
-    addConstant=0.055, exponentConstant = 2.4;
 
   StdColor srgb = colorToStdColor(color);
-  if (srgb.r <= compareConstant)
-    srgb.r = srgb.r/12.92;
-  else
-    srgb.r = pow(((srgb.r+addConstant)/divisionConstant), exponentConstant);
 
-  if (srgb.b <= compareConstant)
-    srgb.b = srgb.b/12.92;
-  else
-    srgb.b = pow(((srgb.b+addConstant)/divisionConstant), exponentConstant);
-
-  if (srgb.g <= compareConstant)
-    srgb.g = srgb.g/12.92;
-  else
-    srgb.g = pow(((srgb.g+addConstant)/divisionConstant), exponentConstant);
+  fixStdColorParameterForRelativeLuma(&srgb.r);
+  fixStdColorParameterForRelativeLuma(&srgb.g);
+  fixStdColorParameterForRelativeLuma(&srgb.b);
 
   return 0.2126*srgb.r + 0.7152*srgb.g + 0.0722 * srgb.b;
 }
+
 static inline int getColorFromCharPointer(Color *color, char *charPtr)
 {
-  if((sscanf(charPtr, "#%02x%02x%02x", &color->r,&color->g,&color->b)) != 3) {
-    if (sscanf(charPtr,"#%01x%01x%01x",&color->r,&color->g, &color->b) == 3) {
+  int colorsFound = sscanf(charPtr, "#%02x%02x%02x", &color->r,&color->g,&color->b);
+  if(colorsFound != 3) {
+    if (colorsFound == 2 && sscanf(charPtr,"#%01x%01x%01x",&color->r,&color->g, &color->b) == 3) {
       threeDigitHexToSix(color);
     } else
       return EXIT_FAILURE;
@@ -118,10 +108,24 @@ static inline int getColorFromCharPointer(Color *color, char *charPtr)
   return EXIT_SUCCESS;
 }
 
-static inline void printColor(Color color)
+static inline int getColorFromRgbCharPointer(Color *color, char*charPtr)
+{
+  if (sscanf(charPtr, "%d,%d,%d", &color->r, &color->g, &color->b) != 3) {
+    return EXIT_FAILURE;
+  }
+  return EXIT_SUCCESS;
+}
+
+static inline void printColor (Color color)
 {
   printf("#%02x%02x%02x\n", color.r,color.g,color.b);
 }
+
+static inline void printStdColor (StdColor srgb)
+{
+  printColor(StdColorToColor(srgb));
+}
+
 static inline void printColorRgb(Color color)
 {
   printf("%d,%d,%d\n", color.r,color.g,color.b);

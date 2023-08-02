@@ -2,6 +2,8 @@
 #include <unistd.h>
 #include "color.h"
 
+void printHelpAndExit(char *argv[]);
+
 int main(int argc, char *argv[])
 {
   Color fromColor = black(), toColor = black();
@@ -18,10 +20,14 @@ int main(int argc, char *argv[])
         colorsCount = atoi(optarg);
         break;
       case 't':
-        getColorFromCharPointer(&toColor, optarg);
+        if (getColorFromCharPointer(&toColor, optarg) == EXIT_FAILURE)
+          printHelpAndExit(argv);
+
         break;
       case 'f':
-        getColorFromCharPointer(&fromColor, optarg);
+        if (getColorFromCharPointer(&fromColor, optarg) == EXIT_FAILURE)
+          printHelpAndExit(argv);
+
         break;
     }
   }
@@ -37,7 +43,7 @@ int main(int argc, char *argv[])
 
   for (int i = 1-iflag; i < colorsCount+iflag; ++i) {
     StdColor currentAddition = multipleStdColor(colorDifference ,i);
-    printColor(StdColorToColor(addStdColors(stdFromColor,  currentAddition)));
+    printStdColor(addStdColors(stdFromColor,  currentAddition));
   }
     
   return EXIT_SUCCESS;
@@ -45,5 +51,6 @@ int main(int argc, char *argv[])
 
 void printHelpAndExit(char *argv[])
 {
-  printf("%s [-i] [-f] fromColor [-t] toColor [-c] stepsCount",argv[0]);
+  printf("%s [-i] [-f] fromColor [-t] toColor [-c] stepsCount\n",argv[0]);
+  exit(EXIT_FAILURE);
 }

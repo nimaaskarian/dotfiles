@@ -33,7 +33,10 @@ if [[ -f "$(which wal)" ]]; then
     # gradients for cava file
     sed -i '/gradient_color/d' ~/.config/cava/config
     i=1
-    cbetween -f "$color2" -t "$color1" -i -c 6 | while read -r l; do 
+    {
+    cbetween -f "$color2" -t "$color3" -i -c 3 
+    cbetween -f "$color3" -t "$color1" -i -c 2
+  } | uniq | while read -r l; do 
       echo gradient_color_$i = \'$l\';i=$((i+1)); 
     done >> ~/.config/cava/config
     pkill -USR2 cava
