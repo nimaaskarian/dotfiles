@@ -1,7 +1,4 @@
 # vim:fileencoding=utf-8:foldmethod=marker
-# Source .profile {{{
-source ~/.profile
-# }}}
 # Title {{{
 # preexec() { print -Pn "\e]0;$1\a" }
 preexec() { print -Pn "\e]0;$1 %~\a" }
@@ -99,6 +96,12 @@ alias dotg="git --git-dir=$HOME/.cfg --work-tree=$HOME"
 function z(){
     zathura "$@" &!
 }
+function toraw() {
+  for arg in $*; do 
+    removed=$(printf "%s" $arg | sd "^.*?://.*?/" "" | sd "blob/" "")
+    echo "$raw/$removed"
+  done
+}
 function w3m(){
     if [[ $1 ]]; then
         /bin/w3m $@
@@ -151,7 +154,7 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect '^[' undo
 # }}}
-# Other (p10k, command not found){{{
+# Other (p10k, command not found) {{{
 source /usr/share/doc/pkgfile/command-not-found.zsh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh 
 # }}}

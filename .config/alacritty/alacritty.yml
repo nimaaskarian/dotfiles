@@ -23,6 +23,9 @@ key_bindings:
   - { key: K,      mods: Shift|Control,                   action: ScrollLineUp            }  # Vi Mode
   - { key: K,      mods: Shift|Control,                   action: ToggleViMode            }  # Vi Mode
   - { key: J,      mods: Shift|Control,                   action: ScrollLineDown          }  # Vi Mode
+  # - { key: O,   mods: Shift|Control,                   chars: "alacritty msg config window.opacity=0.5\x0D" }  
+  - { key: O,   mods: Shift|Control,                  command: {program: "alacritty", args: ["msg", "config", "window.opacity=0.8"]} } 
+  - { key: P,   mods: Shift|Control,                  command: {program: "alacritty", args: ["msg", "config", "window.opacity=1"]} } 
 
   - { key: Space,  mods: Control,       mode: ~Search,    action: ToggleViMode            }
   - { key: Space,  mods: Control,       mode: Vi|~Search, action: ScrollToBottom          }

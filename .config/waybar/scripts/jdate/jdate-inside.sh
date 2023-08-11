@@ -17,4 +17,8 @@ case $do_jdate in
     date +"%a, %B %m"
     sleep 1800
     ;;
+  3) 
+    echo ""
+    sleep 18000000
+    ;;
 esac

@@ -11,8 +11,12 @@ CONFIG="$HOME/.config"
 # Main
 if [[ -f "$(which wal)" ]]; then
 	if [[ "$1" ]]; then
+    file_mimetype=$(mimetype --output-format "%m" "$1")
+    if [[ "$file_mimetype" == "video/"* ]] || [ "$file_mimetype" = "image/gif" ]; then
+      video_thumbnail=/tmp/output.png
+      ffmpegthumbnailer -s 0 -i "$1" -o $video_thumbnail
+    fi
 		[ "$WAYLAND_DISPLAY" ] && ~/.config/hypr/scripts/wall/set.sh "$1"
-
 		printf '%s' "$2" > "$HOME/.cache/theme_name"
 		printf '%s' "$1" > "$HOME/.cache/wallpaper_path"
 		if [ "$2" ]; then
@@ -20,14 +24,18 @@ if [[ -f "$(which wal)" ]]; then
 			wal --theme $2
 			wpg -i "$1" "$HOME/.cache/wal/colors-wpg.json"
 			wpg -s "$1"
-			[ "$previous_theme" = "$2" ] && {
-				wal-telegram --background "$1"
-				exit 
-			}
 		else
 			wal -i "$1"
 			wpg -s "$1"
 		fi
+    [ "$previous_theme" = "$2" ] && exit 
+			
+    if [ "$video_thumbnail" ]; then
+      wal-telegram --background "$video_thumbnail"
+    else
+      wal-telegram --background "$1"
+    fi
+
 		. "$HOME/.cache/wal/colors.sh"
 
     # gradients for cava file
@@ -41,7 +49,6 @@ if [[ -f "$(which wal)" ]]; then
     done >> ~/.config/cava/config
     pkill -USR2 cava
     ~/Scripts/change-waybar-colors-dark.sh
-		wal-telegram --background "$1"
 		~/Scripts/pywal-obsidianmd.sh "$HOME/Documents/Obsidian Notes/main"
 		# ~/.suckless/cpwal.sh
 		

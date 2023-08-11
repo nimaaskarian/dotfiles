@@ -7,7 +7,7 @@
 #   $innerfile &
 # done
 innerfile="$HOME/.config/waybar/scripts/jdate/jdate-inside.sh"
-MAX=2
+MAX=3
 MIN=0
 do_jdate=$MIN
 function do_jdate_increase() {
