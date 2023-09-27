@@ -17,9 +17,6 @@ fallthrough true
 allow-cmd true    
 ;; use 'ls /dev/input/by-id/' for detachable keyboards and
 ;; 'ls /dev/input/by-path/' for builtin keyboards location'
-;; input  (device-file "/dev/input/by-id/usb-BY_Tech_Usb_Gaming_Keyboard-event-kbd")
-;; input  (device-file "/dev/input/by-id/usb-SEM_USB_Keyboard-event-kbd")
-;; input  (device-file "/dev/input/by-id/usb-Compx_2.4G_Wireless_Receiver-event-kbd")
 ;; input  (device-file "/dev/input/by-id/usb-Compx_2.4G_Wireless_Receiver-event-kbd")
 input  (device-file "/dev/input/by-id/usb-SINO_WEALTH_Gaming_KB-event-kbd")
 ;; Not sure what this does. Please check the docs.

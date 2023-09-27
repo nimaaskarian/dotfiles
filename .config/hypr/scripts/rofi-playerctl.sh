@@ -16,5 +16,5 @@ PLAYER_STATUS() {
 }
 output=$(~/.config/hypr/scripts/playerctl.py | while read -r P; do 
 echo "$(PLAYER_STATUS $P) $P, $(PLAYER_META "$P")"
-done | rofi -i -dmenu -p "") &&
+done | rofi -dmenu -window-title "   ") &&
 printf '%s' "$output" | sed 's/,.*//;s/^.*\s//' > /tmp/player;

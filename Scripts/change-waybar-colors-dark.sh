@@ -5,7 +5,6 @@ waybar_colors_file=~/.cache/wal/colors-waybar.css
 colors_file=~/.cache/wal/colors
 color0=$(head -n 1 < $colors_file)
 color7=$(head -n 8 < $colors_file | tail -n 1)
-rm ~/log.txt
 
  grep -v 'alpha' $waybar_colors_file | sed 's/.*(//;s/);//' |
   while read -r l; do

@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/nima/Pictures/Wallpapers/sky-evening-pink-min.png",
+    "alpha": "100",
+
+    "special": {
+        "background": "#01111D",
+        "foreground": "#EFD8DD",
+        "cursor": "#EFD8DD"
+    },
+    "colors": {
+        "color0": "#01111D",
+        "color1": "#AA596E",
+        "color2": "#565D81",
+        "color3": "#665B82",
+        "color4": "#4B6584",
+        "color5": "#706187",
+        "color6": "#A56785",
+        "color7": "#EFD8DD",
+        "color8": "#9c7b83",
+        "color9": "#AA596E",
+        "color10": "#565D81",
+        "color11": "#665B82",
+        "color12": "#4B6584",
+        "color13": "#706187",
+        "color14": "#A56785",
+        "color15": "#EFD8DD"
+    }
+}

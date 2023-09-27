@@ -354,7 +354,7 @@ lvim.builtin.which_key.mappings["m"] = {
     "Toggle checkbox"
   },
   l = {
-    '<cmd>norm o[](https://)<CR><esc>^ci[',
+    '<cmd>norm i[](https://)<CR><esc>^ci[',
     "Link"
   },
   n = { "<cmd>ObsidianNew<CR>", "Obsidian note"},
@@ -382,6 +382,18 @@ lvim.builtin.which_key.mappings["Lp"] = {
 -- Plugins{{{
 lvim.plugins = {
   {
+    "ray-x/lsp_signature.nvim",
+    event = "BufRead",
+    config = function() require"lsp_signature".on_attach() end,
+  },
+  {
+    "bkad/CamelCaseMotion"
+  },
+  {
+    "metakirby5/codi.vim",
+    cmd = "Codi",
+  },
+  {
     "phaazon/hop.nvim",
     branch = 'v2',
     config = function()
@@ -389,10 +401,16 @@ lvim.plugins = {
     end
   },
   {
+    "neovim/nvim-lspconfig"
+  },
+  {
     "ThePrimeagen/harpoon",
     dependencies = {
       {"nvim-lua/plenary.nvim"}
     }
+  },
+  {
+    "simrat39/rust-tools.nvim"
   },
   -- {
   --   "epwalsh/obsidian.nvim",
@@ -521,12 +539,14 @@ lvim.plugins = {
   {"ellisonleao/gruvbox.nvim"},
   -- {'dylanaraps/wal.vim'},
   {'lervag/vimtex'},
-{ "iamcco/markdown-preview.nvim",
+  {
+    "iamcco/markdown-preview.nvim",
     build = "cd app && npm install",
     init = function()
       vim.g.mkdp_filetypes = { "markdown" }
     end,
-    ft = { "markdown" }, },
+    ft = { "markdown" },
+  },
   {
     "simrat39/symbols-outline.nvim",
     config = function()
@@ -659,9 +679,6 @@ vim.g.neovide_refresh_rate = 60
 vim.g.neovide_profiler = false
 vim.g.neovide_cursor_vfx_mode = "pixiedust"
 vim.opt.guifont = "Jetbrains Mono:h12"
-
-
-
 -- LSP options
 local lspconfig = require('lspconfig')
 local configs = require('lspconfig/configs')
@@ -718,6 +735,8 @@ dap.configurations.cpp = {
 }
 dap.configurations.c = dap.configurations.cpp
 
+vim.api.nvim_set_keymap("n", "<A-s>", ":LspOverloadsSignature<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<A-s>", ":LspOverloadsSignature<CR>", { noremap = true, silent = true })
 
 -- Hop.nvim
 -- local hop = require('hop')

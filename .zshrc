@@ -1,4 +1,7 @@
 # vim:fileencoding=utf-8:foldmethod=marker
+# Source nnn {{{
+source ~/.nnn_variables
+# }}}
 # Title {{{
 # preexec() { print -Pn "\e]0;$1\a" }
 preexec() { print -Pn "\e]0;$1 %~\a" }
@@ -25,6 +28,7 @@ SAVEHIST=100000
 # ^W don't delete whole argument
 WORDCHARS=' *?_-".[]~=&;!#$%^(){}<>/'
 autoload -Uz select-word-style
+setopt correct
 select-word-style normal
 zstyle ':zle:*' word-style unspecified
 # autocd
@@ -83,7 +87,8 @@ zinit light brorbw/zsh-vi-mode
 raw="https://raw.githubusercontent.com"
 git="https://github.com"
 alias c="wl-copy"
-alias bw="~/Documents/Learning/cpp/bingewatcher-cpp/bw"
+# alias bw="~/Documents/Learning/cpp/bingewatcher-cpp/bw"
+alias bw="~/Documents/Other/bingewatcher-python3/main.py"
 alias cc="PAGER='/home/nima/Scripts/glowless' calcurse"
 alias ls='nnn'
 alias la='nnn -H'
@@ -155,6 +160,12 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect '^[' undo
 # }}}
 # Other (p10k, command not found) {{{
-source /usr/share/doc/pkgfile/command-not-found.zsh
+command_not_found_handler() {
+  local pkgs cmd="$1"
+  pacman -F $1 || printf 'zsh: command not found: %s\n' "$cmd"
+}
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh 
 # }}}
+export ANDROID_HOME=/opt/android-sdk
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/platform-tools

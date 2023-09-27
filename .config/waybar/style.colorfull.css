@@ -23,6 +23,7 @@ window#waybar > * > *>*>*{
     min-height: 24px;
 }
 #workspaces button {
+  padding: 5px 5px;
   font-weight: 700;
   border-radius: 3px;
   color: @color3;
@@ -72,13 +73,10 @@ box.modules-center.horizontal > widget > * {
     font-weight: bold;
 }
 
-#cpu{
-    background-color: @color4;
-    color: @foreground4;
-}
 #hardware{
     background-color: @color4;
     color: @foreground4;
+    margin-left: 5px;
 }
 #temperature{
     background-color: @color1;
@@ -98,7 +96,7 @@ box.modules-center.horizontal > widget > * {
   color: @foreground7;
 }
 #pulseaudio.muted {
-  background-color: @color7;
+  background-color: @color8;
   color: @foreground7;
 }
 #custom-jdate {

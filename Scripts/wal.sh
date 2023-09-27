@@ -8,33 +8,47 @@ previous_theme=$(cat $HOME/.cache/theme_name)
 alpha=bf
 no_alpha=FF
 CONFIG="$HOME/.config"
+function set_video_thumbnail() {
+  video_thumbnail=$HOME/.cache/wal/thumbnail.png
+  rm "$video_thumbnail"
+  ffmpegthumbnailer -s 0 -i "$1" -o "$video_thumbnail"
+}
 # Main
 if [[ -f "$(which wal)" ]]; then
 	if [[ "$1" ]]; then
+    killalll mpvpaper
     file_mimetype=$(mimetype --output-format "%m" "$1")
-    if [[ "$file_mimetype" == "video/"* ]] || [ "$file_mimetype" = "image/gif" ]; then
-      video_thumbnail=/tmp/output.png
-      ffmpegthumbnailer -s 0 -i "$1" -o $video_thumbnail
+    [ "$file_mimetype" = "image/gif" ] && set_video_thumbnail "$1"
+
+    if [[ "$file_mimetype" == "video/"* ]] ; then
+      set_video_thumbnail "$1"
+      hyprctl monitors -j | jq -r ".[].name" | while read -r monitor; do 
+        mpvpaper "$monitor" "$1" -o "--loop=inf --mute=yes" &
+      done  
+    else
+      [ "$WAYLAND_DISPLAY" ] && ~/.config/hypr/scripts/wall/set.sh "$1"
     fi
-		[ "$WAYLAND_DISPLAY" ] && ~/.config/hypr/scripts/wall/set.sh "$1"
+
 		printf '%s' "$2" > "$HOME/.cache/theme_name"
 		printf '%s' "$1" > "$HOME/.cache/wallpaper_path"
 		if [ "$2" ]; then
 			# no reload if theme hasn't changed
-			wal --theme $2
-			wpg -i "$1" "$HOME/.cache/wal/colors-wpg.json"
-			wpg -s "$1"
+			wal --theme "$2"
+      wpg -Ti "$1" "$2"
+      wpg -s "$1"
 		else
 			wal -i "$1"
-			wpg -s "$1"
+      # wpg -s "$1"
 		fi
-    [ "$previous_theme" = "$2" ] && exit 
+    wpg -i "$1" "$HOME/.cache/wal/colors-wpg.json"
+    wpg -s "$1"
 			
     if [ "$video_thumbnail" ]; then
       wal-telegram --background "$video_thumbnail"
     else
       wal-telegram --background "$1"
     fi
+    [ "$2" ] && [ "$previous_theme" = "$2" ] && exit 
 
 		. "$HOME/.cache/wal/colors.sh"
 
@@ -42,8 +56,9 @@ if [[ -f "$(which wal)" ]]; then
     sed -i '/gradient_color/d' ~/.config/cava/config
     i=1
     {
-    cbetween -f "$color2" -t "$color3" -i -c 3 
-    cbetween -f "$color3" -t "$color1" -i -c 2
+    echo $color2
+    echo $color3
+    echo $color1
   } | uniq | while read -r l; do 
       echo gradient_color_$i = \'$l\';i=$((i+1)); 
     done >> ~/.config/cava/config
@@ -56,8 +71,6 @@ if [[ -f "$(which wal)" ]]; then
 		pywal-discord
 		# cp "$HOME/.cache/wal/colors" ~/Documents/Front\ End/nitab-pro/build/
 
-		rm ~/Documents/Front\ End/nitab-vanilla/css/colors.css
-		cp ~/.cache/wal/colors.css "$HOME/Documents/Front End/nitab-vanilla/css" -f
     sed -i -e "s/\$background #.*/\$background #$(echo $background | tr -d "#")$alpha/g" "$CONFIG/i3/config" 
 		sed -i 's/:root.*//gi' "$CONFIG/qutebrowser/pywal.css"
 	  tr -d '\n' < /home/nima/.cache/wal/colors.css | sed 's/.*:root/:root/gi' >> "$CONFIG/qutebrowser/pywal.css"
@@ -65,10 +78,17 @@ if [[ -f "$(which wal)" ]]; then
 		~/Scripts/xournalpp-backgroundcolor.py
 		# Associative array, color name -> color code.
 		declare -A makocolors
+
+    mako_background=$color2
+    mako_text=$color0
+
+    contrast_ratio0=$(contrast -1 "$color0" -2 "$mako_background")
+    contrast_ratio7=$(contrast -1 "$color7" -2 "$mako_background")
+    (( $(echo "$contrast_ratio7 > $contrast_ratio0" | bc -l) )) && mako_text=$color7
+
 		makocolors=(
-				["background-color"]="${background}${alpha}"
-				["text-color"]="$foreground"
-				["border-color"]="$color2"
+				["background-color"]="$mako_background"
+				["text-color"]="$mako_text"
 		)
 
 		for color_name in "${!makocolors[@]}"; do
